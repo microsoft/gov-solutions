@@ -3,8 +3,9 @@ description: Reusable Dataverse solution modules for Power Platform & D365
 logo: /assets/logo.png
 
 # If this is a project site (https://username.github.io/repo), set baseurl to "/repo"
-url: "https://username.github.io"
-baseurl: ""
+url: "https://microsoft.github.io"   # host only, no trailing slash
+baseurl: "/gov-solutions"             # MUST start with a slash; repo name
+repository: "microsoft/gov-solutions" # (nice to have for jekyll-github-metadata)
 
 # Keep Markdown simple; we’re not using plugins that Pages doesn’t support
 markdown: kramdown
