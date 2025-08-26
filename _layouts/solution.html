@@ -60,7 +60,13 @@ layout: default
 
           <!-- Small right column (download + personas) -->
           <div class="grid-col-3">
-            <button class="usa-button">Download Latest Release</button>
+            <!-- <button class="usa-button">Download Latest Release</button> -->
+            <a class="usa-button"
+              href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ page.latest_release }}"
+              download>
+              Download Latest Release
+            </a>
+            {% include requireslist.html %}
             {% include personalist.html %}
           </div>
 

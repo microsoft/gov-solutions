@@ -1,7 +1,7 @@
 ---
 title: Core Module
 summary: Provides standardized data structures for managing people, places, assets, and compliance information in government-focused solutions.
-download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSolution_1_0.zip
+latest_release: federal/core/releases/v1.0.2.0/MS-Fed-Core_managed%20-%201.0.2.0.zip
 layout: solution
 permalink: /solutions/core/
 thumbnail: /assets/solutions/core/core.png

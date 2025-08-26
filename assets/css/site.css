@@ -39,6 +39,8 @@ body {
   min-height: 100vh;
 }
 
+header.usa-header.bg-primary-darker .usa-navbar { max-width: none !important; }
+
 /* Container for consistent horizontal alignment */
 .container {
   max-width: 1400px;

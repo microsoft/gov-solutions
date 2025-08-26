@@ -1,19 +1,26 @@
 ---
-layout: default
+layout: home
 title: Home
 ---
 
-# Government App Template Repository
+# Welcome
 
-The Government Application Starter Templates repository provides a library of modular, prebuilt Power Platform and Dynamics 365 applications designed specifically for government agencies. Each template is built on the standardized [Government Dataverse Data Models](https://github.com/microsoft/gov-datamodels), ensuring data consistency and interoperability across solutions. These ready-to-personalize modules deliver core starting funcionality for mission-focused services such as permitting, case management, asset tracking, grants management, and more. By using these templates, agencies can jump-start solution delivery, reduce development time, and focus resources on tailoring workflows, user experiences, and integrations to meet their unique operational needs.
+This repository is an open-source ecosystem for building government applications on Microsoft Power Platform and Dynamics 365. It provides reusable building blocks - standardized data models and modular starter apps - that help agencies deliver mission-focused solutions more quickly and with greater consistency.
 
-## 🎯 Co-Designed with Government App Data Models
+This documentation site serves as the hub that brings the two core repositories together into a single experience:
 
-This repository, along with the [Government Data Models](https://github.com/microsoft/gov-datamodels)  repository, are designed to work together as a modular, layered foundation for building government solutions on Microsoft Dataverse and the Power Platform.
+* The **[Government Data Models](https://github.com/microsoft/gov-datamodels)** define standardized Dataverse schemas for common government business processes, ensuring interoperability and consistency across agencies and solutions.
+* The **[Government App Starter Kits](https://github.com/microsoft/gov-apptemplates)** provide prebuilt, modular applications built on those data models, offering a jump start for services such as permitting, case management, asset tracking, and grants management.
 
-- gov-datamodels provides the standardized, reusable data models — entities, relationships, and field specifications — that define the structure and semantics of common government business processes.
+Here you’ll find quickstarts, domain use cases, personas, release notes, and architecture guidance that connect the two repositories into an end-to-end path. Whether you’re an implementer, industry partner, or hackathon participant, Gov Solutions gives you the tools to move from evaluation to deployment with confidence.
 
-- gov-apptemplates provides the ready-to-deploy applications built on top of those models, delivering preconfigured forms, views, dashboards, automation, and business logic.
+## 🎯 Your Choice: Clean Separate of Data Models and App Starter Kits
+
+The Data Models and App Starter Kits in this repository are designed to work together as a modular, layered foundation for building government solutions on Microsoft Dataverse and the Power Platform.
+
+- Data Models provide the standardized, reusable data models — entities, relationships, and field specifications — that define the structure and semantics of common government business processes.
+
+- App Starter Kits provide the ready-to-deploy applications built on top of those models, delivering preconfigured forms, views, dashboards, automation, and business logic.
 
 Keeping these in separate repositories offers several benefits:
 

@@ -5,6 +5,9 @@ download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSo
 layout: solution
 permalink: /solutions/personnel-security/
 thumbnail: /assets/solutions/personnel-security/personnel-security.png
+latest_release: federal/personnel-security/releases/v1.0.0.0/MS-Fed-Personnel-Security_managed%20-%201.0.0.0.zip
+requires:
+ - Core
 use_cases:
  - Case 1
 personas:
