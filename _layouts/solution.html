@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+<section class="usa-section">
+  <div class="grid-container-full">
+
+    <div class="grid-row grid-gap">
+
+      <!-- Sidebar navigation -->
+
+      <aside class="grid-col-3">
+        <nav class="sidenav-sticky" aria-label="Section navigation">
+          {% include sidenav.html %}
+        </nav>
+      </aside>
+
+      <!-- Main content (right side) -->
+      <main class="grid-col-9 usa-prose">
+
+        <!-- Header row: breadcrumbs + page title -->
+        <div class="grid-row grid-gap">
+          <div class="grid-col-9 usa-prose">
+            {% include breadcrumbs.html %}
+          </div>
+        </div>
+
+        <!-- Content row: main column + small right column -->
+        <div class="grid-row grid-gap">
+
+          <!-- Main column -->
+          <div class="grid-col-9 usa-prose">
+
+            <h1 class="mgat-solution-heading">{{ page.title }}</h1>
+            <hr />
+
+            {% include tabs.html
+            ns=page.slug
+            tabs="Overview:overview|Releases:releases|How-to / Guides:guides"
+            %}
+
+            <!-- OVERVIEW panel -->
+            <section id="panel-{{ page.slug }}-overview" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {{ content }}
+            </section>
+
+            <!-- RELEASES panel -->
+            <section id="panel-{{ page.slug }}-releases" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {%- comment -%} Render your releases for this solution {%- endcomment -%}
+            </section>
+
+            <!-- GUIDES panel -->
+            <section id="panel-{{ page.slug }}-guides" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {% include doclist.html %}
+            </section>
+          </div>
+
+          <!-- Small right column (download + personas) -->
+          <div class="grid-col-3">
+            <button class="usa-button">Download Latest Release</button>
+            {% include personalist.html %}
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+</section>

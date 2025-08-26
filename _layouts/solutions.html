@@ -1,0 +1,36 @@
+---
+layout: default
+---
+<section class="usa-section padding-top-2">
+  <div class="container">
+    <header class="margin-bottom-2">
+      <h1 class="usa-display">Available App Starter Kits</h1>
+      <p>Browse reusable, open-source solutions for common U.S. government missions on Power Platform and Dynamics 365.</p>
+    </header>
+
+    <div class="grid-row grid-gap">
+      {% assign items = site.solutions | sort: 'title' %}
+      {% for sol in items %}
+        <!-- 1-up mobile, 2-up tablet, 3-up desktop -->
+        <div class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4 margin-bottom-2">
+          {% include card.html
+            type="solution"
+            title=sol.title
+            url=sol.url
+            summary=sol.summary
+            tags=sol.use_cases
+            personas=sol.personas
+            repo=sol.repo
+            thumbnail=sol.thumbnail %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Optional empty state (render if no items) -->
+    {% if items.size == 0 %}
+      <div class="usa-alert usa-alert--info margin-top-2" role="status">
+        <div class="usa-alert__body"><p class="usa-alert__text">No solutions found.</p></div>
+      </div>
+    {% endif %}
+  </div>
+</section>

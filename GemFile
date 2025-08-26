@@ -1,0 +1,8 @@
+# /docs/Gemfile
+source "https://rubygems.org"
+
+# GitHub Pages gem locks Jekyll and plugins to what Pages uses in production
+gem "github-pages", group: :jekyll_plugins
+
+# Useful for local development
+gem "webrick", "~> 1.8"

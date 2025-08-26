@@ -1,0 +1,144 @@
+---
+layout: default
+---
+
+<section class="usa-section">
+  <div class="grid-container-full">
+
+    <div class="grid-row grid-gap">
+
+      <!-- Sidebar navigation -->
+      <aside class="grid-col-3">
+
+          {% comment %} Find the parent solution (docs have `solution: <slug>`) {% endcomment %}
+            {% assign parent_solution = nil %}
+            {% if page.solution %}
+            {% assign parent_solution = site.solutions | where: "slug", page.solution | first %}
+            {% if parent_solution == nil %}
+            {% capture sol_url %}/solutions/{{ page.solution }}/{% endcapture %}
+            {% assign parent_solution = site.solutions | where: "url", sol_url | first %}
+            {% endif %}
+            {% endif %}
+
+            {% if parent_solution %}
+            {% include card.html
+            type="solution"
+            title=parent_solution.title
+            url=parent_solution.url
+            summary=parent_solution.summary
+            tags=parent_solution.use_cases
+            personas=parent_solution.personas
+            repo=parent_solution.repo
+            thumbnail=parent_solution.thumbnail %}
+            {% else %}
+            {% include card.html
+            type="solution"
+            title=page.title
+            url=page.url
+            summary=page.summary
+            tags=page.use_cases
+            personas=page.personas
+            repo=page.repo
+            thumbnail=page.thumbnail %}
+            {% endif %}
+
+            {% comment %} Other docs for this solution (unstyled list) {% endcomment %}
+            {% capture sibling_docs_list %}
+            {% assign docs_sorted = site.docs | sort: 'title' %}
+            {% for doc in docs_sorted %}
+            <!-- {% if doc.solution == page.solution and doc.url != page.url %} -->
+            <li style="margin:0.35rem 0;">
+              <a class="usa-link" href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
+            </li>
+            <!-- {% endif %} -->
+            {% endfor %}
+            {% endcapture %}
+
+            {% if sibling_docs_list contains '<li' %} <nav
+              aria-label="Other documents for {{ parent_solution.title | default: page.solution }}">
+              <h3 class="margin-top-2">Other documents</h3>
+              <ul style="list-style:none;padding:0;margin:0;">
+                {{ sibling_docs_list }}
+              </ul>
+              </nav>
+              {% endif %}
+      </aside>
+
+      <!-- Main content (right side) -->
+      <main class="grid-col-9 usa-prose main-content">
+
+        <!-- Header row: breadcrumbs + page title -->
+        <div class="grid-row grid-gap">
+          <div class="grid-col-9 usa-prose">
+            {% include breadcrumbs.html %}
+          </div>
+        </div>
+
+        <!-- Content row: main column + small right column -->
+        <div class="grid-row grid-gap">
+
+          <!-- Main column -->
+          <div class="grid-col-9 usa-prose">
+
+            <h1 class="mgat-solution-heading">{{ parent_solution.title }}</h1>
+            <hr />
+
+            <!-- {% include tabs.html
+            ns=page.slug
+            tabs="Overview:overview|Releases:releases|How-to / Guides:guides"
+            default="guides"
+            %} -->
+
+            <!-- OVERVIEW panel -->
+            <section id="panel-{{ page.slug }}-overview" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {{ content }}
+            </section>
+
+            <!-- RELEASES panel -->
+            <section id="panel-{{ page.slug }}-releases" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {%- comment -%} Render your releases for this solution {%- endcomment -%}
+            </section>
+
+            <!-- GUIDES panel -->
+            <section id="panel-{{ page.slug }}-guides" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+
+              {% capture solution_guides %}
+              {% assign docs_sorted = site.docs | sort: 'title' %}
+              {% for doc in docs_sorted %}
+              {% if doc.url contains page.url and doc.url != page.url %}
+              <li class="mgat-guide-item">
+                <a class="usa-link" href="{{ doc.url }}">{{ doc.title }}</a>
+                {% if doc.summary %}
+                <div class="mgat-guide-summary">{{ doc.summary }}</div>
+                {% endif %}
+              </li>
+              {% endif %}
+              {% endfor %}
+              {% endcapture %}
+
+              {% if solution_guides contains '<li' %} <ul class="usa-list">
+                {{ solution_guides }}
+                </ul>
+                {% else %}
+                <p>No guides are available for this solution yet.</p>
+                {% endif %}
+            </section>
+          </div>
+
+          <!-- Small right column (download + personas) -->
+          <div class="grid-col-3">
+              <button class="usa-button">Download Latest Release</button>
+
+            <!-- <aside class="usa-in-page-nav" data-title-text="On this page" data-title-heading-level="h2" data-target="#doc-main-column"
+              data-scroll-offset="0" data-root-margin="0px 0px 0px 0px" data-threshold="1"></aside> -->
+
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+</section>

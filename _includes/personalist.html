@@ -1,0 +1,20 @@
+{% if page.personas %}
+<section class="margin-top-4">
+    <h2>Personas</h2>
+    <div class="personas-buttons" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+        {% for persona_title in page.personas %}
+        {% assign matches = site.personas | where: "title", persona_title %}
+        {% if matches and matches.size > 0 %}
+        {% assign persona_page = matches | first %}
+        <a href="{{ persona_page.url }}" class="usa-link" style="display: block; width: 100%; margin-bottom: 0.5rem;">
+            {{ persona_title }}
+        </a>
+        {% else %}
+        <a href="#" class="usa-link" style="display: block; width: 100%; margin-bottom: 0.5rem;">
+            {{ persona_title }}
+        </a>
+        {% endif %}
+        {% endfor %}
+    </div>
+</section>
+{% endif %}

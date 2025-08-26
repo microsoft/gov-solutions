@@ -1,0 +1,80 @@
+---
+layout: default
+---
+
+<section class="usa-section">
+  <div class="grid-container-full">
+
+    <div class="grid-row grid-gap">
+
+      <!-- Sidebar navigation -->
+
+      <aside class="grid-col-3">
+        <img src="{{ page.thumbnail }}" alt="{{ page.title }} persona image">
+      </aside>
+
+      <!-- Main content (right side) -->
+      <main class="grid-col-9 usa-prose">
+
+        <!-- Header row: breadcrumbs + page title -->
+        <div class="grid-row grid-gap">
+          <div class="grid-col-9 usa-prose">
+            {% include breadcrumbs.html %}
+          </div>
+        </div>
+
+        <!-- Content row: main column + small right column -->
+        <div class="grid-row grid-gap">
+
+          <!-- Main column -->
+          <div class="grid-col-9 usa-prose">
+
+            <h1 class="mgat-solution-heading">{{ page.title }}</h1>
+            <hr />
+
+            {{ content }}
+
+          </div>
+
+          <!-- Small right column (download + personas) -->
+          <div class="grid-col-3">
+            {% comment %} Find solutions that list this persona in their front matter and show links (compatible fallback without where_exp) {% endcomment %}
+
+            {% assign has_related = false %}
+            {% for s in site.solutions %}
+              {% if s.personas %}
+                {% for p in s.personas %}
+                  {% if p == page.title %}
+                    {% assign has_related = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+
+            {% if has_related %}
+            <section class="margin-top-4">
+              <h2>Related solutions</h2>
+              <ul class="usa-list">
+                {% for s in site.solutions %}
+                  {% if s.personas %}
+                    {% for p in s.personas %}
+                      {% if p == page.title %}
+                        <li>
+                          <a href="{{ s.url }}" class="usa-link">{{ s.title }}</a>
+                        </li>
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </section>
+            {% endif %}
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+</section>

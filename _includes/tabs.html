@@ -1,0 +1,139 @@
+{%- comment -%}
+Reusable tabs/subnav component.
+Params:
+  ns    (required): unique namespace for IDs (e.g., page.slug)
+  tabs  (required): pipe-separated list of tabs; each tab is "Label:panelKey[,panelKey2]"
+                    Example: "Overview:overview|Releases:releases|Guides:guides,faq"
+  default (optional): the panel key to show by default (e.g. `releases`). If provided, the tab
+                      whose keys contain this value will be active initially. For backward
+                      compatibility `active` is also supported as an alias.
+Behavior:
+  - Panels must exist elsewhere on the page with ids: "panel-{{ ns }}-<panelKey>"
+  - All panels for this ns should include: data-panel="{{ ns }}"
+{%- endcomment -%}
+
+{%- assign _ns = include.ns | default: page.slug | default: 'ns' -%}
+{%- assign _tab_specs = include.tabs | split: '|' -%}
+{%- assign _default_tab = include.default | default: include.active -%}
+{%- if _default_tab %}{% assign _default_tab = _default_tab | strip %}{% endif -%}
+
+<nav class="mgat-subnav" role="tablist" aria-label="Sections ({{ _ns }})" data-subnav="{{ _ns }}"{% if _default_tab %} data-default="{{ _default_tab }}"{% endif %}>
+  <ul class="mgat-subnav__list">
+    {%- for spec in _tab_specs -%}
+      {%- assign parts = spec | split: ':' -%}
+      {%- assign label = parts[0] | strip -%}
+      {%- assign show_keys = parts[1] | strip | split: ',' -%}
+      {%- assign show_attr = show_keys | join: ',' -%}
+      {%- assign key0 = show_keys[0] | strip -%}
+      <li class="mgat-subnav__item">
+        <a class="mgat-subnav__link{% if _default_tab and _default_tab != '' and _default_tab == key0 %} is-active{% elsif _default_tab == nil and forloop.first %} is-active{% endif %}"
+           href="#{{ key0 }}"
+           role="tab"
+           aria-selected="{% if _default_tab and _default_tab != '' and _default_tab == key0 %}true{% elsif _default_tab == nil and forloop.first %}true{% else %}false{% endif %}"
+           data-target="{{ show_attr }}"
+           data-ns="{{ _ns }}">
+          {{ label }}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+
+<script>
+(function() {
+  function initTabs() {
+    var ns = "{{ _ns | escape }}";
+    var subnav = document.querySelector('.mgat-subnav[data-subnav="'+ns+'"]');
+    if (!subnav) return;
+
+    var links  = Array.prototype.slice.call(subnav.querySelectorAll('.mgat-subnav__link[data-ns="'+ns+'"]'));
+    var panels = Array.prototype.slice.call(document.querySelectorAll('[data-panel="'+ns+'"]'));
+
+    if (!links.length) return;
+
+    function idFor(key){ return 'panel-' + ns + '-' + key; }
+
+    function showByKeys(keysCSV, focusLink) {
+      var keys = keysCSV.split(',').map(function(k){ return k.trim(); }).filter(Boolean);
+      // Toggle link active state
+      links.forEach(function(a){
+        var isActive = (a.getAttribute('data-target') === keysCSV);
+        a.classList.toggle('is-active', isActive);
+        a.setAttribute('aria-selected', String(isActive));
+        if (focusLink && isActive) a.focus();
+      });
+      // Hide all panels for this namespace, show only requested
+      panels.forEach(function(p){ p.hidden = true; });
+      keys.forEach(function(k){
+        var p = document.getElementById(idFor(k));
+        if (p) p.hidden = false;
+      });
+      // Update hash to first key to support deep links
+      var first = keys[0] || '';
+      if (first) {
+        var hash = '#' + first;
+        if (history.replaceState) history.replaceState(null, '', hash);
+        else location.hash = hash;
+      }
+    }
+
+    // Initial: prefer location.hash, then nav[data-default], then rendered .is-active link, then first link
+    var initialTarget = null;
+    var hash = (location.hash || '').replace('#','').trim();
+    if (hash) {
+      for (var i = 0; i < links.length; i++) {
+        var dt = links[i].getAttribute('data-target') || '';
+        var keys = dt.split(',').map(function(k){ return k.trim(); }).filter(Boolean);
+        if (keys.indexOf(hash) !== -1) { initialTarget = dt; break; }
+      }
+    }
+    if (!initialTarget) {
+      var defaultAttr = subnav.getAttribute('data-default');
+      if (defaultAttr) {
+        for (var i = 0; i < links.length; i++) {
+          var dt = links[i].getAttribute('data-target') || '';
+          var keys = dt.split(',').map(function(k){ return k.trim(); }).filter(Boolean);
+          if (keys.indexOf(defaultAttr) !== -1) { initialTarget = dt; break; }
+        }
+      }
+    }
+    if (!initialTarget) {
+      var activeLink = links.find(function(a){ return a.classList.contains('is-active'); });
+      if (activeLink) initialTarget = activeLink.getAttribute('data-target');
+    }
+    if (!initialTarget) initialTarget = links[0].getAttribute('data-target');
+
+    showByKeys(initialTarget);
+
+    // Click
+    subnav.addEventListener('click', function(e){
+      var a = e.target.closest('.mgat-subnav__link[data-ns="'+ns+'"]');
+      if (!a) return;
+      e.preventDefault();
+      showByKeys(a.getAttribute('data-target'), true);
+    });
+
+    // Keyboard (Left/Right/Home/End)
+    subnav.addEventListener('keydown', function(e){
+      var idx = links.indexOf(document.activeElement);
+      if (idx < 0) return;
+      var next = idx;
+      if (e.key === 'ArrowRight') next = (idx + 1) % links.length;
+      else if (e.key === 'ArrowLeft') next = (idx - 1 + links.length) % links.length;
+      else if (e.key === 'Home') next = 0;
+      else if (e.key === 'End') next = links.length - 1;
+      else return;
+      e.preventDefault();
+      var link = links[next];
+      link.focus();
+      showByKeys(link.getAttribute('data-target'));
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTabs);
+  } else {
+    initTabs();
+  }
+})();
+</script>

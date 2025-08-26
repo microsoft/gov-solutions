@@ -1,0 +1,31 @@
+{%- comment -%}
+  USWDS Side Navigation (dynamic)
+  - Uses .usa-sidenav markup
+  - Highlights current page with .usa-current on the <a>
+{%- endcomment -%}
+
+<ul class="usa-sidenav">
+  {%- assign mods = site.solutions | sort: "title" -%}
+  {%- for m in mods -%}
+    <li class="usa-sidenav__item">
+      <a
+        href="{{ m.url | relative_url }}"
+        class="{% if m.url == page.url %}usa-current{% endif %}">
+        {{ m.title }}
+      </a>
+      {%- if m.children and m.children.size > 0 -%}
+        <ul class="usa-sidenav__sublist">
+          {%- for child in m.children -%}
+            <li class="usa-sidenav__item">
+              <a
+                href="{{ child.url | relative_url }}"
+                class="{% if child.url == page.url %}usa-current{% endif %}">
+                {{ child.title }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </li>
+  {%- endfor -%}
+</ul>

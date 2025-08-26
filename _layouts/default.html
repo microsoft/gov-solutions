@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+        {% if page.title %}{{ page.title }} — {% endif %}{{ site.title }}
+    </title>
+    <meta name="description" content="{{ page.description | default: site.description }}" />
+
+    <!-- HEAD -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.1/dist/css/uswds.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.1/dist/js/uswds-init.min.js"></script>
+    <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
+
+</head>
+
+<body>
+    <header class="usa-header usa-header--extended bg-primary-darker">
+        <div role="status" aria-live="polite"
+            style="background:#fff3cd;color:#856404;border-bottom:1px solid #ffd89f;padding:.45rem 1rem;text-align:center;font-weight:600;">
+            ⚠ Under construction — This site is under active development. Some pages may be incomplete.            
+        </div>
+        <div class="container">
+            <div class="usa-nav-container">
+                <div class="usa-navbar">
+                    <div class="usa-logo" id="logo">
+                        <em class="usa-logo__text brand">
+                            <img src="{{ '/assets/logo.png' | relative_url }}" alt="Site logo"
+                                style="height: 2.5rem; vertical-align: middle; margin-right: 1rem;">
+                            {{ site.title }}
+                        </em>
+                    </div>
+                    <button class="usa-menu-btn">Menu</button>
+                </div>
+                <nav class="usa-nav" role="navigation">
+                    <button class="usa-nav__close"><span class="usa-sr-only">Close</span></button>
+                    <ul class="usa-nav__primary usa-accordion">
+                        <li class="usa-nav__primary-item"><a class="usa-nav__link usa-link--inverse"
+                                href="{{ '/home/' | relative_url }}"><span>Home</span></a></li>
+                        <li class="usa-nav__primary-item"><a class="usa-nav__link usa-link--inverse"
+                                href="{{ '/use-cases/' | relative_url }}"><span>Use Cases</span></a></li>
+                        <li class="usa-nav__primary-item"><a class="usa-nav__link usa-link--inverse"
+                                href="{{ '/personas/' | relative_url }}"><span>Personas</span></a></li>
+                        <li class="usa-nav__primary-item"><a class="usa-nav__link usa-link--inverse"
+                                href="{{ '/data-models' | relative_url }}"><span>Data Models</span></a></li>
+                        <li class="usa-nav__primary-item"><a class="usa-nav__link usa-link--inverse"
+                                href="{{ '/solutions' | relative_url }}"><span>App Starter Kits</span></a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content" class="usa-section">
+        <div class="container usa-prose">
+            {{ content }}
+        </div>
+    </main>
+
+    <footer class="usa-footer" style="width: 100%;">
+        <div class="container">
+            <div class="usa-footer__return-to-top">
+                <a href="#">Return to top</a>
+            </div>
+            <div class="usa-footer__secondary-section">
+                This is the footer
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.1/dist/js/uswds.min.js" defer></script>
+
+</body>
+
+</html>

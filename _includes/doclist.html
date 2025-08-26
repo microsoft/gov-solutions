@@ -1,0 +1,23 @@
+{% capture solution_guides %}
+{% assign docs_sorted = site.docs | sort: 'title' %}
+{% for doc in docs_sorted %}
+  {% if doc.url contains page.url and doc.url != page.url %}
+    <div class="grid-row grid-gap margin-bottom-2">
+      <div class="grid-col-12">
+        {% include card.html
+          title=doc.title
+          url=doc.url
+          summary=doc.summary
+          align="left"
+        %}
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+{% endcapture %}
+
+{% if solution_guides contains 'usa-card' %}
+  {{ solution_guides }}
+{% else %}
+  <p>No guides are available for this solution yet.</p>
+{% endif %}
