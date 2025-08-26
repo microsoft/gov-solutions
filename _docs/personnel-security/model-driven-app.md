@@ -1,7 +1,7 @@
 ---
 title: Personnel Security - Model Driven App
 layout: doc
-permalink: /solutions/personnel-security/model-driven-app
+permalink: /app-starter-kits/personnel-security/model-driven-app
 solution: personnel-security
 parent: Personnel Security
 grandparent: App Starter Kits
@@ -18,4 +18,4 @@ The personnel security lifecycle begins when a Background Investigation (BI) is 
 
 A security administrator or authorized user creates a Background Investigation record in the system, linking it to the person’s core profile and capturing key metadata like investigation type, initiation date, and the agency or provider conducting the investigation.
 
-![alt text]({{ '/assets/solutions/personnel-security/persec_inv.png' | relative_url }})
+![alt text]({{ '/assets/app-starter-kits/personnel-security/persec_inv.png' | relative_url }})

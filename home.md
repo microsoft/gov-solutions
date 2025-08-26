@@ -9,8 +9,8 @@ This repository is an open-source ecosystem for building government applications
 
 This documentation site serves as the hub that brings the two core repositories together into a single experience:
 
-* The **[Government Data Models](https://github.com/microsoft/gov-datamodels)** define standardized Dataverse schemas for common government business processes, ensuring interoperability and consistency across agencies and solutions.
-* The **[Government App Starter Kits](https://github.com/microsoft/gov-apptemplates)** provide prebuilt, modular applications built on those data models, offering a jump start for services such as permitting, case management, asset tracking, and grants management.
+* The **[Government Data Models](https://github.com/microsoft/gov-datamodels){:target="_blank" rel="noopener noreferrer"}** define standardized Dataverse schemas for common government business processes, ensuring interoperability and consistency across agencies and solutions.
+* The **[Government App Starter Kits](https://github.com/microsoft/gov-apptemplates){:target="_blank" rel="noopener noreferrer"}** provide prebuilt, modular applications built on those data models, offering a jump start for services such as permitting, case management, asset tracking, and grants management.
 
 Here you’ll find quickstarts, domain use cases, personas, release notes, and architecture guidance that connect the two repositories into an end-to-end path. Whether you’re an implementer, industry partner, or hackathon participant, Gov Solutions gives you the tools to move from evaluation to deployment with confidence.
 

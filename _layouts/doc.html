@@ -13,10 +13,10 @@ layout: default
           {% comment %} Find the parent solution (docs have `solution: <slug>`) {% endcomment %}
             {% assign parent_solution = nil %}
             {% if page.solution %}
-            {% assign parent_solution = site.solutions | where: "slug", page.solution | first %}
+            {% assign parent_solution = site.app_starter_kits | where: "slug", page.solution | first %}
             {% if parent_solution == nil %}
-            {% capture sol_url %}/solutions/{{ page.solution }}/{% endcapture %}
-            {% assign parent_solution = site.solutions | where: "url", sol_url | first %}
+            {% capture sol_url %}/app-starter-kits/{{ page.solution }}/{% endcapture %}
+            {% assign parent_solution = site.app_starter_kits | where: "url", sol_url | first %}
             {% endif %}
             {% endif %}
 
@@ -83,49 +83,8 @@ layout: default
             <h1 class="mgat-solution-heading">{{ parent_solution.title }}</h1>
             <hr />
 
-            <!-- {% include tabs.html
-            ns=page.slug
-            tabs="Overview:overview|Releases:releases|How-to / Guides:guides"
-            default="guides"
-            %} -->
-
-            <!-- OVERVIEW panel -->
-            <section id="panel-{{ page.slug }}-overview" class="mgat-subnav__panel usa-prose" role="tabpanel"
-              data-panel="{{ page.slug }}">
-              {{ content }}
-            </section>
-
-            <!-- RELEASES panel -->
-            <section id="panel-{{ page.slug }}-releases" class="mgat-subnav__panel usa-prose" role="tabpanel"
-              data-panel="{{ page.slug }}">
-              {%- comment -%} Render your releases for this solution {%- endcomment -%}
-            </section>
-
-            <!-- GUIDES panel -->
-            <section id="panel-{{ page.slug }}-guides" class="mgat-subnav__panel usa-prose" role="tabpanel"
-              data-panel="{{ page.slug }}">
-
-              {% capture solution_guides %}
-              {% assign docs_sorted = site.docs | sort: 'title' %}
-              {% for doc in docs_sorted %}
-              {% if doc.url contains page.url and doc.url != page.url %}
-              <li class="mgat-guide-item">
-                <a class="usa-link" href="{{ doc.url }}">{{ doc.title }}</a>
-                {% if doc.summary %}
-                <div class="mgat-guide-summary">{{ doc.summary }}</div>
-                {% endif %}
-              </li>
-              {% endif %}
-              {% endfor %}
-              {% endcapture %}
-
-              {% if solution_guides contains '<li' %} <ul class="usa-list">
-                {{ solution_guides }}
-                </ul>
-                {% else %}
-                <p>No guides are available for this solution yet.</p>
-                {% endif %}
-            </section>
+            {{ content }}
+            
           </div>
 
           <!-- Small right column (download + personas) -->

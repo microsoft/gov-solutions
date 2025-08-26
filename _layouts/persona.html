@@ -41,7 +41,7 @@ layout: default
             {% comment %} Find solutions that list this persona in their front matter and show links (compatible fallback without where_exp) {% endcomment %}
 
             {% assign has_related = false %}
-            {% for s in site.solutions %}
+            {% for s in site.app_starter_kits %}
               {% if s.personas %}
                 {% for p in s.personas %}
                   {% if p == page.title %}
@@ -56,7 +56,7 @@ layout: default
             <section class="margin-top-4">
               <h2>Related solutions</h2>
               <ul class="usa-list">
-                {% for s in site.solutions %}
+                {% for s in site.app_starter_kits %}
                   {% if s.personas %}
                     {% for p in s.personas %}
                       {% if p == page.title %}

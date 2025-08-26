@@ -1,18 +1,26 @@
 <nav class="usa-breadcrumb" aria-label="Breadcrumbs">
     <ol class="usa-breadcrumb__list">
         <li class="usa-breadcrumb__list-item">
-            <a href="{{ site.baseurl }}/" class="usa-breadcrumb__link">Home</a>
+            <a href="{{ '/' | relative_url }}" class="usa-breadcrumb__link">Home</a>
         </li>
         {% if page.grandparent %}
+        {% assign grandparent_slug = page.grandparent | slugify %}
         <li class="usa-breadcrumb__list-item">
-            <a href="{{ site.baseurl }}/{{ page.grandparent | slugify }}/" class="usa-breadcrumb__link">
+            <a href="{{ '/' | append: grandparent_slug | append: '/' | relative_url }}" class="usa-breadcrumb__link">
                 {{ page.grandparent }}
             </a>
         </li>
         {% endif %}
         {% if page.parent %}
+        {% assign parent_slug = page.parent | slugify %}
+        {% if page.grandparent %}
+        {% assign grandparent_slug = page.grandparent | slugify %}
+        {% assign parent_path = '/' | append: grandparent_slug | append: '/' | append: parent_slug | append: '/' %}
+        {% else %}
+        {% assign parent_path = '/' | append: parent_slug | append: '/' %}
+        {% endif %}
         <li class="usa-breadcrumb__list-item">
-            <a href="{{ site.baseurl }}/{{ page.parent | slugify }}/" class="usa-breadcrumb__link">
+            <a href="{{ parent_path | relative_url }}" class="usa-breadcrumb__link">
                 {{ page.parent }}
             </a>
         </li>

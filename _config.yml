@@ -14,13 +14,13 @@ permalink: pretty
 
 # Collections
 collections:
-  solutions:
+  app_starter_kits:
     output: true
-    permalink: /solutions/:title/
+    permalink: /app-starter-kits/:title/
   docs:
     output: true
     # :doc is not a Jekyll token; use :basename
-    permalink: /solutions/:solution/:basename/
+    permalink: /app-starter-kits/:solution/:basename/
   releases:
     output: true
     permalink: /releases/:solution/:version/

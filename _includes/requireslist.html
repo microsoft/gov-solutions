@@ -3,7 +3,7 @@
     <h2>Requires</h2>
     <div class="requirements-buttons" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
         {% for title in page.requirements %}
-        {% assign matches = site.solutions | where: "title", title %}
+        {% assign matches = site.app_starter_kits | where: "title", title %}
         {% if matches and matches.size > 0 %}
         {% assign related_page = matches | first %}
         <a href="{{ related_page.url  | relative_url }}" class="usa-link" style="display: block; width: 100%; margin-bottom: 0.5rem;">
