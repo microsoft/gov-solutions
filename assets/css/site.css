@@ -392,3 +392,95 @@ body {
   margin-bottom: 1rem;
   margin-top: 0rem;
 }
+
+/* Fix: ensure footer and identifier are not clipped by overflow rules */
+footer.usa-footer {
+  overflow: visible !important;
+}
+.usa-identifier {
+  overflow: visible !important;
+  z-index: 0;
+}
+
+/* Make identifier logo + identity sit side-by-side on medium+ screens */
+.usa-identifier .usa-identifier__brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.usa-identifier .usa-identifier__logo {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+}
+.usa-identifier .usa-identifier__logo img {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+.usa-identifier .usa-identifier__identity {
+  flex: 1 1 auto;
+  margin-top: 0;
+}
+
+/* On narrow viewports, stack the brand items vertically */
+@media (max-width: 639px) {
+  .usa-identifier .usa-identifier__brand {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .usa-identifier .usa-identifier__identity {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Stronger override: force side-by-side on medium+ screens */
+@media (min-width: 40em) {
+  .usa-identifier .usa-identifier__brand {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    flex-wrap: nowrap !important;
+  }
+  .usa-identifier .usa-identifier__logo {
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .usa-identifier .usa-identifier__logo img {
+    height: 48px !important;
+    width: auto !important;
+    display: block !important;
+  }
+  .usa-identifier .usa-identifier__identity {
+    flex: 1 1 auto !important;
+    margin-top: 0 !important;
+  }
+}
+
+/* Make footer background full-bleed while keeping inner content aligned with .container */
+footer.usa-footer {
+  background-color: transparent !important;
+}
+footer.usa-footer .usa-footer__secondary-section {
+  background-color: transparent !important;
+}
+.usa-footer__secondary-fullwidth {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+}
+.usa-footer__secondary-fullwidth .container {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.usa-footer__secondary-fullwidth .usa-footer__secondary-section {
+  padding: 0;
+}
+.usa-footer__secondary-fullwidth .usa-footer__copyright {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}

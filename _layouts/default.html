@@ -61,16 +61,32 @@
         </div>
     </main>
 
-    <footer class="usa-footer" style="width: 100%;">
-        <div class="container">
-            <div class="usa-footer__return-to-top">
-                <a href="#">Return to top</a>
-            </div>
-            <div class="usa-footer__secondary-section">
-                This is the footer
+    <footer class="usa-footer">
+
+        <!-- Full-bleed background row; inner .container keeps content aligned with header/identifier -->
+        <div class="usa-footer__secondary-fullwidth">
+            <div class="container">
+                <div class="usa-footer__secondary-section">
+                    <p class="usa-footer__copyright">&copy; {{ site.time | date: '%Y' }} Microsoft Corporation. Licensed under the <a href="{{ '/LICENSE' | relative_url }}">MIT License</a>.</p>
+                </div>
             </div>
         </div>
     </footer>
+
+    <!-- USWDS Identifier: identifies the parent agency and required federal links -->
+    <div class="usa-identifier">
+        <div class="usa-identifier__container container">
+            <div class="usa-identifier__brand">
+                <a class="usa-identifier__logo" href="{{ '/' | relative_url }}">
+                    <img src="{{ '/assets/logo.png' | relative_url }}" alt="{{ site.title }} logo" style="height:48px;">
+                </a>
+                <section class="usa-identifier__identity" aria-label="Site identity">
+                    <p class="usa-identifier__tagline">This is an open-source project maintained by Microsoft. It is <b>not</b> an official U.S. government website. The site uses the U.S. Web Design System (USWDS) to help agencies and partners create app catalog documentation sites of their own.</p>
+                </section>
+            </div>
+
+        </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.1/dist/js/uswds.min.js" defer></script>
 
