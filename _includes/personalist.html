@@ -6,7 +6,7 @@
         {% assign matches = site.personas | where: "title", persona_title %}
         {% if matches and matches.size > 0 %}
         {% assign persona_page = matches | first %}
-        <a href="{{ persona_page.url }}" class="usa-link" style="display: block; width: 100%; margin-bottom: 0.5rem;">
+        <a href="{{ persona_page.url  | relative_url }}" class="usa-link" style="display: block; width: 100%; margin-bottom: 0.5rem;">
             {{ persona_title }}
         </a>
         {% else %}
