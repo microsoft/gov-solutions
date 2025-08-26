@@ -5,12 +5,6 @@ download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSo
 layout: solution
 permalink: /solutions/executive-actions/
 thumbnail: /assets/solutions/personnel-security/personnel-security.png
-use_cases:
- - Case 1
-personas:
- - Persona 1
-tags:
- - Tag1
 ---
 
 The **Personnel Security** module provides a starting framework for managing the full lifecycle of federal background investigations, adjudications, and security clearances. Aligned with federal security guidelines, the module is designed to help agencies modernize personnel security operations using the Microsoft Power Platform.

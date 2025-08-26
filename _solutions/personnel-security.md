@@ -15,8 +15,6 @@ future:
  - HR Administrator
  - Investigators
  - Adjudicators
-tags:
- - Tag1
 ---
 
 The **Personnel Security** module provides a starting framework for managing the full lifecycle of federal background investigations, adjudications, and security clearances. Aligned with federal security guidelines, the module is designed to help agencies modernize personnel security operations using the Microsoft Power Platform.

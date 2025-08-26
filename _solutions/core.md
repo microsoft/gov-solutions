@@ -6,12 +6,6 @@ layout: solution
 permalink: /solutions/core/
 thumbnail: /assets/solutions/core/core.png
 parent: App Starter Kits
-use_cases:
- - Case 1
-personas:
- - Persona 1
-tags:
- - Tag1
 ---
 
 The **Core Utility** module is a foundational building block within the Microsoft Government App Templates library. It provides a centralized, enterprise-ready framework for managing essential reference data aligned with [Government Data Model](https://github.com/microsoft/gov-datamodels), ensuring consistency across applications and reducing duplication in business processes. Designed for extensibility, the Core module can serve as both a starting point for new low-code solutions and a shared utility layer in enterprise-scale deployments.

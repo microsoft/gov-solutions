@@ -10,7 +10,7 @@ layout: default
       <!-- Sidebar navigation -->
 
       <aside class="grid-col-3">
-        <img src="{{ page.thumbnail }}" alt="{{ page.title }} persona image">
+        <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} persona image">
       </aside>
 
       <!-- Main content (right side) -->
@@ -61,7 +61,7 @@ layout: default
                     {% for p in s.personas %}
                       {% if p == page.title %}
                         <li>
-                          <a href="{{ s.url }}" class="usa-link">{{ s.title }}</a>
+                          <a href="{{ s.url | relative_url }}" class="usa-link">{{ s.title }}</a>
                         </li>
                         {% break %}
                       {% endif %}

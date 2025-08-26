@@ -5,12 +5,6 @@ download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSo
 layout: solution
 permalink: /solutions/process-and-tasking/
 thumbnail: /assets/solutions/process-and-tasking/process-and-tasking.png
-use_cases:
- - Case 1
-personas:
- - Persona 1
-tags:
- - Tag1
 ---
 
 The **Process and Tasking** module provides a reusable framework for managing repeatable business processes, tasks, and automations across your applications. Built on the [Government Data Models](https://github.com/microsoft/gov-datamodels), this module centralizes process configurations so they can be applied consistently to any record type in your system.
