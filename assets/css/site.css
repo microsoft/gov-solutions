@@ -1,7 +1,7 @@
 /* Flexbox page layout */
 :root {
   /* Layout */
-  --max-width: 1400px;
+  --max-width: 87.5rem; /* 1400px */
   --container-pad: 0.5rem;
   --container-pad-sm: 0.75rem;
 
@@ -23,13 +23,19 @@
   --subnav-link-pad-sm: 0.5rem 1rem;
   --subnav-link-pad-lg: 0.75rem 1rem;
   --subnav-link-radius: 0.375rem;
+  --subnav-underline-thickness: 0.1875rem; /* 3px */
+
+  /* Focus / shadows */
+  --focus-outline-width: 0.125rem; /* 2px */
+  --focus-outline-offset: 0.125rem; /* 2px */
+  --shadow-sm: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.08); /* 6px / 20px */
 
   /* Logo sizes */
   --logo-small-h: 1.8rem;
   --logo-med-h: 2.2rem;
-  --logo-default-h: 48px;
+  --logo-default-h: 3rem; /* 48px */
 
-  /* Note: CSS custom properties do not work inside @media features in current browsers. */
+  /* Note: CSS custom properties are not supported inside @media feature expressions in current browsers; use rem/em when writing queries. */
 }
 
 /* Global reset: predictable box-sizing */
@@ -77,20 +83,14 @@ header.usa-header.bg-primary-darker .usa-navbar {
   white-space: nowrap;
 }
 
-/* Inverse nav links (white text on dark header) - compact selector using :is() */
-.usa-header.bg-primary-darker
-  .usa-nav__primary
-  > .usa-nav__primary-item
-  > a:is(:link, :visited, :hover, :focus, :active) {
+/* Inverse nav links (white text on dark header) - simplified selector */
+.usa-header.bg-primary-darker .usa-nav__primary a {
   color: var(--header-foreground) !important;
   text-decoration: none;
 }
 
 /* Keep keyboard focus visible, but avoid removing focus for mouse interactions */
-.usa-header.bg-primary-darker
-  .usa-nav__primary
-  > .usa-nav__primary-item
-  > a:focus:not(:focus-visible) {
+.usa-header.bg-primary-darker .usa-nav__primary a:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -164,16 +164,24 @@ footer.usa-footer {
   max-width: 100% !important;
 }
 
-/* Neutralize USWDS left padding/margin for logo alignment */
+/* Make images responsive by default (mobile-first) */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Neutralize USWDS left padding/margin for logo alignment (consolidated) */
 .usa-logo,
-.usa-navbar {
+.usa-navbar,
+.usa-nav-container {
   padding-left: 0 !important;
   margin-left: 0 !important;
 }
+
+/* Keep remaining .usa-nav-container specifics separate */
 .usa-nav-container {
-  padding-left: 0 !important;
   padding-right: 0 !important;
-  margin-left: 0 !important;
   margin-right: 0 !important;
   max-width: 100% !important;
 }
@@ -252,7 +260,7 @@ footer.usa-footer {
 }
 /* Optional, subtle hover without breaking a11y */
 .usa-card:hover .usa-card__container {
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
 }
 /* Modifier: shrink or constrain card width when used in inline contexts */
 .usa-card.card--shrink {
@@ -329,7 +337,7 @@ footer.usa-footer {
   color: var(--color-dark);
   text-decoration: none;
   border-radius: var(--subnav-link-radius);
-  border-bottom: 3px solid transparent;
+  border-bottom: var(--subnav-underline-thickness) solid transparent;
   transition: background 0.12s ease, color 0.12s ease, border-bottom-color 0.12s ease;
 }
 /* Hover/focus states (USWDS-ish) */
@@ -341,10 +349,11 @@ footer.usa-footer {
 .mgat-subnav__link:focus {
   outline: none;
   box-shadow: none;
+  outline-offset: var(--focus-outline-offset);
 }
 .mgat-subnav__link:focus-visible {
-  outline: 2px solid #2491ff;
-  outline-offset: 2px;
+  outline: var(--focus-outline-width) solid #2491ff;
+  outline-offset: var(--focus-outline-offset);
 }
 /* Active: underline effect + stronger weight */
 .mgat-subnav__link.is-active,
@@ -387,6 +396,7 @@ footer.usa-footer {
 /* Make identifier logo + identity sit side-by-side by default */
 .usa-identifier .usa-identifier__brand {
   display: flex;
+  flex-direction: row; /* explicit default: keep logo + title side-by-side */
   align-items: center;
   gap: 1rem;
   flex-wrap: nowrap;
@@ -406,8 +416,9 @@ footer.usa-footer {
   margin-top: 0;
 }
 
-/* On narrow viewports, stack the brand items vertically */
-@media (max-width: 639px) {
+/* Mobile-first: small-screen adjustments grouped together */
+@media (max-width: 40rem) {
+  /* Identifier: stack brand vertically on small screens */
   .usa-identifier .usa-identifier__brand {
     flex-direction: column;
     align-items: flex-start;
@@ -415,51 +426,7 @@ footer.usa-footer {
   .usa-identifier .usa-identifier__identity {
     margin-top: 0.5rem;
   }
-}
 
-/* Stronger override: force side-by-side on medium+ screens */
-@media (min-width: 40em) {
-  .usa-identifier .usa-identifier__brand {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    gap: 1rem !important;
-    flex-wrap: nowrap !important;
-  }
-  .usa-identifier .usa-identifier__logo {
-    flex: 0 0 auto !important;
-    display: inline-flex !important;
-    align-items: center !important;
-  }
-  .usa-identifier .usa-identifier__logo img {
-    height: var(--logo-default-h) !important;
-    width: auto !important;
-    display: block !important;
-  }
-  .usa-identifier .usa-identifier__identity {
-    flex: 1 1 auto !important;
-    margin-top: 0 !important;
-  }
-}
-
- /* Identifier (tagline) should be smaller and stack cleanly */
-  .usa-identifier .usa-identifier__tagline {
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
-  }
-
-/* External link indicator: inline SVG icon + spacing */
-.external-link-icon {
-  display: inline-block;
-  width: 0.75rem;
-  height: 0.75rem;
-  margin-left: 0.25rem;
-  vertical-align: text-bottom;
-  fill: currentColor;
-}
-
-/* Responsive tweaks: improve layout on small and medium screens */
-@media (max-width: 639px) {
   /* Reduce header logo size and allow the site title to wrap/truncate gracefully */
   .usa-header .usa-logo__text.brand {
     font-size: 1rem;
@@ -506,12 +473,6 @@ footer.usa-footer {
     padding-right: 0.75rem;
   }
 
-  /* Make images scale responsively to avoid overflow */
-  img {
-    max-width: 100%;
-    height: auto;
-  }
-
   /* Ensure the top 'Under construction' banner wraps and doesn't force horizontal scroll */
   header.usa-header > div[role="status"] {
     font-size: 0.9rem;
@@ -519,10 +480,82 @@ footer.usa-footer {
     white-space: normal;
     box-sizing: border-box;
   }
+
+  /* Small accessibility tweak: ensure focus-visible outlines remain visible on small screens */
+  .mgat-subnav__link:focus-visible {
+    outline-width: 0.1875rem; /* 3px */
+  }
+}
+
+/* Stronger override: force side-by-side on medium+ screens */
+@media (min-width: 40rem) {
+  .usa-identifier .usa-identifier__brand {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 1rem !important;
+    flex-wrap: nowrap !important;
+  }
+  .usa-identifier .usa-identifier__logo {
+    flex: 0 0 auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
+  .usa-identifier .usa-identifier__logo img {
+    height: var(--logo-default-h) !important;
+    width: auto !important;
+    display: block !important;
+  }
+  .usa-identifier .usa-identifier__identity {
+    flex: 1 1 auto !important;
+    margin-top: 0 !important;
+  }
+}
+
+.usa-identifier__logo,
+.usa-logo {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  width: auto;
+  max-width: none;
+}
+
+/* consolidated: keep logos and title inline */
+.usa-logo,
+.usa-identifier .usa-identifier__logo,
+.usa-logo__text.brand {
+  display: inline-flex !important;
+  flex: 0 0 auto !important;
+  align-items: center !important;
+  gap: 0.5rem;
+  white-space: nowrap;
+  width: auto !important;
+  max-width: none !important;
+}
+
+.usa-identifier__identity {
+  flex: 1 1 auto;
+}
+
+/* Identifier (tagline) should be smaller and stack cleanly */
+.usa-identifier .usa-identifier__tagline {
+  font-size: 0.95rem;
+  margin-top: 0.25rem;
+}
+
+/* External link indicator: inline SVG icon + spacing */
+.external-link-icon {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-left: 0.25rem;
+  vertical-align: text-bottom;
+  fill: currentColor;
 }
 
 /* Medium screens: gentle adjustments so things don't look cramped */
-@media (min-width: 40em) and (max-width: 959px) {
+@media (min-width: 40rem) and (max-width: 60rem) {
   .usa-header .usa-logo__text.brand img {
     height: var(--logo-med-h) !important;
   }
@@ -532,11 +565,13 @@ footer.usa-footer {
   }
 }
 
-/* Small accessibility tweak: ensure focus-visible outlines remain visible on small screens */
-@media (max-width: 639px) {
-  .mgat-subnav__link:focus-visible {
-    outline-width: 3px;
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
-
 
