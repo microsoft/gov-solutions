@@ -171,17 +171,37 @@ footer.usa-footer .usa-footer__secondary-section {
 .card--equal {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
 }
+
+/* Ensure the inner container stretches and uses flex layout so .usa-card__body can grow */
+.usa-card.card--equal,
+.usa-card.card--equal .usa-card__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Allow the body to grow and push the footer down */
 .usa-card__body {
   flex: 1 1 auto;
 }
+
+/* Footer pushed to bottom */
 .usa-card__footer {
   margin-top: auto;
 }
 
-/* Fixed image ratio + cover; prevents layout shift */
+/* Make cards slightly shorter: smaller thumbnail, less media padding, shorter summary preview */
+.usa-card__media {
+  /* reduce the media padding so the image takes up less vertical space */
+  padding: 0.25rem;
+}
+
 .card-thumb {
-  aspect-ratio: 4 / 3;
+  /* a wider aspect ratio reduces thumbnail height at the same width */
+  aspect-ratio: 16 / 9;
   overflow: hidden;
   border-radius: 0.5rem;
 }
@@ -192,7 +212,26 @@ footer.usa-footer .usa-footer__secondary-section {
   display: block;
 }
 
-/* Tidy summaries to ~3 lines */
+/* Compact thumbnail: fixed shorter height, center the full image inside without cropping */
+.card-thumb {
+  height: 140px; /* reduce this value if you want even shorter cards */
+  overflow: hidden;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+}
+.card-thumb img {
+  max-height: 100%;
+  width: auto;
+  max-width: 100%;
+  object-fit: contain; /* show the full image */
+  object-position: center;
+  display: block;
+}
+
+/* Tidy summaries to ~3 lines (preview) */
 .card-summary {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -493,4 +532,130 @@ footer.usa-footer .usa-footer__secondary-section {
   margin-left: 0.25rem;
   vertical-align: text-bottom;
   fill: currentColor;
+}
+
+/* Responsive tweaks: improve layout on small and medium screens */
+@media (max-width: 639px) {
+  /* Reduce header logo size and allow the site title to wrap/truncate gracefully */
+  .usa-header .usa-logo__text.brand {
+    font-size: 1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .usa-header .usa-logo__text.brand img {
+    height: 1.8rem !important; /* override inline height for small screens */
+    width: auto;
+    display: inline-block;
+  }
+
+  /* Keep nav and logo aligned without causing horizontal overflow */
+  .usa-nav-container {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+  .usa-navbar {
+    align-items: center;
+  }
+
+  /* Slightly reduce horizontal padding on small viewports so content has more space */
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Slightly smaller body text for narrow screens and tighter spacing */
+  .usa-prose {
+    font-size: 0.95rem;
+  }
+  .usa-prose p {
+    margin-bottom: 1rem;
+  }
+
+  /* Identifier (tagline) should be smaller and stack cleanly */
+  .usa-identifier .usa-identifier__tagline {
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+  }
+
+  /* Ensure footer inner container has breathing room on mobile */
+  .usa-footer__secondary-fullwidth .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Make images scale responsively to avoid overflow */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Improve the subnav horizontal scroll affordance on narrow screens */
+  .mgat-subnav__list {
+    gap: 0.5rem;
+  }
+
+  /* Ensure the top 'Under construction' banner wraps and doesn't force horizontal scroll */
+  header.usa-header > div[role="status"] {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.5rem;
+    white-space: normal;
+    box-sizing: border-box;
+  }
+}
+
+/* Medium screens: gentle adjustments so things don't look cramped */
+@media (min-width: 40em) and (max-width: 959px) {
+  .usa-header .usa-logo__text.brand img {
+    height: 2.2rem !important;
+  }
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Small accessibility tweak: ensure focus-visible outlines remain visible on small screens */
+@media (max-width: 639px) {
+  .mgat-subnav__link:focus-visible {
+    outline-width: 3px;
+  }
+}
+
+/* Compact card adjustments: reduce vertical spacing so cards are shorter */
+.card--equal .usa-card__container {
+  padding: 0.5rem; /* tighten container padding */
+}
+.card--equal .usa-card__header {
+  padding-bottom: 0.25rem;
+}
+.card--equal .usa-card__heading {
+  font-size: 1.05rem;
+  margin: 0 0 0.25rem 0;
+}
+.card--equal .usa-card__body {
+  padding-top: 0;
+  padding-bottom: 0.25rem; /* reduce bottom padding to shrink the card height */
+}
+.card--equal .usa-card__footer {
+  padding-top: 0.25rem;
+}
+
+/* Remove default paragraph margins inside equal-height cards to avoid extra whitespace */
+.card--equal .usa-card__body p {
+  margin: 0; /* rely on .usa-card__body padding for spacing */
+}
+
+/* Avoid cropping important parts of thumbnails: show the whole image and center it */
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* fill the thumbnail area */
+  object-position: center;
+  display: block;
+  background-color: #222; /* keep the same background as earlier */
 }

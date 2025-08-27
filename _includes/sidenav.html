@@ -13,7 +13,7 @@
         class="{% if m.url == page.url %}usa-current{% endif %}">
         {{ m.title }}
       </a>
-      {%- if m.children and m.children.size > 0 -%}
+      <!-- {%- if m.children and m.children.size > 0 -%}
         <ul class="usa-sidenav__sublist">
           {%- for child in m.children -%}
             <li class="usa-sidenav__item">
@@ -25,7 +25,7 @@
             </li>
           {%- endfor -%}
         </ul>
-      {%- endif -%}
+      {%- endif -%} -->
     </li>
   {%- endfor -%}
 </ul>

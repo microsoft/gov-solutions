@@ -177,7 +177,7 @@ Use Impacts and Risk Items to capture the potential effects and uncertainties id
 
 Use Compliance Frameworks to represent structured sets of federal standards, controls, or guidelines—such as FedRAMP, NIST SP 800-53, or FISMA—that govern security, privacy, and operational practices. They provide the foundation for managing agency compliance obligations.
 
-![alt text]({{ '/assets/app-starter-kits/core/compliance-frameworks.pngpng' | relative_url }})
+![alt text]({{ '/assets/app-starter-kits/core/compliance-frameworks.png' | relative_url }})
 
 ## Compliance Framework Categories
 
