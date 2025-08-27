@@ -9,7 +9,7 @@ Props:
 
 {%- assign _align = include.align | default: 'center' -%}
 
-<div class="usa-card card--equal {% if include.type %}usa-card--{{ include.type }}{% endif %}">
+<div class="usa-card card--equal {% if include.type %}usa-card--{{ include.type }}{% endif %}{% if include.shrink %} card--shrink{% endif %}">
   <div class="usa-card__container">
     {% if include.thumbnail %}
       <div class="usa-card__media card-thumb">

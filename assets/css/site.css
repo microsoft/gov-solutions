@@ -1,42 +1,17 @@
-.usa-card__heading,
-.usa-card__body p {
-  text-align: center;
-}
-.usa-card__footer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.usa-card__media {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #222;
-  padding: 0.5rem;
-}
-.usa-card__media {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-/* Override USWDS .usa-intro to use sans-serif font */
-.usa-intro {
-  font-family: var(
-    --font-family-sans,
-    "Source Sans Pro",
-    Arial,
-    sans-serif
-  ) !important;
-}
 /* Flexbox page layout */
 html,
-body {
-  height: 100%;
-}
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  height: 100%;
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+}
+
+/* Main flexes to fill space */
+main {
+  flex: 1 0 auto;
 }
 
 header.usa-header.bg-primary-darker .usa-navbar { max-width: none !important; }
@@ -48,73 +23,6 @@ header.usa-header.bg-primary-darker .usa-navbar { max-width: none !important; }
   padding-left: 0.5rem;
   padding-right: 0.5rem;
   width: 100%;
-}
-
-/* Main flexes to fill space */
-main {
-  flex: 1 0 auto;
-}
-
-/* USWDS prose and font styling for main content */
-.usa-prose {
-  font-family: var(--font-family-sans, "Source Sans Pro", Arial, sans-serif);
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #222;
-}
-.usa-section {
-  padding-top: 1em !important;
-  padding-bottom: 1em !important;
-}
-.usa-prose h1,
-.usa-prose h2,
-.usa-prose h3,
-.usa-prose h4,
-.usa-prose h5,
-.usa-prose h6 {
-  font-family: var(--font-family-sans, "Source Sans Pro", Arial, sans-serif);
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-}
-.usa-prose h1 {
-    margin-top: 0rem;
-}
-.usa-prose p {
-  margin-bottom: 1.25rem;
-  font-size: 1rem;
-  max-width: 100%;
-  width: 100%;
-}
-
-.usa-prose>ul li {
-  max-width: 100% !important;
-}
-
-/* Footer sticks to bottom */
-
-/* === Rails: consistent 2–8–2 alignment === */
-
-/* === Sticky footer pattern (footer at bottom on short pages) === */
-html,
-body {
-  height: 100%;
-}
-body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-footer.usa-footer {
-  margin-top: auto;
-}
-
-/* footer.usa-footer {
-    background-color: #f0f0f0; /* USWDS gray-5 or similar */
-*/ footer.usa-footer,
-footer.usa-footer .usa-footer__secondary-section {
-  background-color: #f0f0f0; /* Use the same gray for both */
 }
 
 /* === Header: dark background, white text === */
@@ -145,6 +53,85 @@ footer.usa-footer .usa-footer__secondary-section {
   text-decoration: none;
 }
 
+/* Fix: ensure footer and identifier are not clipped by overflow rules */
+/* Make footer background full-bleed while keeping inner content aligned with .container */
+footer.usa-footer {
+  margin-top: auto;
+  background-color: transparent !important;
+  overflow: visible !important;
+}
+footer.usa-footer,
+footer.usa-footer .usa-footer__secondary-section {
+  background-color: #f0f0f0; /* Use the same gray for both */
+}
+footer.usa-footer .usa-footer__secondary-section {
+  background-color: transparent !important;
+}
+.usa-footer__secondary-fullwidth {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f0f0f0;
+}
+.usa-footer__secondary-fullwidth .container {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.usa-footer__secondary-fullwidth .usa-footer__secondary-section {
+  padding: 0;
+}
+.usa-footer__secondary-fullwidth .usa-footer__copyright {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}
+
+/* Override USWDS .usa-intro to use sans-serif font */
+.usa-intro {
+  font-family: var(
+    --font-family-sans,
+    "Source Sans Pro",
+    Arial,
+    sans-serif
+  ) !important;
+}
+
+.usa-section {
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
+}
+
+/* USWDS prose and font styling for main content */
+.usa-prose {
+  font-family: var(--font-family-sans, "Source Sans Pro", Arial, sans-serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #222;
+}
+.usa-prose h1,
+.usa-prose h2,
+.usa-prose h3,
+.usa-prose h4,
+.usa-prose h5,
+.usa-prose h6 {
+  font-family: var(--font-family-sans, "Source Sans Pro", Arial, sans-serif);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.usa-prose h1 {
+    margin-top: 0rem;
+}
+.usa-prose p {
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  max-width: 100%;
+  width: 100%;
+}
+.usa-prose>ul li {
+  max-width: 100% !important;
+}
+
 /* Neutralize USWDS left padding/margin for logo alignment */
 .usa-logo,
 .usa-navbar {
@@ -159,6 +146,24 @@ footer.usa-footer .usa-footer__secondary-section {
   max-width: 100% !important;
 }
 
+.usa-card__heading,
+.usa-card__body p {
+  text-align: center;
+}
+.usa-card__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto; /* Footer pushed to bottom */
+}
+.usa-card__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #222;
+  padding: 0.5rem;
+  padding: 0.25rem; /* reduce the media padding so the image takes up less vertical space */
+}
 .solution-card {
   width: 100%;
   display: flex;
@@ -166,7 +171,6 @@ footer.usa-footer .usa-footer__secondary-section {
   justify-content: space-between;
   box-sizing: border-box;
 }
-
 /* Keep card heights even so footers align */
 .card--equal {
   display: flex;
@@ -174,7 +178,6 @@ footer.usa-footer .usa-footer__secondary-section {
   height: 100%;
   box-sizing: border-box;
 }
-
 /* Ensure the inner container stretches and uses flex layout so .usa-card__body can grow */
 .usa-card.card--equal,
 .usa-card.card--equal .usa-card__container {
@@ -182,36 +185,10 @@ footer.usa-footer .usa-footer__secondary-section {
   flex-direction: column;
   height: 100%;
 }
-
 /* Allow the body to grow and push the footer down */
 .usa-card__body {
   flex: 1 1 auto;
 }
-
-/* Footer pushed to bottom */
-.usa-card__footer {
-  margin-top: auto;
-}
-
-/* Make cards slightly shorter: smaller thumbnail, less media padding, shorter summary preview */
-.usa-card__media {
-  /* reduce the media padding so the image takes up less vertical space */
-  padding: 0.25rem;
-}
-
-.card-thumb {
-  /* a wider aspect ratio reduces thumbnail height at the same width */
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  border-radius: 0.5rem;
-}
-.card-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
 /* Compact thumbnail: fixed shorter height, center the full image inside without cropping */
 .card-thumb {
   height: 140px; /* reduce this value if you want even shorter cards */
@@ -221,16 +198,22 @@ footer.usa-footer .usa-footer__secondary-section {
   align-items: center;
   justify-content: center;
   background: #222;
+  /* a wider aspect ratio reduces thumbnail height at the same width */
+  aspect-ratio: 16 / 9;
 }
+/* Avoid cropping important parts of thumbnails: show the whole image and center it */
 .card-thumb img {
+  /* width: auto; */
+  width: 100%;
+  height: 100%;
   max-height: 100%;
-  width: auto;
   max-width: 100%;
-  object-fit: contain; /* show the full image */
+  /* object-fit: cover; */
+  object-fit: contain; /* fill the thumbnail area */
   object-position: center;
   display: block;
+  background-color: #222; /* keep the same background as earlier */
 }
-
 /* Tidy summaries to ~3 lines (preview) */
 .card-summary {
   display: -webkit-box;
@@ -239,16 +222,50 @@ footer.usa-footer .usa-footer__secondary-section {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
 /* Optional, subtle hover without breaking a11y */
 .usa-card:hover .usa-card__container {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
 }
-
-/* Sub-navbar container */
-.mgat-subnav {
-  border-bottom: 2px solid #dfe1e2;
-  margin-bottom: 1rem;
+/* Modifier: shrink or constrain card width when used in inline contexts */
+.usa-card.card--shrink {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+.usa-card.card--shrink .usa-card__container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.usa-card.card--shrink .usa-card__body {
+  flex: 0 1 auto; /* allow body to size naturally */
+}
+.usa-card.card--shrink .usa-card__footer {
+  margin-top: 0;
+}
+/* Compact card adjustments: reduce vertical spacing so cards are shorter */
+.card--equal .usa-card__container {
+  padding: 0.5rem; /* tighten container padding */
+}
+.card--equal .usa-card__header {
+  padding-bottom: 0.25rem;
+}
+.card--equal .usa-card__heading {
+  font-size: 1.05rem;
+  margin: 0 0 0.25rem 0;
+}
+.card--equal .usa-card__body {
+  padding-top: 0;
+  padding-bottom: 0.25rem; /* reduce bottom padding to shrink the card height */
+}
+.card--equal .usa-card__footer {
+  padding-top: 0.25rem;
+}
+/* Remove default paragraph margins inside equal-height cards to avoid extra whitespace */
+.card--equal .usa-card__body p {
+  margin: 0; /* rely on .usa-card__body padding for spacing */
 }
 
 /* Traditional nav-bar style for tabs */
@@ -258,105 +275,73 @@ footer.usa-footer .usa-footer__secondary-section {
   border-radius: 0.5rem;
   padding: 0.25rem;
   margin-bottom: 1rem;
+  border-bottom: 2px solid #dfe1e2;
 }
-
-.mgat-subnav__list {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-  padding: 0.25rem 0.5rem;
-  margin: 0;
-  align-items: center;
-  overflow-x: auto; /* allow horizontal scrolling on small screens */
-  -webkit-overflow-scrolling: touch;
-}
-
 /* Horizontal list like a nav bar */
 .mgat-subnav__list {
   display: flex;
+  /* gap: 0.25rem; */
+  gap: 0.5rem;  /* Improve the subnav horizontal scroll affordance on narrow screens */
   gap: 0.75rem;
+  padding: 0.25rem 0.5rem;
   list-style: none;
   padding: 0;
   margin: 0;
   flex-wrap: wrap;
+  align-items: center;
+  overflow-x: auto; /* allow horizontal scrolling on small screens */
+  -webkit-overflow-scrolling: touch;
 }
-
 /* Items */
 .mgat-subnav__item {
   display: inline-flex;
-}
-
-.mgat-subnav__item {
   margin: 0;
 }
-
-/* Links styled like header links but in-page */
-.mgat-subnav__link {
-  display: inline-block;
-  padding: 0.75rem 1rem;
-  text-decoration: none;
-  color: #1b1b1b;
-  border-radius: 0.25rem;
-}
-
 /* Links styled like header links but in-page */
 .mgat-subnav__link {
   display: inline-flex;
   align-items: center;
+  /* padding: 0.75rem 1rem; */
   padding: 0.5rem 1rem;
   color: #1b1b1b;
   text-decoration: none;
+  /* border-radius: 0.25rem; */
   border-radius: 0.375rem;
   border-bottom: 3px solid transparent;
   transition: background 0.12s ease, color 0.12s ease,
     border-bottom-color 0.12s ease;
 }
-
 /* Hover/focus states (USWDS-ish) */
 .mgat-subnav__link:hover {
-  text-decoration: underline;
-}
-.mgat-subnav__link:hover {
   background: rgba(0, 0, 0, 0.04);
+  /* text-decoration: underline; */
   text-decoration: none;
 }
-
-.mgat-subnav__link:focus {
-  outline: 2px solid #2491ff;
-  outline-offset: 2px;
-}
-
 /* Remove mouse-click focus outline that appears as side borders; keep keyboard focus via :focus-visible */
 .mgat-subnav__link:focus {
   outline: none !important;
   box-shadow: none !important;
+  outline-offset: 2px;
 }
-
 .mgat-subnav__link:focus-visible {
   outline: 2px solid #2491ff !important;
   outline-offset: 2px !important;
 }
-
 /* Active: underline effect + stronger weight */
 .mgat-subnav__link.is-active,
 .mgat-subnav__link[aria-selected="true"] {
-  font-weight: 700;
-  box-shadow: inset 0 -3px 0 0 #1b1b1b; /* active underline */
-}
-
-.mgat-subnav__link.is-active,
-.mgat-subnav__link[aria-selected="true"] {
-  font-weight: 700;
   color: #0b0b0b;
   border-bottom-color: #0071bc; /* accent underline for active */
-  background: transparent;
+  font-weight: 700;
+  /* box-shadow: inset 0 -3px 0 0 #1b1b1b; */
+  box-shadow: none !important; /* disable any earlier inset underline implementations */
+  background: transparent !important;
+  border-radius: 0 !important; /* remove rounded border around selected item */
 }
-
 /* Panels: JS will [hidden] the inactive ones */
 .mgat-subnav__panel[hidden] {
   display: none !important;
 }
-
 /* Optional: make the subnav sticky under your header */
 .mgat-subnav.is-sticky {
   position: sticky;
@@ -364,22 +349,6 @@ footer.usa-footer .usa-footer__secondary-section {
   z-index: 10;
   background: #fff;
 }
-
-.mgat-subnav {
-  border-bottom: 2px solid #dfe1e2;
-  margin-bottom: 1rem;
-}
-.mgat-subnav__list {
-  display: flex;
-  gap: 0.75rem;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  flex-wrap: wrap;
-}
-.mgat-subnav__item {
-  display: inline-flex;
-}
 .mgat-subnav__link {
   display: inline-block;
   padding: 0.75rem 1rem;
@@ -387,22 +356,6 @@ footer.usa-footer .usa-footer__secondary-section {
   color: #1b1b1b;
   border-radius: 0.25rem;
 }
-.mgat-subnav__link:hover {
-  text-decoration: underline;
-}
-.mgat-subnav__link:focus {
-  outline: 2px solid #2491ff;
-  outline-offset: 2px;
-}
-.mgat-subnav__link.is-active,
-.mgat-subnav__link[aria-selected="true"] {
-  font-weight: 700;
-  box-shadow: inset 0 -3px 0 0 #1b1b1b;
-}
-.mgat-subnav__panel[hidden] {
-  display: none !important;
-}
-
 /* Remove outer nav border and any surrounding box-shadow on selected items; keep bottom indicator */
 .mgat-subnav {
   border: none !important;
@@ -410,21 +363,6 @@ footer.usa-footer .usa-footer__secondary-section {
   background: transparent !important;
   padding: 0.25rem 0 !important;
 }
-
-.mgat-subnav__link.is-active,
-.mgat-subnav__link[aria-selected="true"] {
-  box-shadow: none !important; /* disable any earlier inset underline implementations */
-  background: transparent !important;
-  border-radius: 0 !important; /* remove rounded border around selected item */
-}
-
-html,
-body {
-  /* Reserve space for vertical scrollbar to avoid layout shift when pages toggle between scroll/no-scroll */
-  scrollbar-gutter: stable;
-  overflow-y: scroll;
-}
-
 .mgat-solution-heading {
   font-size: 1.5rem;
   font-weight: 700;
@@ -432,15 +370,10 @@ body {
   margin-top: 0rem;
 }
 
-/* Fix: ensure footer and identifier are not clipped by overflow rules */
-footer.usa-footer {
-  overflow: visible !important;
-}
 .usa-identifier {
   overflow: visible !important;
   z-index: 0;
 }
-
 /* Make identifier logo + identity sit side-by-side on medium+ screens */
 .usa-identifier .usa-identifier__brand {
   display: flex;
@@ -499,30 +432,11 @@ footer.usa-footer {
   }
 }
 
-/* Make footer background full-bleed while keeping inner content aligned with .container */
-footer.usa-footer {
-  background-color: transparent !important;
-}
-footer.usa-footer .usa-footer__secondary-section {
-  background-color: transparent !important;
-}
-.usa-footer__secondary-fullwidth {
-  width: 100%;
-  box-sizing: border-box;
-  background-color: #f0f0f0;
-}
-.usa-footer__secondary-fullwidth .container {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-}
-.usa-footer__secondary-fullwidth .usa-footer__secondary-section {
-  padding: 0;
-}
-.usa-footer__secondary-fullwidth .usa-footer__copyright {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.25;
-}
+ /* Identifier (tagline) should be smaller and stack cleanly */
+  .usa-identifier .usa-identifier__tagline {
+    font-size: 0.95rem;
+    margin-top: 0.25rem;
+  }
 
 /* External link indicator: inline SVG icon + spacing */
 .external-link-icon {
@@ -576,12 +490,6 @@ footer.usa-footer .usa-footer__secondary-section {
     margin-bottom: 1rem;
   }
 
-  /* Identifier (tagline) should be smaller and stack cleanly */
-  .usa-identifier .usa-identifier__tagline {
-    font-size: 0.95rem;
-    margin-top: 0.25rem;
-  }
-
   /* Ensure footer inner container has breathing room on mobile */
   .usa-footer__secondary-fullwidth .container {
     padding-left: 0.75rem;
@@ -592,11 +500,6 @@ footer.usa-footer .usa-footer__secondary-section {
   img {
     max-width: 100%;
     height: auto;
-  }
-
-  /* Improve the subnav horizontal scroll affordance on narrow screens */
-  .mgat-subnav__list {
-    gap: 0.5rem;
   }
 
   /* Ensure the top 'Under construction' banner wraps and doesn't force horizontal scroll */
@@ -626,36 +529,4 @@ footer.usa-footer .usa-footer__secondary-section {
   }
 }
 
-/* Compact card adjustments: reduce vertical spacing so cards are shorter */
-.card--equal .usa-card__container {
-  padding: 0.5rem; /* tighten container padding */
-}
-.card--equal .usa-card__header {
-  padding-bottom: 0.25rem;
-}
-.card--equal .usa-card__heading {
-  font-size: 1.05rem;
-  margin: 0 0 0.25rem 0;
-}
-.card--equal .usa-card__body {
-  padding-top: 0;
-  padding-bottom: 0.25rem; /* reduce bottom padding to shrink the card height */
-}
-.card--equal .usa-card__footer {
-  padding-top: 0.25rem;
-}
 
-/* Remove default paragraph margins inside equal-height cards to avoid extra whitespace */
-.card--equal .usa-card__body p {
-  margin: 0; /* rely on .usa-card__body padding for spacing */
-}
-
-/* Avoid cropping important parts of thumbnails: show the whole image and center it */
-.card-thumb img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* fill the thumbnail area */
-  object-position: center;
-  display: block;
-  background-color: #222; /* keep the same background as earlier */
-}
