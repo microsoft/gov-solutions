@@ -5,7 +5,7 @@ permalink: /app-starter-kits/personnel-security/model-driven-app
 solution: personnel-security
 parent: Personnel Security
 grandparent: App Starter Kits
-summary: This article explains the features and navigation of the Personnel Security model-driven app, detailing how users can manage the lifecycle of background investigations, adjudications, security clearances, CV (continuous vetting), and AI-enabled features.
+description: This article explains the features and navigation of the Personnel Security model-driven app, detailing how users can manage the lifecycle of background investigations, adjudications, security clearances, CV (continuous vetting), and AI-enabled features.
 ---
 
 ## Model-Driven App

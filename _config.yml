@@ -21,9 +21,12 @@ collections:
     output: true
     # :doc is not a Jekyll token; use :basename
     permalink: /app-starter-kits/:solution/:basename/
-  releases:
+  app_releases:
     output: true
-    permalink: /releases/:solution/:version/
+    permalink: /app-starter-kits/releases/:path/
+  data_model_releases:
+    output: true
+    permalink: /data-models/releases/:path/
   use_cases:
     output: true
     permalink: /use-cases/:title/

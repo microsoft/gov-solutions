@@ -10,14 +10,15 @@ layout: default
 
     <div class="grid-row grid-gap">
       {% assign items = site.use_cases | sort: 'title' %}
-      {% for sol in items %}
+      {% for item in items %}
         <!-- 1-up mobile, 2-up tablet, 3-up desktop -->
         <div class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4 margin-bottom-2">
           {% include card.html
             type="use_case"
-            title=sol.title
-            summary=sol.summary
-            thumbnail=sol.thumbnail 
+            title=item.title
+            url=item.url
+            description=item.description
+            thumbnail=item.thumbnail
           %}
         </div>
       {% endfor %}

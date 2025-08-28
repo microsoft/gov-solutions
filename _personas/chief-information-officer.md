@@ -1,6 +1,6 @@
 ---
 title: Chief Information Officer
-summary: Aka CIO
+description: Senior executive responsible for the strategy, governance, and delivery of information technology (IT)
 download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSolution_1_0.zip
 layout: persona
 permalink: /personas/chief-information-officer/

@@ -8,13 +8,14 @@ layout: default
     <div class="grid-row grid-gap">
 
       <!-- Sidebar navigation -->
-
       <aside class="grid-col-3">
-        <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} persona image" class="page-thumbnail">
+
+        <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} use_case image" class="page-thumbnail">
+
       </aside>
 
       <!-- Main content (right side) -->
-      <main class="grid-col-9 usa-prose">
+      <main class="grid-col-9 usa-prose main-content">
 
         <!-- Header row: breadcrumbs + page title -->
         <div class="grid-row grid-gap">
@@ -33,7 +34,7 @@ layout: default
             <hr />
 
             {{ content }}
-
+            
           </div>
 
           <!-- Small right column (download + personas) -->
@@ -42,8 +43,8 @@ layout: default
 
             {% assign has_related = false %}
             {% for s in site.app_starter_kits %}
-              {% if s.personas %}
-                {% for p in s.personas %}
+              {% if s.use_cases %}
+                {% for p in s.use_cases %}
                   {% if p == page.title %}
                     {% assign has_related = true %}
                     {% break %}
@@ -57,8 +58,8 @@ layout: default
               <h2>Related solutions</h2>
               <ul class="usa-list">
                 {% for s in site.app_starter_kits %}
-                  {% if s.personas %}
-                    {% for p in s.personas %}
+                  {% if s.use_cases %}
+                    {% for p in s.use_cases %}
                       {% if p == page.title %}
                         <li>
                           <a href="{{ s.url | relative_url }}" class="usa-link">{{ s.title }}</a>

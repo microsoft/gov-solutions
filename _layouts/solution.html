@@ -10,6 +10,8 @@ layout: default
       <!-- Sidebar navigation -->
 
       <aside class="grid-col-3">
+        <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} app_starter_kit image" class="page-thumbnail">
+        <br />
         <nav class="sidenav-sticky" aria-label="Section navigation">
           {% include sidenav.html %}
         </nav>
@@ -48,7 +50,7 @@ layout: default
             <!-- RELEASES panel -->
             <section id="panel-{{ page.slug }}-releases" class="mgat-subnav__panel usa-prose" role="tabpanel"
               data-panel="{{ page.slug }}">
-              {%- comment -%} Render your releases for this solution {%- endcomment -%}
+              {% include app_releases.html %}
             </section>
 
             <!-- GUIDES panel -->

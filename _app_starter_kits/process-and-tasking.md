@@ -1,6 +1,6 @@
 ---
 title: Process and Tasking Module
-summary: Provides a reusable framework for managing repeatable business processes, tasks, and automations across your applications.
+description: Provides a reusable framework for managing repeatable business processes, tasks, and automations across your applications.
 download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSolution_1_0.zip
 layout: solution
 permalink: /app-starter-kits/process-and-tasking/

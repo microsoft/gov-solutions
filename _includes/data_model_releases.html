@@ -1,0 +1,32 @@
+{% capture solution_releases %}
+{% assign releases_sorted = site.data_model_releases | sort: 'version' %}
+{% for rel in releases_sorted %}
+  {% if rel.solution == page.slug %}
+    {% assign rel_summary = rel.summary %}
+    {% if rel_summary == nil or rel_summary == '' %}
+      {% assign rel_summary = rel.excerpt %}
+      {% if rel_summary == nil or rel_summary == '' %}
+        {% assign rel_summary = rel.content | strip_html | truncatewords: 30 %}
+      {% endif %}
+    {% endif %}
+
+    <div class="grid-row grid-gap margin-bottom-2">
+      <div class="grid-col-12">
+        {% include card.html
+          title=rel.title
+          url=rel.url
+          description=rel.description
+          align="left"
+          type="release"
+        %}
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+{% endcapture %}
+
+{% if solution_releases contains 'usa-card' %}
+  {{ solution_releases }}
+{% else %}
+  <p>No releases published yet.</p>
+{% endif %}

@@ -1,6 +1,6 @@
 ---
 title: HR Administrator
-summary: Manages the employee lifecycle and HR operations for an agency
+description: Manages the employee lifecycle and HR operations for an agency
 download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSolution_1_0.zip
 layout: persona
 permalink: /personas/hr-administrator/

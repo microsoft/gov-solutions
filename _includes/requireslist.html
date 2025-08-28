@@ -2,7 +2,7 @@
 <section class="margin-top-4">
     <h2>Requires</h2>
     <div class="requirements-buttons" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
-        {% for title in page.requirements %}
+        {% for title in page.requires %}
         {% assign matches = site.app_starter_kits | where: "title", title %}
         {% if matches and matches.size > 0 %}
         {% assign related_page = matches | first %}

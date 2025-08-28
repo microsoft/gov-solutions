@@ -1,6 +1,6 @@
 ---
 title: Personnel Security
-summary: Foundation entities, relationships, and data structures used across government solutions.
+description: Foundation entities, relationships, and data structures used across government solutions.
 layout: solution
 permalink: /app-starter-kits/personnel-security/
 thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
@@ -9,7 +9,7 @@ parent: App Starter Kits
 requires:
  - Core
 use_cases:
- - Case 1
+ - Case Management
 personas:
  - Chief Information Officer
 future:

@@ -1,6 +1,6 @@
 ---
 title: Executive Action Tracking
-summary: Foundation entities, relationships, and data structures used across government solutions.
+description: Foundation entities, relationships, and data structures used across government solutions.
 download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSolution_1_0.zip
 layout: solution
 permalink: /app-starter-kits/executive-actions/

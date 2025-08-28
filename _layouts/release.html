@@ -1,0 +1,94 @@
+---
+layout: default
+---
+
+<section class="usa-section">
+  <div class="grid-container-full">
+
+    <div class="grid-row grid-gap">
+
+      <!-- Sidebar navigation -->
+      <aside class="grid-col-3">
+
+        {% comment %} Find the parent solution (docs have `solution: <slug>`) {% endcomment %}
+          {% assign parent_solution = nil %}
+          {% if page.solution %}
+          {% assign parent_solution = site.app_starter_kits | where: "slug", page.solution | first %}
+          {% if parent_solution == nil %}
+          {% capture sol_url %}/app-starter-kits/{{ page.solution }}/{% endcapture %}
+          {% assign parent_solution = site.app_starter_kits | where: "url", sol_url | first %}
+          {% endif %}
+          {% endif %}
+
+          {% if parent_solution %}
+          {% include card.html
+          type="solution"
+          title=parent_solution.title
+          url=parent_solution.url
+          summary=parent_solution.summary
+          tags=parent_solution.use_cases
+          personas=parent_solution.personas
+          repo=parent_solution.repo
+          shrink=true
+          thumbnail=parent_solution.thumbnail %}
+          {% else %}
+          {% include card.html
+          type="solution"
+          title=page.title
+          url=page.url
+          summary=page.summary
+          tags=page.use_cases
+          personas=page.personas
+          repo=page.repo
+          shrink=true
+          thumbnail=page.thumbnail %}
+          {% endif %}
+      </aside>
+
+      <!-- Main content (right side) -->
+      <main class="grid-col-9 usa-prose main-content">
+
+        <!-- Header row: breadcrumbs + page title -->
+        <div class="grid-row grid-gap">
+          <div class="grid-col-9 usa-prose">
+            {% include breadcrumbs.html %}
+          </div>
+        </div>
+
+        <!-- Content row: main column + small right column -->
+        <div class="grid-row grid-gap">
+
+          <!-- Main column -->
+          <div class="grid-col-9 usa-prose">
+
+            <h1 class="mgat-solution-heading">{{ parent_solution.title }}</h1>
+            <hr />
+
+            {{ content }}
+
+          </div>
+
+          <!-- Small right column (download + personas) -->
+          <div class="grid-col-3">
+            {% if page.collection == "app_releases" %}
+            <a class="usa-button"
+              href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ page.download }}" download>Download
+              This Release</a>
+            {% elsif page.collection == "data_model_releases" %}
+            <a class="usa-button"
+              href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ page.download }}"
+              download>Download This Release</a>
+            {% else %}
+              <div></div>
+            {% endif %}
+
+            <!-- <aside class="usa-in-page-nav" data-title-text="On this page" data-title-heading-level="h2" data-target="#doc-main-column"
+              data-scroll-offset="0" data-root-margin="0px 0px 0px 0px" data-threshold="1"></aside> -->
+
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+</section>

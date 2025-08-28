@@ -10,7 +10,7 @@ layout: default
       <!-- Sidebar navigation -->
 
       <aside class="grid-col-3">
-        <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} persona image" class="page-thumbnail">
+        <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} data_model image" class="page-thumbnail">
       </aside>
 
       <!-- Main content (right side) -->
@@ -32,18 +32,42 @@ layout: default
             <h1 class="mgat-solution-heading">{{ page.title }}</h1>
             <hr />
 
-            {{ content }}
+            {% include tabs.html
+            ns=page.slug
+            tabs="Overview:overview|Releases:releases"
+            %}
+
+            <!-- OVERVIEW panel -->
+            <section id="panel-{{ page.slug }}-overview" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {{ content }}
+            </section>
+
+            <!-- RELEASES panel -->
+            <section id="panel-{{ page.slug }}-releases" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {% include data_model_releases.html %}
+            </section>
 
           </div>
 
           <!-- Small right column (download + personas) -->
           <div class="grid-col-3">
-            {% comment %} Find solutions that list this persona in their front matter and show links (compatible fallback without where_exp) {% endcomment %}
+
+            <a class="usa-button"       
+              href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ page.latest_release }}"
+              download>
+              Download Latest Release
+            </a>
+            {% include requireslist.html %}
+            {% include personalist.html %}
+
+            {% comment %} Find solutions that use this item in their front matter and show links (compatible fallback without where_exp) {% endcomment %}
 
             {% assign has_related = false %}
             {% for s in site.app_starter_kits %}
-              {% if s.personas %}
-                {% for p in s.personas %}
+              {% if s.data_models %}
+                {% for p in s.data_models %}
                   {% if p == page.title %}
                     {% assign has_related = true %}
                     {% break %}
@@ -57,8 +81,8 @@ layout: default
               <h2>Related solutions</h2>
               <ul class="usa-list">
                 {% for s in site.app_starter_kits %}
-                  {% if s.personas %}
-                    {% for p in s.personas %}
+                  {% if s.data_models %}
+                    {% for p in s.data_models %}
                       {% if p == page.title %}
                         <li>
                           <a href="{{ s.url | relative_url }}" class="usa-link">{{ s.title }}</a>

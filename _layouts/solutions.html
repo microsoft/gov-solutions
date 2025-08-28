@@ -10,18 +10,16 @@ layout: default
 
     <div class="grid-row grid-gap">
       {% assign items = site.app_starter_kits | sort: 'title' %}
-      {% for sol in items %}
+      {% for item in items %}
         <!-- 1-up mobile, 2-up tablet, 3-up desktop -->
         <div class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4 margin-bottom-2">
           {% include card.html
             type="solution"
-            title=sol.title
-            url=sol.url
-            summary=sol.summary
-            tags=sol.use_cases
-            personas=sol.personas
-            repo=sol.repo
-            thumbnail=sol.thumbnail %}
+            title=item.title
+            url=item.url
+            description=item.description
+            thumbnail=item.thumbnail 
+          %}
         </div>
       {% endfor %}
     </div>

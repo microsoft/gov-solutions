@@ -5,7 +5,7 @@ permalink: /app-starter-kits/core/model-driven-app
 solution: core
 parent: Core
 grandparent: App Starter Kits
-summary: This article explains the features and navigation of the Core Utility model-driven app, detailing how users can manage reference data such as personnel, organizational units, locations, and compliance frameworks. It provides a walkthrough of the app’s main sections—People, Places, Things, and Legal & Compliance.
+description: This article explains the features and navigation of the Core Utility model-driven app, detailing how users can manage reference data such as personnel, organizational units, locations, and compliance frameworks. It provides a walkthrough of the app’s main sections—People, Places, Things, and Legal & Compliance.
 ---
 
 ## Model-Driven App

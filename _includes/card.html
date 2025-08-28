@@ -2,7 +2,7 @@
 Props:
   type: "solution" | "use_case" | "persona"
   title: string
-  summary: string
+  description: string
   thumbnail: string
   align: 'center' | 'left' (optional) - when 'left', title/summary are left-aligned and footer buttons are right-aligned. Default 'center'.
 {% endcomment %}
@@ -24,8 +24,8 @@ Props:
     </header>
 
     <div class="usa-card__body">
-      {% if include.summary %}
-        <p class="card-summary" {% if _align == 'center' %} style="text-align:center;" {% else %} style="text-align:left;" {% endif %}>{{ include.summary }}</p>
+      {% if include.description %}
+        <p class="card-summary" {% if _align == 'center' %} style="text-align:center;" {% else %} style="text-align:left;" {% endif %}>{{ include.description }}</p>
       {% endif %}
     </div>
 

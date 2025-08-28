@@ -1,11 +1,13 @@
 ---
-title: Core Module
-summary: Provides standardized data structures for managing people, places, assets, and compliance information in government-focused solutions.
+title: Core
+description: Provides standardized data structures for managing people, places, assets, and compliance information in government-focused solutions.
 latest_release: federal/core/releases/v1.0.2.0/MS-Fed-Core_managed%20-%201.0.2.0.zip
 layout: solution
 permalink: /app-starter-kits/core/
 thumbnail: /assets/app-starter-kits/core/core.png
 parent: App Starter Kits
+data_models:
+ - Core
 ---
 
 The **Core Utility** module is a foundational building block within the Microsoft Government App Templates library. It provides a centralized, enterprise-ready framework for managing essential reference data aligned with [Government Data Models](https://github.com/microsoft/gov-datamodels){:target="_blank" rel="noopener noreferrer"}, ensuring consistency across applications and reducing duplication in business processes. Designed for extensibility, the Core module can serve as both a starting point for new low-code solutions and a shared utility layer in enterprise-scale deployments.
