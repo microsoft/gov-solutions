@@ -11,6 +11,15 @@ layout: default
 
       <aside class="grid-col-3">
         <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} data_model image" class="page-thumbnail">
+        <!-- {% comment %} Link to module ERD page in assets (assets/data_models/<slug>/erd.md) {% endcomment %}
+        {% assign erd_asset_path = 'assets/data_models/' | append: page.slug | append: '/erd.md' %}
+        {% assign erd_pages = site.pages | where: "path", erd_asset_path %}
+        {% if erd_pages and erd_pages.size > 0 %}
+          {% assign erd_page = erd_pages | first %}
+          <p class="margin-top-2">
+            <a href="{{ erd_page.url | relative_url }}" class="usa-link">View ERD</a>
+          </p>
+        {% endif %} -->
       </aside>
 
       <!-- Main content (right side) -->
@@ -34,7 +43,7 @@ layout: default
 
             {% include tabs.html
             ns=page.slug
-            tabs="Overview:overview|Releases:releases"
+            tabs="Overview:overview|Tables and Fields:erd|Releases:releases"
             %}
 
             <!-- OVERVIEW panel -->
@@ -43,9 +52,66 @@ layout: default
               {{ content }}
             </section>
 
+            <!-- ERD panel -->
+            <section id="panel-{{ page.slug }}-erd" class="mgat-subnav__panel usa-prose" role="tabpanel" data-panel="{{ page.slug }}">
+  <div class="erd-action">
+    <button id="show-erd-{{ page.slug }}" class="usa-button usa-button--primary" aria-controls="panel-{{ page.slug }}-erd">Click to Show ERD</button>
+  </div>
+              {% assign erd_asset_path = 'assets/data_models/' | append: page.slug | append: '/erd.md' %}
+              {% assign erd_pages = site.pages | where: "path", erd_asset_path %}
+              {% if erd_pages and erd_pages.size > 0 %}
+                {% assign erd_page = erd_pages | first %}
+                {{ erd_page.content | markdownify }}
+              {% else %}
+                {% if page.erd_image %}
+                  <img src="{{ page.erd_image | relative_url }}" alt="ERD for {{ page.title }}" class="usa-image">
+                {% else %}
+                  <p>No ERD available.</p>
+                {% endif %}
+              {% endif %}
+              <script>
+                (function () {
+                  function onReady(fn){ if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
+                  onReady(function () {
+                    var btn = document.getElementById('show-erd-{{ page.slug }}');
+                    var panel = document.getElementById('panel-{{ page.slug }}-erd');
+                    if (!btn || !panel) return;
+                    // Hide the button if there's nothing to render
+                    if (!panel.querySelector('.mermaid') && !panel.querySelector('pre > code.language-mermaid')) {
+                      btn.style.display = 'none';
+                      return;
+                    }
+                    btn.addEventListener('click', function (e) {
+                      e.preventDefault();
+                      btn.disabled = true;
+                      btn.textContent = 'Loading…';
+                      // Prefer the helper exposed by the module loader
+                      if (window.renderMermaidIn) {
+                        window.renderMermaidIn(panel);
+                        btn.style.display = 'none';
+                        return;
+                      }
+                      // Otherwise try a direct init
+                      if (window.mermaid && window.mermaid.init) {
+                        window.mermaid.init(undefined, panel.querySelectorAll('.mermaid'));
+                        btn.style.display = 'none';
+                        return;
+                      }
+                      // Final fallback: reload the page
+                      location.reload();
+                    });
+                  });
+                })();
+              </script>
+            </section>
+
             <!-- RELEASES panel -->
             <section id="panel-{{ page.slug }}-releases" class="mgat-subnav__panel usa-prose" role="tabpanel"
               data-panel="{{ page.slug }}">
+
+              We highly recommend using the managed versions, which will allow you to easily update and uninstall the solution from your environment. If you need to modify or enhance the managed solution, you can can create a new solution, add the components to that solution and make changes as needed.
+              <br />
+
               {% include data_model_releases.html %}
             </section>
 

@@ -585,3 +585,28 @@ img {
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.06);
 }
 
+.mermaid {
+  width: 100%;
+  max-width: 100%;
+  min-height: 12rem; /* optional: give a baseline height */
+}
+.mermaid svg {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100%;
+}
+
+/* ERD action button: align right on desktop, center on small screens */
+.erd-action {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+@media (max-width: 40rem) {
+  .erd-action {
+    justify-content: center;
+  }
+}

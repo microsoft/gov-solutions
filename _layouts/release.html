@@ -11,38 +11,46 @@ layout: default
       <aside class="grid-col-3">
 
         {% comment %} Find the parent solution (docs have `solution: <slug>`) {% endcomment %}
-          {% assign parent_solution = nil %}
-          {% if page.solution %}
-          {% assign parent_solution = site.app_starter_kits | where: "slug", page.solution | first %}
-          {% if parent_solution == nil %}
-          {% capture sol_url %}/app-starter-kits/{{ page.solution }}/{% endcapture %}
-          {% assign parent_solution = site.app_starter_kits | where: "url", sol_url | first %}
-          {% endif %}
+        {% assign parent_item = nil %}
+        {% if page.solution %}
+          {% comment %} choose collection that contains the parent solution {% endcomment %}
+          {% assign parent_collection = "app_starter_kits" %}
+          {% if page.collection == "data_model_releases" or page.collection == "data_models" %}
+            {% assign parent_collection = "data_models" %}
           {% endif %}
 
-          {% if parent_solution %}
-          {% include card.html
-          type="solution"
-          title=parent_solution.title
-          url=parent_solution.url
-          summary=parent_solution.summary
-          tags=parent_solution.use_cases
-          personas=parent_solution.personas
-          repo=parent_solution.repo
-          shrink=true
-          thumbnail=parent_solution.thumbnail %}
-          {% else %}
-          {% include card.html
-          type="solution"
-          title=page.title
-          url=page.url
-          summary=page.summary
-          tags=page.use_cases
-          personas=page.personas
-          repo=page.repo
-          shrink=true
-          thumbnail=page.thumbnail %}
+          {% assign parent_item = site[parent_collection] | where: "slug", page.solution | first %}
+          {% if parent_item == nil %}
+            {% if parent_collection == "app_starter_kits" %}
+              {% capture base_path %}app-starter-kits{% endcapture %}
+            {% else %}
+              {% capture base_path %}data-models{% endcapture %}
+            {% endif %}
+            {% capture sol_url %}/{{ base_path }}/{{ page.solution }}/{% endcapture %}
+            {% assign parent_item = site[parent_collection] | where: "url", sol_url | first %}
           {% endif %}
+        {% endif %}
+
+        {% if parent_item %}
+          {% include card.html
+            type="solution"
+            title=parent_item.title
+            url=parent_item.url
+            description=parent_item.description
+            shrink=true
+            thumbnail=parent_item.thumbnail %}
+        {% else %}
+            {% include card.html
+            type="solution"
+            title=page.title
+            url=page.url
+            summary=page.summary
+            tags=page.use_cases
+            personas=page.personas
+            repo=page.repo
+            shrink=true
+            thumbnail=page.thumbnail %}
+        {% endif %}
       </aside>
 
       <!-- Main content (right side) -->
@@ -61,7 +69,7 @@ layout: default
           <!-- Main column -->
           <div class="grid-col-9 usa-prose">
 
-            <h1 class="mgat-solution-heading">{{ parent_solution.title }}</h1>
+            <h1 class="mgat-solution-heading">{{ page.title }}</h1>
             <hr />
 
             {{ content }}
