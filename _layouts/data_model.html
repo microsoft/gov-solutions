@@ -97,67 +97,10 @@ layout: default
             </a>
             
             {% include requireslist.html %}
-            
             {% comment %} Related use cases: page.use_cases contains basenames; map to site.use_cases by slug or basename to display titles. {% endcomment %}
-
-            {% if page.use_cases and page.use_cases.size > 0 %}
-              <section class="margin-top-2">
-                <h2>Related use cases</h2>
-                <ul class="usa-list">
-                  {% for uc in page.use_cases %}
-                    {% assign uc_item = site.use_cases | where: "slug", uc | first %}
-                    {% if uc_item == nil %}
-                      {% assign uc_item = site.use_cases | where: "basename", uc | first %}
-                    {% endif %}
-                    {% if uc_item == nil %}
-                      {% assign uc_item = site.use_cases | where: "title", uc | first %}
-                    {% endif %}
-                    {% if uc_item %}
-                      <li><a href="{{ uc_item.url | relative_url }}" class="usa-link">{{ uc_item.title }}</a></li>
-                    {% else %}
-                      <li>{{ uc }}</li>
-                    {% endif %}
-                  {% endfor %}
-                </ul>
-              </section>
-            {% endif %}
-
-            {% include personalist.html %}
-
-            {% comment %} Find app starter kits that use this item in their front matter and show links (compatible fallback
-            without where_exp) {% endcomment %}
-
-            {% assign has_related = false %}
-            {% for s in site.app_starter_kits %}
-            {% if s.data_models %}
-            {% for p in s.data_models %}
-            {% if p == page.title or p == page.slug or p == page.basename %}
-            {% assign has_related = true %}
-            {% break %}
-            {% endif %}
-            {% endfor %}
-            {% endif %}
-            {% endfor %}
-
-            {% if has_related %}
-            <section class="margin-top-4">
-              <h2>Related starter kits</h2>
-              <ul class="usa-list">
-                {% for s in site.app_starter_kits %}
-                {% if s.data_models %}
-                {% for p in s.data_models %}
-                {% if p == page.title or p == page.slug or p == page.basename %}
-                <li>
-                  <a href="{{ s.url | relative_url }}" class="usa-link">{{ s.title }}</a>
-                </li>
-                {% break %}
-                {% endif %}
-                {% endfor %}
-                {% endif %}
-                {% endfor %}
-              </ul>
-            </section>
-            {% endif %}
+            {% include related-usecases.html %}
+            {% include related-personas.html %}
+            {% include related-starterkits.html %}
           </div>
 
         </div>

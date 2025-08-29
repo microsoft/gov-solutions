@@ -1,0 +1,75 @@
+{% comment %} Find app starter kits that reference this page (match against use_cases, data_models, personas fields) and show links. {% endcomment %}
+
+{% assign has_related = false %}
+{% for s in site.app_starter_kits %}
+  {% assign matched = false %}
+  {% if s.use_cases %}
+    {% for ref in s.use_cases %}
+      {% if ref == page.title or ref == page.slug or ref == page.basename %}
+        {% assign matched = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if s.data_models and matched == false %}
+    {% for ref in s.data_models %}
+      {% if ref == page.title or ref == page.slug or ref == page.basename %}
+        {% assign matched = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if s.personas and matched == false %}
+    {% for ref in s.personas %}
+      {% if ref == page.title or ref == page.slug or ref == page.basename %}
+        {% assign matched = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  {% if matched %}
+    {% assign has_related = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+{% if has_related %}
+  <section class="margin-top-4">
+    <h2>Related starter kits</h2>
+    <ul class="usa-list" style="list-style: none; margin: 0; padding-left: 0;">
+      {% for s in site.app_starter_kits %}
+        {% assign matched = false %}
+        {% if s.use_cases %}
+          {% for ref in s.use_cases %}
+            {% if ref == page.title or ref == page.slug or ref == page.basename %}
+              {% assign matched = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if s.data_models and matched == false %}
+          {% for ref in s.data_models %}
+            {% if ref == page.title or ref == page.slug or ref == page.basename %}
+              {% assign matched = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if s.personas and matched == false %}
+          {% for ref in s.personas %}
+            {% if ref == page.title or ref == page.slug or ref == page.basename %}
+              {% assign matched = true %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        {% if matched %}
+          <li style="display:flex; align-items:center; gap:0.5rem;">
+            <span aria-hidden="true" style="display:inline-block; width:1.25rem; text-align:center;">🧰</span>
+            <a href="{{ s.url | relative_url }}" class="usa-link">{{ s.title }}</a>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </section>
+{% endif %}
