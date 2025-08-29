@@ -4,17 +4,14 @@ description: Foundation entities, relationships, and data structures used across
 latest_release: federal/personnel-security/releases/v1.0.0.0/MS-Fed-Personnel-Security_managed%20-%201.0.0.0.zip
 thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
 requires:
- - Core
+ - core
+requires_data_models:
+ - core
 use_cases:
- - Case Management
+ - case-management
 personas:
- - Chief Information Officer
-future:
- - Chief Security Officer
- - Chief Information Security Officer
- - HR Administrator
- - Investigators
- - Adjudicators
+ - chief-information-officer
+ - hr-admnistrator
 ---
 
 The **Personnel Security** module provides a starting framework for managing the full lifecycle of federal background investigations, adjudications, and security clearances. Aligned with federal security guidelines, the module is designed to help agencies modernize personnel security operations using the Microsoft Power Platform.

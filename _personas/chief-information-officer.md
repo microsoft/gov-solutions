@@ -1,10 +1,10 @@
 ---
 title: Chief Information Officer
 description: Senior executive responsible for the strategy, governance, and delivery of information technology (IT)
-download_url: https://github.com/<ORG>/<REPO>/releases/download/core-v1.0/CoreSolution_1_0.zip
 layout: persona
-permalink: /personas/chief-information-officer/
 thumbnail: /assets/personas/cio2.png
+use_cases:
+ - case-management
 ---
 
 A Chief Information Officer (CIO) in government is the senior executive responsible for the strategy, governance, and delivery of information technology (IT) and digital services across an agency or jurisdiction. The CIO ensures that technology investments align with mission priorities, comply with statutory mandates, and deliver secure, efficient, and citizen-focused services.

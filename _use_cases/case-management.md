@@ -2,8 +2,6 @@
 title: Case Management
 description: "Guidance for designing and operating government case management systems: workflows, data model, features, and implementation considerations."
 layout: use_case
-collection: use_cases
-permalink: /use-cases/case-management/
 thumbnail: /assets/use_cases/case-management.png
 ---
 

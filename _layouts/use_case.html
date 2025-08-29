@@ -39,13 +39,82 @@ layout: default
 
           <!-- Small right column (download + personas) -->
           <div class="grid-col-3">
-            {% comment %} Find solutions that list this persona in their front matter and show links (compatible fallback without where_exp) {% endcomment %}
+            {% comment %} Find personas that list this use case in their front matter and show links (compatible fallback without where_exp) {% endcomment %}
+
+            {% assign has_personas = false %}
+            {% for p in site.personas %}
+              {% if p.use_cases %}
+                {% for uc in p.use_cases %}
+                  {% if uc == page.slug or uc == page.basename or uc == page.title %}
+                    {% assign has_personas = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+
+            {% if has_personas %}
+            <section class="margin-top-2">
+              <h2>Related personas</h2>
+              <ul class="usa-list">
+                {% for p in site.personas %}
+                  {% if p.use_cases %}
+                    {% for uc in p.use_cases %}
+                      {% if uc == page.slug or uc == page.basename or uc == page.title %}
+                        <li>
+                          <a href="{{ p.url | relative_url }}" class="usa-link">{{ p.title }}</a>
+                        </li>
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </section>
+            {% endif %}
+
+            {% comment %} Find data models that list this use case in their front matter and show links {% endcomment %}
+
+            {% assign has_data_models = false %}
+            {% for d in site.data_models %}
+              {% if d.use_cases %}
+                {% for uc in d.use_cases %}
+                  {% if uc == page.slug or uc == page.basename or uc == page.title %}
+                    {% assign has_data_models = true %}
+                    {% break %}
+                  {% endif %}
+                {% endfor %}
+              {% endif %}
+            {% endfor %}
+
+            {% if has_data_models %}
+            <section class="margin-top-4">
+              <h2>Related data models</h2>
+              <ul class="usa-list">
+                {% for d in site.data_models %}
+                  {% if d.use_cases %}
+                    {% for uc in d.use_cases %}
+                      {% if uc == page.slug or uc == page.basename or uc == page.title %}
+                        <li>
+                          <a href="{{ d.url | relative_url }}" class="usa-link">{{ d.title }}</a>
+                        </li>
+                        {% break %}
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              </ul>
+            </section>
+            {% endif %}
+
+            
+            {% comment %} Find app starter kits that list this persona in their front matter and show links (compatible fallback without where_exp) {% endcomment %}
 
             {% assign has_related = false %}
             {% for s in site.app_starter_kits %}
               {% if s.use_cases %}
                 {% for p in s.use_cases %}
-                  {% if p == page.title %}
+                  {% if p == page.title or p == page.slug or p == page.basename %}
                     {% assign has_related = true %}
                     {% break %}
                   {% endif %}
@@ -55,12 +124,12 @@ layout: default
 
             {% if has_related %}
             <section class="margin-top-4">
-              <h2>Related solutions</h2>
+              <h2>Related starter kits</h2>
               <ul class="usa-list">
                 {% for s in site.app_starter_kits %}
                   {% if s.use_cases %}
                     {% for p in s.use_cases %}
-                      {% if p == page.title %}
+                      {% if p == page.title or p == page.slug or p == page.basename %}
                         <li>
                           <a href="{{ s.url | relative_url }}" class="usa-link">{{ s.title }}</a>
                         </li>
