@@ -23,3 +23,94 @@ The benefit of this approach becomes clear when you consider real-world applicat
 
 By providing this reusable set of well-designed tables and relationships, the Government Data Models – Core module does more than accelerate development. It creates a foundation that agencies can trust, knowing that the data is structured for compliance, interoperability, and future reuse. In short, it’s the common language for the many solutions that together make up a modern government’s digital ecosystem.
 
+## Entity Relationship Diagram
+
+```mermaid
+graph TD
+  Account(Account)
+  Contact(Person)
+  govcdm_Agreement(Agreement)
+  govcdm_Analysis(Analysis)
+  govcdm_clearancelevel(Clearance Level)
+  govcdm_Competency(Competency)
+  govcdm_ComplianceFramework(Compliance Framework)
+  govcdm_ComplianceFrameworkCategory(Compliance Framework Category)
+  govcdm_ComplianceRequirement(Compliance Requirement)
+  govcdm_ContentTemplate(Content Template)
+  govcdm_country(Country)
+  govcdm_DiscussionItem(Discussion Item)
+  govcdm_Document(Document)
+  govcdm_fiscalperiod(Fiscal Period)
+  govcdm_graderank(Grade-Rank)
+  govcdm_Impact(Impact)
+  govcdm_jobseries(Job Series)
+  govcdm_JudicialDistrict(Judicial District)
+  govcdm_LegalAmendment(Legal Amendment)
+  govcdm_LegalAuthority(Legal Authority)
+  govcdm_LegalCrossReference(Legal Cross-Reference)
+  govcdm_Location(Location)
+  govcdm_organizationinitiative(Organization Initiative)
+  govcdm_organizationunit(Organization Unit)
+  govcdm_organizationunittype(Organization Unit Type)
+  govcdm_paygrade(Pay Grade)
+  govcdm_personneltype(Personnel Type)
+  govcdm_PrivacyConsent(Privacy Consent)
+  govcdm_Product(Product)
+  govcdm_reviewapprovaldecision(Review Approval Decision)
+  govcdm_RiskItem(Risk Item)
+  govcdm_SignatureApproval(Signature Approval)
+  govcdm_stateorprovince(State or Province)
+  SystemUser(User)
+  govcdm_Agreement --> Account
+  govcdm_ComplianceFramework --> Account
+  govcdm_Product --> Account
+  govcdm_LegalAuthority --> Account
+  govcdm_Analysis --> Contact
+  govcdm_SignatureApproval --> Contact
+  govcdm_organizationunit --> Contact
+  govcdm_reviewapprovaldecision --> Contact
+  govcdm_SignatureApproval --> FileAttachment
+  govcdm_Impact --> govcdm_Analysis
+  govcdm_RiskItem --> govcdm_Analysis
+  Contact --> govcdm_clearancelevel
+  govcdm_Competency --> govcdm_Competency
+  govcdm_ComplianceFrameworkCategory --> govcdm_ComplianceFramework
+  govcdm_ComplianceRequirement --> govcdm_ComplianceFramework
+  govcdm_ComplianceRequirement --> govcdm_ComplianceFrameworkCategory
+  govcdm_ComplianceRequirement --> govcdm_ComplianceRequirement
+  govcdm_Document --> govcdm_ContentTemplate
+  Contact --> govcdm_country
+  govcdm_Location --> govcdm_country
+  govcdm_stateorprovince --> govcdm_country
+  govcdm_DiscussionItem --> govcdm_DiscussionItem
+  govcdm_LegalAmendment --> govcdm_Document
+  govcdm_LegalAuthority --> govcdm_Document
+  Contact --> govcdm_graderank
+  govcdm_Impact --> govcdm_Impact
+  Contact --> govcdm_jobseries
+  govcdm_Analysis --> govcdm_LegalAuthority
+  govcdm_ComplianceFramework --> govcdm_LegalAuthority
+  govcdm_Impact --> govcdm_LegalAuthority
+  govcdm_LegalAmendment --> govcdm_LegalAuthority
+  govcdm_LegalCrossReference --> govcdm_LegalAuthority
+  govcdm_LegalCrossReference --> govcdm_LegalAuthority
+  govcdm_RiskItem --> govcdm_LegalAuthority
+  govcdm_Location --> govcdm_Location
+  govcdm_organizationinitiative --> govcdm_organizationinitiative
+  govcdm_Analysis --> govcdm_organizationunit
+  govcdm_Competency --> govcdm_organizationunit
+  govcdm_Impact --> govcdm_organizationunit
+  govcdm_organizationinitiative --> govcdm_organizationunit
+  govcdm_organizationunit --> govcdm_organizationunit
+  govcdm_RiskItem --> govcdm_organizationunit
+  govcdm_organizationunit --> govcdm_organizationunittype
+  govcdm_graderank --> govcdm_paygrade
+  Contact --> govcdm_personneltype
+  govcdm_Product --> govcdm_Product
+  govcdm_RiskItem --> govcdm_RiskItem
+  Contact --> govcdm_stateorprovince
+  govcdm_Location --> govcdm_stateorprovince
+  govcdm_Agreement --> TransactionCurrency
+  govcdm_Product --> TransactionCurrency
+```
+

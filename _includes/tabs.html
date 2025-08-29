@@ -67,17 +67,30 @@ Behavior:
             var p = document.getElementById(idFor(k));
             if (p) p.hidden = false;
           });
-          // After panels are visible, wait 2 RAFs, then refit Mermaid SVGs in those panels
-          if (window.mermaidEnhance && typeof window.mermaidEnhance.refitVisible === 'function') {
-            requestAnimationFrame(function(){ 
-              requestAnimationFrame(function(){
-                keys.forEach(function(k){
-                  var p = document.getElementById(idFor(k));
-                  if (p) window.mermaidEnhance.refitVisible(p);
-                });
+          // After panels are visible, wait 2 RAFs, then refit / render Mermaid SVGs in those panels
+          requestAnimationFrame(function(){ 
+            requestAnimationFrame(function(){
+              keys.forEach(function(k){
+                var p = document.getElementById(idFor(k));
+                if (!p) return;
+                // preferred: mermaidEnhance refit if present
+                if (window.mermaidEnhance && typeof window.mermaidEnhance.refitVisible === 'function') {
+                  try { window.mermaidEnhance.refitVisible(p); } catch (e) { console.warn('mermaidEnhance.refitVisible failed', e); }
+                  return;
+                }
+                // next: module-exposed helper (renderMermaidIn)
+                if (typeof window.renderMermaidIn === 'function') {
+                  try { window.renderMermaidIn(p); } catch (e) { console.warn('renderMermaidIn failed', e); }
+                  return;
+                }
+                // last fallback: call mermaid.init on .mermaid elements inside the panel
+                if (window.mermaid && typeof window.mermaid.init === 'function') {
+                  try { window.mermaid.init(undefined, p.querySelectorAll('.mermaid')); } catch (e) { console.warn('mermaid.init failed', e); }
+                  return;
+                }
               });
             });
-          }
+          });
           // Update hash to first key to support deep links
           var first = keys[0] || '';
           if (first) {

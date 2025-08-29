@@ -585,28 +585,96 @@ img {
   box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.06);
 }
 
+/* ERD: explicit height so svg height:100% has a reference */
 .mermaid {
+  height: 20rem; /* adjust as desired */
+  min-height: 0;
   width: 100%;
-  max-width: 100%;
-  min-height: 12rem; /* optional: give a baseline height */
 }
+
+/* Make the SVG fill the container and remove max-width constraint */
 .mermaid svg {
   display: block;
   width: 100% !important;
-  height: auto !important;
-  max-width: 100%;
+  height: 100% !important;
+  max-width: none !important;
 }
 
-/* ERD action button: align right on desktop, center on small screens */
-.erd-action {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+/* Ensure inline <image> elements try to fill their SVG viewport */
+.mermaid svg image {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
-@media (max-width: 40rem) {
-  .erd-action {
-    justify-content: center;
-  }
+
+/* ERD modal styles */
+.erd-modal {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.erd-modal.is-open {
+  display: flex;
+}
+.erd-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+.erd-modal__dialog {
+  position: relative;
+  background: #fff;
+  border-radius: 6px;
+  width: min(1400px, 95%); /* widened from 1200px */
+  max-height: 90vh;
+  height: 90vh; /* keep max height but make the dialog a flex column */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+  z-index: 2;
+}
+.erd-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #eee;
+}
+.erd-modal__close {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.erd-modal__content {
+  flex: 1 1 auto; /* take remaining vertical space */
+  height: auto;   /* let flex control height */
+  padding: 0.5rem 0.75rem;
+  overflow: auto;
+}
+.erd-modal__inner {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  height: 100%;
+}
+.erd-modal__inner .mermaid {
+  width: 100%;
+  height: 100%; /* fill the modal inner area */
+  min-height: 0; /* allow flex to shrink on small screens */
+}
+
+/* Force SVGs and inner images to stretch inside modal */
+.erd-modal__inner svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+.erd-modal__inner svg image {
+  width: 100% !important;
+  height: 100% !important;
 }

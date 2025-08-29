@@ -11,15 +11,22 @@ layout: default
 
       <aside class="grid-col-3">
         <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} data_model image" class="page-thumbnail">
-        <!-- {% comment %} Link to module ERD page in assets (assets/data_models/<slug>/erd.md) {% endcomment %}
+
         {% assign erd_asset_path = 'assets/data_models/' | append: page.slug | append: '/erd.md' %}
         {% assign erd_pages = site.pages | where: "path", erd_asset_path %}
         {% if erd_pages and erd_pages.size > 0 %}
           {% assign erd_page = erd_pages | first %}
           <p class="margin-top-2">
-            <a href="{{ erd_page.url | relative_url }}" class="usa-link">View ERD</a>
+            <button
+              type="button"
+              class="usa-button usa-button--primary open-erd-modal"
+              style="width: 100%"
+              data-erd-url="{{ erd_page.url | relative_url }}"
+              data-erd-slug="{{ page.slug }}">
+              View ERD
+            </button>
           </p>
-        {% endif %} -->
+        {% endif %}
       </aside>
 
       <!-- Main content (right side) -->
@@ -53,63 +60,27 @@ layout: default
             </section>
 
             <!-- ERD panel -->
-            <section id="panel-{{ page.slug }}-erd" class="mgat-subnav__panel usa-prose" role="tabpanel" data-panel="{{ page.slug }}">
-  <div class="erd-action">
-    <button id="show-erd-{{ page.slug }}" class="usa-button usa-button--primary" aria-controls="panel-{{ page.slug }}-erd">Click to Show ERD</button>
-  </div>
+            <section id="panel-{{ page.slug }}-erd" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
               {% assign erd_asset_path = 'assets/data_models/' | append: page.slug | append: '/erd.md' %}
               {% assign erd_pages = site.pages | where: "path", erd_asset_path %}
               {% if erd_pages and erd_pages.size > 0 %}
                 {% assign erd_page = erd_pages | first %}
                 {{ erd_page.content | markdownify }}
+              {% elsif page.erd_image %}
+                <img src="{{ page.erd_image | relative_url }}" alt="ERD for {{ page.title }}" class="usa-image">
               {% else %}
-                {% if page.erd_image %}
-                  <img src="{{ page.erd_image | relative_url }}" alt="ERD for {{ page.title }}" class="usa-image">
-                {% else %}
-                  <p>No ERD available.</p>
-                {% endif %}
+                <p>No ERD available.</p>
               {% endif %}
-              <script>
-                (function () {
-                  function onReady(fn){ if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn); else fn(); }
-                  onReady(function () {
-                    var btn = document.getElementById('show-erd-{{ page.slug }}');
-                    var panel = document.getElementById('panel-{{ page.slug }}-erd');
-                    if (!btn || !panel) return;
-                    // Hide the button if there's nothing to render
-                    if (!panel.querySelector('.mermaid') && !panel.querySelector('pre > code.language-mermaid')) {
-                      btn.style.display = 'none';
-                      return;
-                    }
-                    btn.addEventListener('click', function (e) {
-                      e.preventDefault();
-                      btn.disabled = true;
-                      btn.textContent = 'Loading…';
-                      // Prefer the helper exposed by the module loader
-                      if (window.renderMermaidIn) {
-                        window.renderMermaidIn(panel);
-                        btn.style.display = 'none';
-                        return;
-                      }
-                      // Otherwise try a direct init
-                      if (window.mermaid && window.mermaid.init) {
-                        window.mermaid.init(undefined, panel.querySelectorAll('.mermaid'));
-                        btn.style.display = 'none';
-                        return;
-                      }
-                      // Final fallback: reload the page
-                      location.reload();
-                    });
-                  });
-                })();
-              </script>
             </section>
 
             <!-- RELEASES panel -->
             <section id="panel-{{ page.slug }}-releases" class="mgat-subnav__panel usa-prose" role="tabpanel"
               data-panel="{{ page.slug }}">
 
-              We highly recommend using the managed versions, which will allow you to easily update and uninstall the solution from your environment. If you need to modify or enhance the managed solution, you can can create a new solution, add the components to that solution and make changes as needed.
+              We highly recommend using the managed versions, which will allow you to easily update and uninstall the
+              solution from your environment. If you need to modify or enhance the managed solution, you can can create
+              a new solution, add the components to that solution and make changes as needed.
               <br />
 
               {% include data_model_releases.html %}
@@ -120,26 +91,26 @@ layout: default
           <!-- Small right column (download + personas) -->
           <div class="grid-col-3">
 
-            <a class="usa-button"       
-              href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ page.latest_release }}"
-              download>
+            <a class="usa-button"
+              href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ page.latest_release }}" download>
               Download Latest Release
             </a>
             {% include requireslist.html %}
             {% include personalist.html %}
 
-            {% comment %} Find solutions that use this item in their front matter and show links (compatible fallback without where_exp) {% endcomment %}
+            {% comment %} Find solutions that use this item in their front matter and show links (compatible fallback
+            without where_exp) {% endcomment %}
 
             {% assign has_related = false %}
             {% for s in site.app_starter_kits %}
-              {% if s.data_models %}
-                {% for p in s.data_models %}
-                  {% if p == page.title %}
-                    {% assign has_related = true %}
-                    {% break %}
-                  {% endif %}
-                {% endfor %}
-              {% endif %}
+            {% if s.data_models %}
+            {% for p in s.data_models %}
+            {% if p == page.title %}
+            {% assign has_related = true %}
+            {% break %}
+            {% endif %}
+            {% endfor %}
+            {% endif %}
             {% endfor %}
 
             {% if has_related %}
@@ -147,16 +118,16 @@ layout: default
               <h2>Related solutions</h2>
               <ul class="usa-list">
                 {% for s in site.app_starter_kits %}
-                  {% if s.data_models %}
-                    {% for p in s.data_models %}
-                      {% if p == page.title %}
-                        <li>
-                          <a href="{{ s.url | relative_url }}" class="usa-link">{{ s.title }}</a>
-                        </li>
-                        {% break %}
-                      {% endif %}
-                    {% endfor %}
-                  {% endif %}
+                {% if s.data_models %}
+                {% for p in s.data_models %}
+                {% if p == page.title %}
+                <li>
+                  <a href="{{ s.url | relative_url }}" class="usa-link">{{ s.title }}</a>
+                </li>
+                {% break %}
+                {% endif %}
+                {% endfor %}
+                {% endif %}
                 {% endfor %}
               </ul>
             </section>
@@ -168,3 +139,19 @@ layout: default
       </main>
     </div>
 </section>
+
+{% comment %} ERD modal (injected per-page) {% endcomment %}
+<div id="erd-modal-{{ page.slug }}" class="erd-modal" aria-hidden="true" role="dialog" aria-labelledby="erd-modal-title-{{ page.slug }}" tabindex="-1">
+  <div class="erd-modal__backdrop" data-close="true"></div>
+  <div class="erd-modal__dialog" role="document">
+    <header class="erd-modal__header">
+      <h2 id="erd-modal-title-{{ page.slug }}">ERD — {{ page.title }}</h2>
+      <button class="erd-modal__close" aria-label="Close ERD" data-close="true">&times;</button>
+    </header>
+    <div class="erd-modal__content">
+      <div class="erd-modal__inner">Loading…</div>
+    </div>
+  </div>
+</div>
+
+<script src="{{ '/assets/js/erd-modal.js' | relative_url }}" defer></script>
