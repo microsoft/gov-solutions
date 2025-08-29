@@ -8,7 +8,7 @@ layout: default
     <div class="grid-row grid-gap">
 
       <!-- Sidebar navigation -->
-      <aside class="grid-col-3">
+      <aside class="grid-col-12 tablet:grid-col-3">
 
         {% comment %} Find the parent solution (docs have `parent: <slug>`) {% endcomment %}
         {% assign parent_item = nil %}
@@ -54,11 +54,11 @@ layout: default
       </aside>
 
       <!-- Main content (right side) -->
-      <main class="grid-col-9 usa-prose main-content">
+      <main class="grid-col-12 tablet:grid-col-9 usa-prose main-content">
 
         <!-- Header row: breadcrumbs + page title -->
         <div class="grid-row grid-gap">
-          <div class="grid-col-9 usa-prose">
+          <div class="grid-col-12 usa-prose">
             {% include breadcrumbs.html %}
           </div>
         </div>
@@ -67,7 +67,7 @@ layout: default
         <div class="grid-row grid-gap">
 
           <!-- Main column -->
-          <div class="grid-col-9 usa-prose">
+          <div class="grid-col-12 tablet:grid-col-9 usa-prose">
 
             <h1 class="mgat-solution-heading">{{ page.title }}</h1>
             <hr />
@@ -77,7 +77,7 @@ layout: default
           </div>
 
           <!-- Small right column (download + personas) -->
-          <div class="grid-col-3">
+          <div class="grid-col-12 tablet:grid-col-3">
             {% if page.collection == "app_releases" %}
             <a class="usa-button"
               href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ page.download }}" download>Download
