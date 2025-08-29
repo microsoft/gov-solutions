@@ -9,7 +9,7 @@ layout: default
 
       <!-- Sidebar navigation -->
 
-      <aside class="grid-col-3">
+      <aside class="grid-col-12 tablet:grid-col-3">
         <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} app_starter_kit image" class="page-thumbnail">
         <br />
         <nav class="sidenav-sticky" aria-label="Section navigation">
@@ -18,11 +18,11 @@ layout: default
       </aside>
 
       <!-- Main content (right side) -->
-      <main class="grid-col-9 usa-prose">
+      <main class="grid-col-12 tablet:grid-col-9 usa-prose">
 
         <!-- Header row: breadcrumbs + page title -->
         <div class="grid-row grid-gap">
-          <div class="grid-col-9 usa-prose">
+          <div class="grid-col-12 usa-prose">
             {% include breadcrumbs.html %}
           </div>
         </div>
@@ -31,7 +31,7 @@ layout: default
         <div class="grid-row grid-gap">
 
           <!-- Main column -->
-          <div class="grid-col-9 usa-prose">
+          <div class="grid-col-12 tablet:grid-col-9 usa-prose">
 
             <h1 class="mgat-solution-heading">{{ page.title }}</h1>
             <hr />
@@ -61,7 +61,7 @@ layout: default
           </div>
 
           <!-- Small right column (download + personas) -->
-          <div class="grid-col-3">
+          <div class="grid-col-12 tablet:grid-col-3">
             <!-- <button class="usa-button">Download Latest Release</button> -->
             <a class="usa-button"
               href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ page.latest_release }}"

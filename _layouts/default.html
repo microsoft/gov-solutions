@@ -17,6 +17,8 @@
 </head>
 
 <body>
+    <a class="usa-skipnav" href="#main-content">Skip to main content</a>
+    
     <header class="usa-header usa-header--extended bg-primary-darker">
         <div role="status" aria-live="polite"
             style="background:#fff3cd;color:#856404;border-bottom:1px solid #ffd89f;padding:.45rem 1rem;text-align:center;font-weight:600;">
@@ -35,7 +37,7 @@
                     </div>
                     <button class="usa-menu-btn">Menu</button>
                 </div>
-                <nav class="usa-nav" role="navigation">
+                <nav class="usa-nav" role="navigation" aria-label="Primary navigation">
                     <button class="usa-nav__close"><span class="usa-sr-only">Close</span></button>
                     <ul class="usa-nav__primary usa-accordion">
                         <li class="usa-nav__primary-item"><a class="usa-nav__link usa-link--inverse"
@@ -55,7 +57,7 @@
         </div>
     </header>
 
-    <main id="main-content" class="usa-section">
+    <main id="main-content" class="usa-section" tabindex="-1">
         <div class="container usa-prose">
             {{ content }}
         </div>
@@ -122,6 +124,38 @@
             boot();
         }
     </script>
+
+    <!-- Small, non-invasive mobile tweaks: remove the extended header on small screens and make skip link focus work -->
+    <script>
+    (function () {
+      var header = document.querySelector('header.usa-header');
+      function updateHeader() {
+        if (!header) return;
+        try {
+          if (window.matchMedia('(max-width: 40rem)').matches) {
+            header.classList.remove('usa-header--extended');
+          } else {
+            header.classList.add('usa-header--extended');
+          }
+        } catch (e) { /* safe-fail */ }
+      }
+      updateHeader();
+      window.addEventListener('resize', updateHeader);
+
+      // Ensure skip link focuses the main element on activation (some browsers need tabindex set)
+      document.addEventListener('click', function (e) {
+        var t = e.target || e.srcElement;
+        if (t && t.matches && t.matches('.usa-skipnav')) {
+          var main = document.getElementById('main-content');
+          if (main) {
+            main.setAttribute('tabindex', '-1');
+            main.focus();
+          }
+        }
+      }, false);
+    }());
+    </script>
+
 </body>
 
 <script src="{{ '/assets/js/mermaid-stretch.js' | relative_url }}" defer></script>
