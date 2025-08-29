@@ -1,28 +1,29 @@
 {% capture solution_releases %}
-{% assign releases_sorted = site.app_releases | sort: 'version' %}
-{% for rel in releases_sorted %}
-  {% if rel.solution == page.slug %}
-    {% assign rel_summary = rel.summary %}
-    {% if rel_summary == nil or rel_summary == '' %}
-      {% assign rel_summary = rel.excerpt %}
-      {% if rel_summary == nil or rel_summary == '' %}
-        {% assign rel_summary = rel.content | strip_html | truncatewords: 30 %}
-      {% endif %}
-    {% endif %}
 
-    <div class="grid-row grid-gap margin-bottom-2">
-      <div class="grid-col-12">
-        {% include card.html
-          title=rel.title
-          url=rel.url
-          description=rel.description
-          align="left"
-          type="release"
-        %}
+  {% assign releases_sorted = site.app_releases | sort: 'version' %}
+  {% for rel in releases_sorted %}
+    {% if rel.parent == page.slug %}
+      {% assign rel_summary = rel.summary %}
+      {% if rel_summary == nil or rel_summary == '' %}
+        {% assign rel_summary = rel.excerpt %}
+        {% if rel_summary == nil or rel_summary == '' %}
+          {% assign rel_summary = rel.content | strip_html | truncatewords: 30 %}
+        {% endif %}
+      {% endif %}
+
+      <div class="grid-row grid-gap margin-bottom-2">
+        <div class="grid-col-12">
+          {% include card.html
+            title=rel.title
+            url=rel.url
+            description=rel.description
+            align="left"
+            type="release"
+          %}
+        </div>
       </div>
-    </div>
-  {% endif %}
-{% endfor %}
+    {% endif %}
+  {% endfor %}
 {% endcapture %}
 
 {% if solution_releases contains 'usa-card' %}

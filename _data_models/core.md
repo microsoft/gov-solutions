@@ -1,11 +1,7 @@
 ---
 title: Core
 description: Government Core data model
-layout: data_model
-collection: data_models
-permalink: /data-models/core/
 thumbnail: /assets/app-starter-kits/core/core.png
-parent: Data Models
 latest_release: modules/core/releases/v1.0.2.0/MSGov-DataModels-Core-Managed%20-%201.0.2.0.zip
 ---
 

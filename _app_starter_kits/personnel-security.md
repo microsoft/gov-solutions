@@ -1,11 +1,8 @@
 ---
 title: Personnel Security
 description: Foundation entities, relationships, and data structures used across government solutions.
-layout: solution
-permalink: /app-starter-kits/personnel-security/
-thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
 latest_release: federal/personnel-security/releases/v1.0.0.0/MS-Fed-Personnel-Security_managed%20-%201.0.0.0.zip
-parent: App Starter Kits
+thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
 requires:
  - Core
 use_cases:

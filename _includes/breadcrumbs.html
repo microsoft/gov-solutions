@@ -1,32 +1,81 @@
+{% comment %} Breadcrumb partial: renders Home, then an ancestor chain (walked up from `page.parent`) and finally the current page. 
+     It expects pages to have `parent` (string key) and `parent_collection` (injected via defaults) when applicable. {% endcomment %}
 <nav class="usa-breadcrumb" aria-label="Breadcrumbs">
-    <ol class="usa-breadcrumb__list">
-        <li class="usa-breadcrumb__list-item">
-            <a href="{{ '/' | relative_url }}" class="usa-breadcrumb__link">Home</a>
-        </li>
-        {% if page.grandparent %}
-        {% assign grandparent_slug = page.grandparent | slugify %}
-        <li class="usa-breadcrumb__list-item">
-            <a href="{{ '/' | append: grandparent_slug | append: '/' | relative_url }}" class="usa-breadcrumb__link">
-                {{ page.grandparent }}
-            </a>
-        </li>
+  <ol class="usa-breadcrumb__list">
+    <li class="usa-breadcrumb__list-item">
+      <a href="{{ '/' | relative_url }}" class="usa-breadcrumb__link">Home</a>
+    </li>
+
+    {% comment %} Walk-back loop: start with the current page and walk up the parent chain, resolving each parent to an item when possible. Collected ancestors are rendered in topmost-first order. {% endcomment %}
+    {% assign current = page %}
+    {% capture ancestors %}{% endcapture %}
+    {% comment %} Limit how far we walk to avoid infinite loops. Increase if you have deeper hierarchies. {% endcomment %}
+    {% assign max_depth = 12 %}
+    {% for i in (1..max_depth) %}
+      {% if current and current.parent %}
+        {% comment %} `parent_key` is the raw key from this item's front matter (the value of `parent`).
+            We use that to find the actual parent document in the configured parent collection. {% endcomment %}
+        {% assign parent_key = current.parent %}
+
+        {% comment %} Prefer a `parent_collection` value injected on the item itself (via defaults),
+            because collection metadata is not relied upon in this implementation. {% endcomment %}
+        {% assign parent_collection = current.parent_collection %}
+
+        {% comment %} Resolve `parent_item` inside the `parent_collection` if one exists.
+            Matching strategy (in order):
+            1) match document `title` equals the parent key
+            2) match document `slug` equals the parent key
+            3) compare slugified forms of the parent key and document identifiers
+            The slugified fallback handles case/spacing differences between titles and keys. {% endcomment %}
+        {% assign parent_item = nil %}
+        {% if parent_collection and site[parent_collection] %}
+          {% assign parent_item = site[parent_collection] | where: "title", parent_key | first %}
+          {% if parent_item == nil %}
+            {% assign parent_item = site[parent_collection] | where: "slug", parent_key | first %}
+          {% endif %}
+
+          {% if parent_item == nil %}
+            {% assign search_slug = parent_key | slugify %}
+            {% for doc in site[parent_collection] %}
+              {% if doc.slug %}
+                {% assign doc_slug = doc.slug | slugify %}
+              {% else %}
+                {% assign doc_slug = doc.title | slugify %}
+              {% endif %}
+
+              {% if doc_slug == search_slug or doc.title | slugify == search_slug %}
+                {% assign parent_item = doc %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
         {% endif %}
-        {% if page.parent %}
-        {% assign parent_slug = page.parent | slugify %}
-        {% if page.grandparent %}
-        {% assign grandparent_slug = page.grandparent | slugify %}
-        {% assign parent_path = '/' | append: grandparent_slug | append: '/' | append: parent_slug | append: '/' %}
+
+        {% comment %} If we found a parent document, prepend it to the `ancestors` string so that
+            when we render later the topmost ancestor appears first. We then move `current`
+            up to the parent item and repeat the loop. {% endcomment %}
+        {% if parent_item %}
+          {% capture frag %}<li class="usa-breadcrumb__list-item"><a href="{{ parent_item.url | relative_url }}" class="usa-breadcrumb__link">{{ parent_item.title }}</a></li>{% endcapture %}
+          {% assign ancestors = frag | append: ancestors %}
+          {% assign current = parent_item %}
         {% else %}
-        {% assign parent_path = '/' | append: parent_slug | append: '/' %}
+          {% comment %} Could not resolve the parent to a document. Render a link to the slugified
+              parent key so the breadcrumb remains navigable (e.g. `/core/`), then stop walking. {% endcomment %}
+          {% capture parent_slug %}{{ parent_key | slugify }}{% endcapture %}
+          {% capture frag %}<li class="usa-breadcrumb__list-item"><a href="{{ '/' | append: parent_slug | append: '/' | relative_url }}" class="usa-breadcrumb__link">{{ parent_key }}</a></li>{% endcapture %}
+          {% assign ancestors = frag | append: ancestors %}
+          {% break %}
         {% endif %}
-        <li class="usa-breadcrumb__list-item">
-            <a href="{{ parent_path | relative_url }}" class="usa-breadcrumb__link">
-                {{ page.parent }}
-            </a>
-        </li>
-        {% endif %}
-        <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
-            {{ page.title }}
-        </li>
-    </ol>
+      {% else %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+
+    {% comment %} `ancestors` now contains a sequence of pre-rendered <li> fragments in topmost-first order. Output them here. {% endcomment %}
+    {{ ancestors }}
+
+    <li class="usa-breadcrumb__list-item usa-current" aria-current="page">
+      {{ page.title }}
+    </li>
+  </ol>
 </nav>

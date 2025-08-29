@@ -17,22 +17,73 @@ collections:
   app_starter_kits:
     output: true
     permalink: /app-starter-kits/:title/
+    displayname: "App Starter Kits"
+    # top-level collection: no parent_collection
   docs:
     output: true
     # :doc is not a Jekyll token; use :basename
     permalink: /app-starter-kits/:solution/:basename/
+    displayname: "Documentation"
   app_releases:
     output: true
     permalink: /app-starter-kits/releases/:path/
+    displayname: "App Releases"
   data_model_releases:
     output: true
     permalink: /data-models/releases/:path/
+    displayname: "Data Model Releases"
   use_cases:
     output: true
     permalink: /use-cases/:title/
+    displayname: "Use Cases"
+    # no parent_collection configured by default
   personas:
     output: true
     permalink: /personas/:title/
+    displayname: "Personas"
+    # no parent_collection configured by default
   data_models:
     output: true
     permalink: /data-models/:title/
+    displayname: "Data Models"
+    # top-level collection: no parent_collection
+
+defaults:
+  - scope:
+      type: app_starter_kits
+    values:
+      layout: solution
+      parent: "App Starter Kits"
+      thumbnail: "/assets/app-starter-kits/default.png"
+      latest_release: ""
+      requires: []
+      use_cases: []
+      personas: []
+      data_models: []
+  - scope:
+      type: data_models
+    values:
+      layout: data_model
+      parent: "Data Models"
+      thumbnail: "/assets/data-models/default.png"
+      latest_release: ""
+      requires: []
+      use_cases: []
+      personas: []
+  - scope:
+      type: data_model_releases
+    values:
+      layout: release
+      thumbnail: "/assets/data-models/default.png"
+      parent_collection: data_models
+  - scope:
+      type: app_releases
+    values:
+      layout: release
+      parent_collection: app_starter_kits
+      thumbnail: "/assets/app-starter-kits/default.png"
+  - scope:
+      type: docs
+    values:
+      layout: doc
+      parent_collection: app_starter_kits

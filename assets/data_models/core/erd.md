@@ -4,10 +4,9 @@ description: Government Core data model ERD
 layout: doc
 permalink: /data-models/core/erd/
 thumbnail: /assets/app-starter-kits/core/core.png
-parent: Core
+parent: core
 grandparent: Data Models
 latest_release: modules/core/releases/v1.0.2.0/MSGov-DataModels-Core-Managed%20-%201.0.2.0.zip
-solution: core
 collection: data_models
 ---
 

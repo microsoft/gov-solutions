@@ -10,23 +10,23 @@ layout: default
       <!-- Sidebar navigation -->
       <aside class="grid-col-3">
 
-        {% comment %} Find the parent solution (docs have `solution: <slug>`) {% endcomment %}
+        {% comment %} Find the parent solution (docs have `parent: <slug>`) {% endcomment %}
         {% assign parent_item = nil %}
-        {% if page.solution %}
+        {% if page.parent %}
           {% comment %} choose collection that contains the parent solution {% endcomment %}
           {% assign parent_collection = "app_starter_kits" %}
           {% if page.collection == "data_model_releases" or page.collection == "data_models" %}
             {% assign parent_collection = "data_models" %}
           {% endif %}
 
-          {% assign parent_item = site[parent_collection] | where: "slug", page.solution | first %}
+          {% assign parent_item = site[parent_collection] | where: "slug", page.parent | first %}
           {% if parent_item == nil %}
             {% if parent_collection == "app_starter_kits" %}
               {% capture base_path %}app-starter-kits{% endcapture %}
             {% else %}
               {% capture base_path %}data-models{% endcapture %}
             {% endif %}
-            {% capture sol_url %}/{{ base_path }}/{{ page.solution }}/{% endcapture %}
+            {% capture sol_url %}/{{ base_path }}/{{ page.parent }}/{% endcapture %}
             {% assign parent_item = site[parent_collection] | where: "url", sol_url | first %}
           {% endif %}
         {% endif %}

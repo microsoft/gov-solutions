@@ -10,71 +10,60 @@ layout: default
       <!-- Sidebar navigation -->
       <aside class="grid-col-3">
 
-          {% comment %} Find the parent solution (docs have `solution: <slug>`) {% endcomment %}
+        {% comment %} Find the parent (docs have `parent: <slug>`) {% endcomment %}
         {% assign parent_item = nil %}
-        {% if page.solution %}
+        {% if page.parent %}
+        
           {% comment %} choose collection that contains the parent solution {% endcomment %}
           {% assign parent_collection = "app_starter_kits" %}
           {% if page.collection == "data_model_releases" or page.collection == "data_models" %}
             {% assign parent_collection = "data_models" %}
           {% endif %}
 
-          {% assign parent_item = site[parent_collection] | where: "slug", page.solution | first %}
+          {% assign parent_item = site[parent_collection] | where: "slug", page.parent | first %}
           {% if parent_item == nil %}
             {% if parent_collection == "app_starter_kits" %}
               {% capture base_path %}app-starter-kits{% endcapture %}
             {% else %}
               {% capture base_path %}data-models{% endcapture %}
             {% endif %}
-            {% capture sol_url %}/{{ base_path }}/{{ page.solution }}/{% endcapture %}
+
+            {% capture sol_url %}/{{ base_path }}/{{ page.parent }}/{% endcapture %}
             {% assign parent_item = site[parent_collection] | where: "url", sol_url | first %}
           {% endif %}
         {% endif %}
 
-            {% if parent_solution %}
-            {% include card.html
+        {% if parent_item %}
+          {% include card.html
             type="solution"
-            title=parent_solution.title
-            url=parent_solution.url
-            summary=parent_solution.summary
-            tags=parent_solution.use_cases
-            personas=parent_solution.personas
-            repo=parent_solution.repo
+            title=parent_item.title
+            url=parent_item.url
+            description=parent_item.description
             shrink=true
-            thumbnail=parent_solution.thumbnail %}
-            {% else %}
-            {% include card.html
-            type="solution"
-            title=page.title
-            url=page.url
-            summary=page.summary
-            tags=page.use_cases
-            personas=page.personas
-            repo=page.repo
-            shrink=true
-            thumbnail=page.thumbnail %}
-            {% endif %}
+            thumbnail=parent_item.thumbnail 
+          %}
+        {% endif %}
 
-            {% comment %} Other docs for this solution (unstyled list) {% endcomment %}
-            {% capture sibling_docs_list %}
-            {% assign docs_sorted = site.docs | sort: 'title' %}
-            {% for doc in docs_sorted %}
-            <!-- {% if doc.solution == page.solution and doc.url != page.url %} -->
+        {% comment %} Other docs for this solution (unstyled list) {% endcomment %}
+        {% capture sibling_docs_list %}
+          {% assign docs_sorted = site.docs | sort: 'title' %}
+          {% for doc in docs_sorted %}
+            <!-- {% if doc.parent == page.parent and doc.url != page.url %} -->
             <li style="margin:0.35rem 0;">
-              <a class="usa-link" href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
+            <a class="usa-link" href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
             </li>
             <!-- {% endif %} -->
-            {% endfor %}
-            {% endcapture %}
+          {% endfor %}
+        {% endcapture %}
 
-            {% if sibling_docs_list contains '<li' %} <nav
-              aria-label="Other documents for {{ parent_solution.title | default: page.solution }}">
-              <h3 class="margin-top-2">Other documents</h3>
-              <ul style="list-style:none;padding:0;margin:0;">
-                {{ sibling_docs_list }}
-              </ul>
-              </nav>
-              {% endif %}
+        {% if sibling_docs_list contains '<li' %} 
+          <nav aria-label="Other documents for {{ parent_item.title | default: page.parent }}">
+          <h3 class="margin-top-2">Other documents</h3>
+          <ul style="list-style:none;padding:0;margin:0;">
+          {{ sibling_docs_list }}
+          </ul>
+          </nav>
+        {% endif %}
       </aside>
 
       <!-- Main content (right side) -->
@@ -93,7 +82,7 @@ layout: default
           <!-- Main column -->
           <div class="grid-col-9 usa-prose">
 
-            <h1 class="mgat-solution-heading">{{ parent_solution.title }}</h1>
+            <h1 class="mgat-solution-heading">{{ parent_item.title }}</h1>
             <hr />
 
             {{ content }}
