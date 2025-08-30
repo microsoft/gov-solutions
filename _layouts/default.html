@@ -125,23 +125,9 @@
         }
     </script>
 
-    <!-- Small, non-invasive mobile tweaks: remove the extended header on small screens and make skip link focus work -->
+    <!-- Small, non-invasive mobile tweaks: keep skip link focus only (avoid toggling header class) -->
     <script>
     (function () {
-      var header = document.querySelector('header.usa-header');
-      function updateHeader() {
-        if (!header) return;
-        try {
-          if (window.matchMedia('(max-width: 40rem)').matches) {
-            header.classList.remove('usa-header--extended');
-          } else {
-            header.classList.add('usa-header--extended');
-          }
-        } catch (e) { /* safe-fail */ }
-      }
-      updateHeader();
-      window.addEventListener('resize', updateHeader);
-
       // Ensure skip link focuses the main element on activation (some browsers need tabindex set)
       document.addEventListener('click', function (e) {
         var t = e.target || e.srcElement;
