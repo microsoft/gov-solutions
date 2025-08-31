@@ -113,15 +113,21 @@
       display: flex;
       align-items: center;
       gap: 0.5rem;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      flex: 1 1 auto;
+      flex-wrap: wrap;            /* allow lines to wrap */
+      overflow: visible;
+      text-overflow: unset;
+      white-space: normal;        /* permit wrapping instead of truncation */
+      overflow-wrap: anywhere;    /* break long words if needed */
+      min-width: 0;               /* allow flex children to shrink properly */
     }
 
     .usa-logo__text.brand img {
       height: var(--logo-small-h) !important;
       width: auto;
       display: inline-block;
+      flex-shrink: 0;             /* don't let the image collapse and force text truncation */
+      margin-right: 0.5rem;
     }
 
     header > div[role="status"] {

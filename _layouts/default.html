@@ -31,8 +31,7 @@
                 <div class="usa-navbar">
                     <div class="usa-logo" id="logo">
                         <em class="usa-logo__text brand">
-                            <img src="{{ '/assets/logo.png' | relative_url }}" alt="Site logo"
-                                style="height: 2.5rem; vertical-align: middle; margin-right: 1rem;">
+                            <img class="site-logo" src="{{ '/assets/logo.png' | relative_url }}" alt="Site logo">
                             {{ site.title }}
                         </em>
                     </div>
@@ -82,7 +81,7 @@
         <div class="usa-identifier__container container">
             <div class="usa-identifier__brand">
                 <a class="usa-identifier__logo" href="{{ '/' | relative_url }}">
-                    <img src="{{ '/assets/logo.png' | relative_url }}" alt="{{ site.title }} logo" style="height:48px;">
+                    <img class="site-logo" src="{{ '/assets/logo.png' | relative_url }}" alt="{{ site.title }} logo">
                 </a>
                 <section class="usa-identifier__identity" aria-label="Site identity">
                     <p class="usa-identifier__tagline">This is an open-source project maintained by Microsoft. It is

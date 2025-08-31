@@ -41,8 +41,31 @@
   .usa-identifier .usa-identifier__identity {
     margin-top: 0.5rem;
   }
-}
 
+  /* Option B: Make logo containers block on small screens so text can wrap */
+  .usa-identifier__logo,
+  .usa-logo {
+    display: block !important;
+    width: auto !important;
+  }
+
+  .usa-logo__text.brand {
+    display: block !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    overflow-wrap: anywhere !important;
+    margin-top: 0.25rem !important;
+  }
+
+  /* Small-logo sizing for the stacked layout */
+  .usa-identifier .site-logo,
+  .usa-navbar .site-logo {
+    height: var(--logo-small-h) !important;
+    width: auto !important;
+    margin-right: 0.5rem !important;
+  }
+}
 
 /* Stronger override: force side-by-side on medium+ screens */
 @media (min-width: 40rem) {
@@ -99,4 +122,55 @@
 .usa-identifier .usa-identifier__tagline {
   font-size: 0.95rem;
   margin-top: 0.25rem;
+}
+
+/* Utility: control site logo sizing via class rather than inline styles */
+.site-logo {
+  width: auto !important;
+  height: var(--logo-default-h) !important;
+}
+
+/* Header-specific logo size (slightly smaller) */
+.usa-navbar .site-logo {
+  height: 2.5rem !important;
+  vertical-align: middle;
+  margin-right: 1rem;
+}
+
+/* Identifier area uses default logo height */
+.usa-identifier .site-logo {
+  height: var(--logo-default-h) !important;
+}
+
+/* Small screens: make all logos smaller to avoid layout issues */
+@media (max-width: 40rem) {
+  .site-logo {
+    height: var(--logo-small-h) !important;
+    margin-right: 0.5rem !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* Final small-screen override: force header logo text to wrap and avoid clipping */
+@media (max-width: 40rem) {
+  .usa-header .usa-logo__text.brand {
+    white-space: normal !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    min-width: 0 !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+  }
+}
+
+/* Last-resort: override the grouped selector on small screens so the logo/text can stack/wrap */
+@media (max-width: 40rem) {
+  .usa-logo,
+  .usa-identifier .usa-identifier__logo,
+  .usa-logo__text.brand {
+    display: block !important;
+    white-space: normal !important;
+    flex: none !important;
+    align-items: baseline !important;
+  }
 }
