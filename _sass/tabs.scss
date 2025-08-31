@@ -1,0 +1,79 @@
+/* Traditional nav-bar style for tabs (consolidated) */
+.mgat-subnav {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0.25rem 0;
+  margin-bottom: 1rem;
+}
+/* Horizontal list like a nav bar */
+.mgat-subnav__list {
+  display: flex;
+  gap: var(--subnav-gap);
+  padding: var(--subnav-pad);
+  list-style: none;
+  margin: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  overflow-x: auto; /* allow horizontal scrolling on small screens */
+  -webkit-overflow-scrolling: touch;
+}
+/* Items */
+.mgat-subnav__item {
+  display: inline-flex;
+  margin: 0;
+}
+/* Links styled like header links but in-page (consolidated rules) */
+.mgat-subnav__link {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--subnav-link-pad-sm);
+  color: var(--color-dark);
+  text-decoration: none;
+  border-radius: var(--subnav-link-radius);
+  border-bottom: var(--subnav-underline-thickness) solid transparent;
+  transition: background 0.12s ease, color 0.12s ease, border-bottom-color 0.12s ease;
+}
+/* Hover/focus states (USWDS-ish) */
+.mgat-subnav__link:hover {
+  background: rgba(0, 0, 0, 0.04);
+  text-decoration: none;
+}
+/* Keep focus-visible for keyboard users, avoid removing focus for mouse clicks */
+.mgat-subnav__link:focus {
+  outline: none;
+  box-shadow: none;
+  outline-offset: var(--focus-outline-offset);
+}
+.mgat-subnav__link:focus-visible {
+  outline: var(--focus-outline-width) solid #2491ff;
+  outline-offset: var(--focus-outline-offset);
+}
+/* Active: underline effect + stronger weight */
+.mgat-subnav__link.is-active,
+.mgat-subnav__link[aria-selected="true"] {
+  color: var(--color-dark);
+  border-bottom-color: var(--color-accent); /* accent underline for active */
+  font-weight: 700;
+  box-shadow: none; /* disable any earlier inset underline implementations */
+  background: transparent;
+  border-radius: 0;
+}
+/* Panels: JS will [hidden] the inactive ones */
+.mgat-subnav__panel[hidden] {
+  display: none !important;
+}
+/* Optional: make the subnav sticky under your header */
+.mgat-subnav.is-sticky {
+  position: sticky;
+  top: 0; /* adjust if your header is fixed */
+  z-index: 10;
+  background: #fff;
+}
+
+.mgat-solution-heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  margin-top: 0rem;
+}

@@ -1,0 +1,186 @@
+/* Flexbox page layout */
+:root {
+  /* Layout */
+  --max-width: 87.5rem; /* 1400px */
+  --container-pad: 0.5rem;
+  --container-pad-sm: 0.75rem;
+
+  /* Typography */
+  --font-family-sans: "Source Sans Pro", Arial, sans-serif;
+
+  /* Colors */
+  --color-text: #222;
+  --color-dark: #1b1b1b;
+  --color-inverse: #ffffff;
+  --color-accent: #0071bc;
+  --color-muted: #f0f0f0;
+  --bg-dark: #222;
+
+  /* Components */
+  --card-thumb-h: 8.75rem; /* 140px */
+  --subnav-gap: 0.75rem;
+  --subnav-pad: 0.25rem 0.5rem;
+  --subnav-link-pad-sm: 0.5rem 1rem;
+  --subnav-link-pad-lg: 0.75rem 1rem;
+  --subnav-link-radius: 0.375rem;
+  --subnav-underline-thickness: 0.1875rem; /* 3px */
+
+  /* Focus / shadows */
+  --focus-outline-width: 0.125rem; /* 2px */
+  --focus-outline-offset: 0.125rem; /* 2px */
+  --shadow-sm: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.08); /* 6px / 20px */
+
+  /* Logo sizes */
+  --logo-small-h: 1.8rem;
+  --logo-med-h: 2.2rem;
+  --logo-default-h: 3rem; /* 48px */
+
+  /* Note: CSS custom properties are not supported inside @media feature expressions in current browsers; use rem/em when writing queries. */
+}
+
+/* Global reset: predictable box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  height: 100%;
+  scrollbar-gutter: stable;
+  overflow-y: scroll;
+  color: var(--color-text);
+  font-family: var(--font-family-sans);
+}
+
+/* Main flexes to fill space */
+main {
+  flex: 1 0 auto;
+}
+
+/* Container for consistent horizontal alignment */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+  width: 100%;
+}
+
+.usa-section {
+  padding-top: 1em !important;
+  padding-bottom: 1em !important;
+}
+
+/* Slightly increase content contrast when the site is rendered with lighter base styles */
+.usa-prose {
+  color: var(--color-text) !important;
+}
+
+/* USWDS prose and font styling for main content */
+.usa-prose {
+  font-family: var(--font-family-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--color-text);
+}
+.usa-prose h1,
+.usa-prose h2,
+.usa-prose h3,
+.usa-prose h4,
+.usa-prose h5,
+.usa-prose h6 {
+  font-family: var(--font-family-sans);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+.usa-prose h1 {
+  margin-top: 0rem;
+}
+.usa-prose p {
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  max-width: 100%;
+  width: 100%;
+}
+.usa-prose>ul li {
+  max-width: 100% !important;
+}
+
+/* Make images responsive by default (mobile-first) */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Mobile-first: small-screen adjustments grouped together */
+@media (max-width: 40rem) {
+
+  /* Slightly reduce horizontal padding on small viewports so content has more space */
+  .container {
+    padding-left: var(--container-pad-sm);
+    padding-right: var(--container-pad-sm);
+  }
+
+  /* Slightly smaller body text for narrow screens and tighter spacing */
+  .usa-prose {
+    font-size: 0.95rem;
+  }
+  .usa-prose p {
+    margin-bottom: 1rem;
+  }
+
+  /* Ensure footer inner container has breathing room on mobile */
+  .usa-footer__secondary-fullwidth .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Small accessibility tweak: ensure focus-visible outlines remain visible on small screens */
+  .mgat-subnav__link:focus-visible {
+    outline-width: 0.1875rem; /* 3px */
+  }
+}
+
+/* External link indicator: inline SVG icon + spacing */
+.external-link-icon {
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  margin-left: 0.25rem;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+/* Medium screens: gentle adjustments so things don't look cramped */
+@media (min-width: 40rem) and (max-width: 60rem) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Accessibility: respect reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Persona layout: dark, rounded border for persona images */
+.page-thumbnail {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 0.25rem solid var(--color-dark);
+  border-radius: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.06);
+}

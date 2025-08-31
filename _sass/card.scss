@@ -1,0 +1,118 @@
+
+.usa-card__heading,
+.usa-card__body p {
+  text-align: center;
+}
+.usa-card__footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: auto; /* Footer pushed to bottom */
+}
+.usa-card__media {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--bg-dark);
+  padding: 0.25rem; /* reduced padding so the image takes up less vertical space */
+}
+.solution-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+/* Keep card heights even so footers align */
+.card--equal {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+/* Ensure the inner container stretches and uses flex layout so .usa-card__body can grow */
+.usa-card.card--equal,
+.usa-card.card--equal .usa-card__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+/* Allow the body to grow and push the footer down */
+.usa-card__body {
+  flex: 1 1 auto;
+}
+/* Compact thumbnail: fixed shorter height, center the full image inside without cropping */
+.card-thumb {
+  height: var(--card-thumb-h);
+  overflow: hidden;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-dark);
+  aspect-ratio: 16 / 9;
+}
+/* Avoid cropping important parts of thumbnails: show the whole image and center it */
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain; /* fill the thumbnail area */
+  object-position: center;
+  display: block;
+  background-color: var(--bg-dark); /* keep the same background as earlier */
+}
+/* Tidy summaries to ~3 lines (preview) */
+.card-summary {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+/* Optional, subtle hover without breaking a11y */
+.usa-card:hover .usa-card__container {
+  box-shadow: var(--shadow-sm);
+}
+/* Modifier: shrink or constrain card width when used in inline contexts */
+.usa-card.card--shrink {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  vertical-align: top;
+}
+.usa-card.card--shrink .usa-card__container {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.usa-card.card--shrink .usa-card__body {
+  flex: 0 1 auto; /* allow body to size naturally */
+}
+.usa-card.card--shrink .usa-card__footer {
+  margin-top: 0;
+}
+/* Compact card adjustments: reduce vertical spacing so cards are shorter */
+.card--equal .usa-card__container {
+  padding: 0.5rem; /* tighten container padding */
+}
+.card--equal .usa-card__header {
+  padding-bottom: 0.25rem;
+}
+.card--equal .usa-card__heading {
+  font-size: 1.05rem;
+  margin: 0 0 0.25rem 0;
+}
+.card--equal .usa-card__body {
+  padding-top: 0;
+  padding-bottom: 0.25rem; /* reduce bottom padding to shrink the card height */
+}
+.card--equal .usa-card__footer {
+  padding-top: 0.25rem;
+}
+/* Remove default paragraph margins inside equal-height cards to avoid extra whitespace */
+.card--equal .usa-card__body p {
+  margin: 0; /* rely on .usa-card__body padding for spacing */
+}

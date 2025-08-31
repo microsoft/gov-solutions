@@ -12,6 +12,9 @@ repository: "microsoft/gov-solutions" # (nice to have for jekyll-github-metadata
 markdown: kramdown
 permalink: pretty
 
+sass:
+  sass_dir: _sass
+
 # Collections
 collections:
   app_starter_kits:

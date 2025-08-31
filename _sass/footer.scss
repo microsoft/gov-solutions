@@ -1,0 +1,28 @@
+
+/* Fix: ensure footer and identifier are not clipped by overflow rules */
+/* Make footer background full-bleed while keeping inner content aligned with .container */
+footer.usa-footer {
+  margin-top: auto;
+  overflow: visible !important; /* allow identifier to escape clipping */
+  background-color: transparent; /* keep base footer transparent so inner sections can be full-bleed */
+}
+
+/* Secondary fullwidth area holds the visible footer background */
+.usa-footer__secondary-fullwidth {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: var(--color-muted);
+}
+.usa-footer__secondary-fullwidth .container {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+.usa-footer__secondary-fullwidth .usa-footer__secondary-section {
+  padding: 0;
+  background-color: transparent;
+}
+.usa-footer__secondary-fullwidth .usa-footer__copyright {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.25;
+}

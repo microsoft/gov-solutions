@@ -1,0 +1,250 @@
+
+/* Header: scoped header foreground + compatibility override */
+.usa-header.bg-primary-darker {
+  --header-foreground: var(--color-inverse);
+}
+header.usa-header.bg-primary-darker .usa-navbar {
+  max-width: none !important;
+}
+
+/* === Header: dark background, white text === */
+.usa-header.bg-primary-darker .usa-logo__text {
+  color: var(--header-foreground) !important;
+  white-space: nowrap;
+}
+
+/* Inverse nav links (white text on dark header) - simplified selector */
+.usa-header.bg-primary-darker .usa-nav__primary a {
+  color: var(--header-foreground) !important;
+  text-decoration: none;
+}
+
+/* Keep keyboard focus visible, but avoid removing focus for mouse interactions */
+.usa-header.bg-primary-darker .usa-nav__primary a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Small, scoped fixes so the mobile menu is visible on dark headers and the content is higher contrast */
+.usa-header.bg-primary-darker .usa-menu-btn {
+  color: var(--header-foreground) !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  z-index: 9999;
+}
+.usa-header.bg-primary-darker .usa-nav {
+  background: transparent !important; /* let the header background show through */
+  color: var(--header-foreground) !important;
+  border-top: none !important;
+  box-shadow: none !important;
+  z-index: 9999;
+}
+.usa-header.bg-primary-darker .usa-nav__primary a,
+.usa-header.bg-primary-darker .usa-nav__close {
+  color: var(--header-foreground) !important;
+}
+
+/* Make sure the mobile nav panel sits above other layout pieces */
+.usa-header .usa-nav {
+  z-index: 9999;
+}
+
+/* Neutralize USWDS left padding/margin for logo alignment (consolidated) */
+.usa-logo,
+.usa-navbar,
+.usa-nav-container {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* Keep remaining .usa-nav-container specifics separate */
+.usa-nav-container {
+  padding-right: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Mobile-first: small-screen adjustments grouped together */
+@media (max-width: 40rem) {
+
+  /* Reduce header logo size and allow the site title to wrap/truncate gracefully */
+  .usa-header .usa-logo__text.brand {
+    font-size: 1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .usa-header .usa-logo__text.brand img {
+    height: var(--logo-small-h) !important; /* override inline height for small screens */
+    width: auto;
+    display: inline-block;
+  }
+
+  /* Keep nav and logo aligned without causing horizontal overflow */
+  .usa-nav-container {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+  .usa-navbar {
+    align-items: center;
+  }
+
+  /* Ensure the top 'Under construction' banner wraps and doesn't force horizontal scroll */
+  header.usa-header > div[role="status"] {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.5rem;
+    white-space: normal;
+    box-sizing: border-box;
+  }
+
+  /* Make the mobile nav panel clearly visible on dark headers */
+  .usa-header.bg-primary-darker .usa-nav {
+    background: var(--bg-dark) !important;
+    color: var(--header-foreground) !important;
+  }
+
+  /* Ensure nav links are readable and don't inherit light backgrounds */
+  .usa-header.bg-primary-darker .usa-nav__primary .usa-nav__link {
+    color: var(--header-foreground) !important;
+    background: transparent !important;
+  }
+
+  /* Subtle hover/focus state that keeps contrast high */
+  .usa-header.bg-primary-darker .usa-nav__primary .usa-nav__link:hover,
+  .usa-header.bg-primary-darker .usa-nav__primary .usa-nav__link:focus {
+    background: rgba(255,255,255,0.06) !important;
+    color: var(--header-foreground) !important;
+  }
+
+  /* Ensure the mobile nav panel and menu button sit above other components */
+  .usa-header .usa-nav,
+  .usa-header .usa-nav.is-open,
+  .usa-header .usa-nav[aria-hidden="false"] {
+    z-index: 99999 !important;
+  }
+  .usa-header .usa-menu-btn {
+    z-index: 100001 !important;
+  }
+}
+
+/* Medium screens: gentle adjustments so things don't look cramped */
+@media (min-width: 40rem) and (max-width: 60rem) {
+  .usa-header .usa-logo__text.brand img {
+    height: var(--logo-med-h) !important;
+  }
+}
+
+
+/* Thin divider between logo/title and nav items (subtle, matches dark header) */
+.usa-header.bg-primary-darker .usa-navbar {
+  border-bottom: 1px solid rgb(255, 255, 255);
+  padding-bottom: 0.1rem; /* keep spacing close to the original look */
+  margin-bottom: 0.2rem;
+}
+
+/* Ensure menu button is always reachable by pinning it inside the navbar */
+.usa-header .usa-navbar {
+  position: relative; /* allow absolute positioning of the menu button */
+}
+.usa-header .usa-menu-btn {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100001 !important;
+}
+
+/* When the nav is a direct child of the header (moved out of the inner .container), keep its inner .container aligned */
+.usa-header > .usa-nav .container {
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
+
+@media (max-width: 60rem) {
+  /* Reserve more space for the pinned menu button so the site title doesn't run underneath it */
+  .usa-header .usa-navbar {
+    padding-right: 6rem; /* increased space for the absolute-positioned button */
+  }
+
+  /* Allow the branding line to wrap on medium/smaller viewports so it won't overlap the pinned menu */
+  .usa-header .usa-logo__text.brand {
+    display: inline-block;
+    /* max-width: calc(100% - 6rem); */
+    overflow: visible; /* allow wrapping/growth */
+    text-overflow: unset;
+    white-space: normal; /* allow wrapping instead of forcing a single line */
+    font-size: 1.2rem; /* slightly smaller on medium screens */
+  }
+
+  /* Make the nav overlay dark and readable for small->medium screens */
+  .usa-header.bg-primary-darker .usa-nav {
+    background: var(--bg-dark) !important;
+    color: var(--header-foreground) !important;
+  }
+  .usa-header.bg-primary-darker .usa-nav__primary .usa-nav__link {
+    color: var(--header-foreground) !important;
+    background: transparent !important;
+  }
+  .usa-header.bg-primary-darker .usa-nav__primary .usa-nav__link:hover,
+  .usa-header.bg-primary-darker .usa-nav__primary .usa-nav__link:focus {
+    background: rgba(255,255,255,0.06) !important;
+    color: var(--header-foreground) !important;
+  }
+}
+
+@media (max-width: 28rem) {
+  /* Let the brand wrap to multiple lines and allow the menu button to flow so they don't overlap */
+  .usa-header .usa-navbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.375rem;
+  }
+  .usa-header .usa-logo__text.brand {
+    display: block;
+    white-space: normal; /* allow wrapping */
+    /* max-width: 100%; */
+    overflow: visible;
+    text-overflow: unset;
+  }
+  .usa-header .usa-menu-btn {
+    position: static !important; /* flow with the document rather than overlap the brand */
+    margin-left: auto; /* push it to the right of the available row */
+    order: 2;
+    z-index: 100001 !important;
+  }
+  .usa-header .usa-navbar .usa-logo {
+    order: 1;
+    width: auto;
+  }
+}
+
+/* Ensure navbar has enough vertical room to avoid overlap between brand and pinned menu */
+.usa-header .usa-navbar {
+  height: auto;
+  min-height: 4rem; /* provides vertical breathing room; tweakable */
+}
+
+@media (max-width: 60rem) {
+  /* Explicit overrides to ensure wrapping in spite of earlier consolidated rules */
+  .usa-header .usa-logo {
+    /* display: flex !important; */
+    align-items: center !important;
+    min-width: 0 !important;
+    gap: 0.5rem !important;
+  }
+  .usa-header .usa-logo__text.brand {
+    display: block !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+  }
+}
+
+.usa-navbar { display: inherit !important; }

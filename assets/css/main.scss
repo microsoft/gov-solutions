@@ -1,0 +1,14 @@
+---
+---
+/* vs code syntax error guard 
+- vs code will display an error below and an overall error for the file
+- you can safely ignore this error */
+@function fixSyntaxError() { }
+
+@import "base";
+@import "header";
+@import "card";
+@import "tabs";
+@import "erd";
+@import "footer";
+@import "identifier"; 
