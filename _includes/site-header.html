@@ -29,11 +29,16 @@
 
     <nav id="custom-nav" class="custom-header-nav" role="navigation" aria-label="Primary navigation" hidden>
       <ul class="usa-nav__primary usa-accordion custom-nav-list">
-        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/home/' | relative_url }}"><span>Home</span></a></li>
-        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/use-cases/' | relative_url }}"><span>Use Cases</span></a></li>
-        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/personas/' | relative_url }}"><span>Personas</span></a></li>
-        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/data-models' | relative_url }}"><span>Data Models</span></a></li>
-        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/app-starter-kits' | relative_url }}"><span>App Starter Kits</span></a></li>
+        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse"
+            href="{{ '/home/' | relative_url }}"><span>Home</span></a></li>
+        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse"
+            href="{{ '/use-cases/' | relative_url }}"><span>Use Cases</span></a></li>
+        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse"
+            href="{{ '/personas/' | relative_url }}"><span>Personas</span></a></li>
+        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse"
+            href="{{ '/data-models' | relative_url }}"><span>Data Models</span></a></li>
+        <li class="usa-nav__primary-item custom-nav-item"><a class="usa-nav__link usa-link--inverse"
+            href="{{ '/app-starter-kits' | relative_url }}"><span>App Starter Kits</span></a></li>
 
       </ul>
     </nav>
@@ -61,6 +66,11 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    /* thin separator under logo/title like default header */
+    border-bottom: 1px solid rgb(255, 255, 255);
+    padding-bottom: 0.1rem;
+    margin-bottom: 0.2rem;
+    padding-bottom: 0.5rem;
   }
 
   .custom-brand-title {
@@ -223,11 +233,16 @@
     /* Allow USWDS/.usa-header compiled rules to control the logo text sizing on large screens */
   }
 
-    @media (max-width: 40rem) {
-      .container {
-        padding-bottom: 1rem;
-      }
+  @media (max-width: 40rem) {
+
+    .custom-header-row-main {
+      border-bottom: 0px;
     }
+
+    .container {
+      padding-bottom: 1rem;
+    }
+  }
 </style>
 
 <script>
