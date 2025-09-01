@@ -16,7 +16,10 @@
         </div>
       </div>
       <button class="custom-menu-btn" aria-expanded="false" aria-controls="custom-nav" aria-label="Menu">
-        Menu
+        <svg class="custom-menu-icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+          <path fill="currentColor" d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/>
+        </svg>
+        <span class="usa-sr-only">Menu</span>
       </button>
     </div>
 
@@ -49,20 +52,21 @@
 .custom-site-tagline { font-size:0.875rem; opacity:0.9; margin:0; }
 
 /* Menu button (small screens) */
-.custom-menu-btn { flex:0 0 auto; background:none; border:none; color:inherit; font-weight:700; font-size:1rem; cursor:pointer; padding:0.35rem 0.5rem; }
+.custom-menu-btn { flex:0 0 auto; background:none; border:none; color:inherit; font-weight:700; font-size:1rem; cursor:pointer; padding:0.25rem; display:flex; align-items:center; justify-content:center; }
 .custom-menu-btn:focus { outline:3px solid rgba(255,255,255,0.2); border-radius:4px; }
+.custom-menu-icon { width:28px; height:28px; display:block; color:inherit; }
 
-/* Nav hidden by default (small screens) */
+/* Nav hidden by default (small screens) - vertical list */
 .custom-header-nav { display:none; margin-top:0.5rem; }
-.custom-nav-list { list-style:none; padding:0; margin:0; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
-.custom-nav-list a { color:inherit; text-decoration:none; padding:0.25rem 0; display:block; }
+.custom-nav-list { list-style:none; padding:0.5rem 0; margin:0; display:flex; flex-direction:column; gap:0.5rem; }
+.custom-nav-list a { color:inherit; text-decoration:none; padding:0.5rem 0; display:block; }
 
 /* Large screens: two rows — first row brand/title, second row nav */
 @media (min-width: 992px) {
   .custom-header-row-main { padding-top:0.5rem; padding-bottom:0.25rem; }
   .custom-menu-btn { display:none !important; }
   .custom-header-nav { display:block !important; margin-top:0.25rem; }
-  .custom-nav-list { gap:2rem; }
+  .custom-nav-list { flex-direction:row; gap:2rem; }
   .custom-site-logo { height:56px; }
   .custom-site-title { font-size:1.25rem; }
 }
