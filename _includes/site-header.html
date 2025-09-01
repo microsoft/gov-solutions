@@ -1,0 +1,91 @@
+<!-- Experimental custom header included for side-by-side comparison. -->
+<header class="custom-header bg-primary-darker" aria-label="Custom header (experimental)">
+  <div class="container custom-header-inner">
+    <div class="custom-header-row-main">
+      <div class="custom-brand-title">
+        <div class="custom-header-brand">
+          <a href="{{ '/' | relative_url }}">
+            <img class="custom-site-logo" src="{{ '/assets/logo.png' | relative_url }}" alt="{{ site.title }} logo">
+          </a>
+        </div>
+        <div class="custom-header-title">
+          <div class="custom-site-title">{{ site.title }}</div>
+          {% if site.tagline %}
+          <div class="custom-site-tagline">{{ site.tagline }}</div>
+          {% endif %}
+        </div>
+      </div>
+      <button class="custom-menu-btn" aria-expanded="false" aria-controls="custom-nav" aria-label="Menu">
+        Menu
+      </button>
+    </div>
+
+    <nav id="custom-nav" class="custom-header-nav" role="navigation" aria-label="Primary navigation" hidden>
+      <ul class="custom-nav-list">
+        <li class="custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/home/' | relative_url }}"><span>Home</span></a></li>
+        <li class="custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/use-cases/' | relative_url }}"><span>Use Cases</span></a></li>
+        <li class="custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/personas/' | relative_url }}"><span>Personas</span></a></li>
+        <li class="custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/data-models' | relative_url }}"><span>Data Models</span></a></li>
+        <li class="custom-nav-item"><a class="usa-nav__link usa-link--inverse" href="{{ '/app-starter-kits' | relative_url }}"><span>App Starter Kits</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+/* --- Custom responsive header (experimental). Keep small and self-contained so it can be iterated quickly --- */
+.custom-header { color: #fff; }
+.custom-header .container { padding: 0.5rem 1rem; }
+
+/* Main row: brand/title on the left, menu on the right on small screens */
+.custom-header-row-main { display:flex; align-items:center; gap:1rem; }
+.custom-brand-title { display:flex; align-items:center; gap:0.75rem; flex:1 1 auto; min-width:0; }
+.custom-header-brand { flex:0 0 auto; }
+.custom-site-logo { height:44px; width:auto; display:block; }
+
+/* Title must always sit to the right of the logo and wrap within its area (never drop under logo) */
+.custom-header-title { flex:1 1 auto; min-width:0; overflow-wrap:break-word; }
+.custom-site-title { font-size:1.125rem; font-weight:600; color:inherit; margin:0; }
+.custom-site-tagline { font-size:0.875rem; opacity:0.9; margin:0; }
+
+/* Menu button (small screens) */
+.custom-menu-btn { flex:0 0 auto; background:none; border:none; color:inherit; font-weight:700; font-size:1rem; cursor:pointer; padding:0.35rem 0.5rem; }
+.custom-menu-btn:focus { outline:3px solid rgba(255,255,255,0.2); border-radius:4px; }
+
+/* Nav hidden by default (small screens) */
+.custom-header-nav { display:none; margin-top:0.5rem; }
+.custom-nav-list { list-style:none; padding:0; margin:0; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+.custom-nav-list a { color:inherit; text-decoration:none; padding:0.25rem 0; display:block; }
+
+/* Large screens: two rows — first row brand/title, second row nav */
+@media (min-width: 992px) {
+  .custom-header-row-main { padding-top:0.5rem; padding-bottom:0.25rem; }
+  .custom-menu-btn { display:none !important; }
+  .custom-header-nav { display:block !important; margin-top:0.25rem; }
+  .custom-nav-list { gap:2rem; }
+  .custom-site-logo { height:56px; }
+  .custom-site-title { font-size:1.25rem; }
+}
+
+/* Show nav when JS toggles */
+.custom-header-nav.open { display:block; }
+</style>
+
+<script>
+(function () {
+  var btn = document.querySelector('.custom-menu-btn');
+  var nav = document.getElementById('custom-nav');
+  if (!btn || !nav) return;
+  btn.addEventListener('click', function () {
+    var expanded = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!expanded));
+    if (nav.hasAttribute('hidden')) {
+      nav.removeAttribute('hidden');
+      nav.classList.add('open');
+    } else {
+      nav.setAttribute('hidden', '');
+      nav.classList.remove('open');
+    }
+  });
+})();
+</script>
