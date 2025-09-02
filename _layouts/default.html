@@ -10,7 +10,7 @@
     <meta name="description" content="{{ page.description | default: site.description }}" />
 
     <!-- HEAD -->
-     
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.1/dist/css/uswds.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@uswds/uswds@3.7.1/dist/js/uswds-init.min.js"></script>
     <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}" />
@@ -21,8 +21,8 @@
 
 <body>
     <a class="usa-skipnav" href="#main-content">Skip to main content</a>
-    
-     <header class="usa-header usa-header--extended bg-primary-darker">
+
+    <header class="usa-header usa-header--extended bg-primary-darker">
         <div role="status" aria-live="polite"
             style="background:#fff3cd;color:#856404;border-bottom:1px solid #ffd89f;padding:.45rem 1rem;text-align:center;font-weight:600;">
             ⚠ Under construction — This site is under active development. Some pages may be incomplete.
@@ -61,6 +61,8 @@
                     <p class="usa-identifier__tagline">This is an open-source project maintained by Microsoft. It is
                         <b>not</b> an official U.S. government website. The site uses the U.S. Web Design System (USWDS)
                         to help agencies and partners create app catalog documentation sites of their own.
+                        <a href="https://opensource.microsoft.com/"
+                            target="_blank" rel="noopener">Open Source at Microsoft</a>
                     </p>
                 </section>
             </div>
@@ -101,19 +103,19 @@
 
     <!-- Small, non-invasive mobile tweaks: keep skip link focus only (avoid toggling header class) -->
     <script>
-    (function () {
-      // Ensure skip link focuses the main element on activation (some browsers need tabindex set)
-      document.addEventListener('click', function (e) {
-        var t = e.target || e.srcElement;
-        if (t && t.matches && t.matches('.usa-skipnav')) {
-          var main = document.getElementById('main-content');
-          if (main) {
-            main.setAttribute('tabindex', '-1');
-            main.focus();
-          }
-        }
-      }, false);
-    }());
+        (function () {
+            // Ensure skip link focuses the main element on activation (some browsers need tabindex set)
+            document.addEventListener('click', function (e) {
+                var t = e.target || e.srcElement;
+                if (t && t.matches && t.matches('.usa-skipnav')) {
+                    var main = document.getElementById('main-content');
+                    if (main) {
+                        main.setAttribute('tabindex', '-1');
+                        main.focus();
+                    }
+                }
+            }, false);
+        }());
     </script>
 
 </body>

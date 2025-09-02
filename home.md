@@ -5,7 +5,7 @@ title: Home
 
 # Welcome
 
-This repository is an open-source ecosystem for building government applications on Microsoft Power Platform and Dynamics 365. It provides reusable building blocks - standardized data models and modular starter apps - that help agencies deliver mission-focused solutions more quickly and with greater consistency.
+This repository is an open-source ecosystem for building government applications on **Microsoft Power Platform** and **Dynamics 365**. It provides reusable building blocks - standardized data models and modular starter apps - that help agencies deliver mission-focused solutions more quickly and with greater consistency.
 
 This documentation site serves as the hub that brings the two core repositories together into a single experience:
 

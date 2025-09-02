@@ -124,6 +124,12 @@
   margin-top: 0.25rem;
 }
 
+/* Identifier (tagline) should be smaller and stack cleanly */
+.usa-identifier .usa-identifier__tagline > a {
+  color: white;
+}
+
+
 /* Utility: control site logo sizing via class rather than inline styles */
 .site-logo {
   width: auto !important;
