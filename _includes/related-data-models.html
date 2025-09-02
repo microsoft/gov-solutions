@@ -6,7 +6,7 @@
 
 {% if page.requires_data_models and page.requires_data_models.size > 0 %}
   <section class="margin-top-2">
-    <h2>Data models</h2>
+    <h3>Requires data models</h3>
     <ul class="usa-list" style="list-style: none; margin: 0; padding-left: 0;">
       {% for dm in page.requires_data_models %}
         {% assign dm_item = nil %}
@@ -63,7 +63,7 @@
 
   {% if has_data_models %}
     <section class="margin-top-4">
-      <h2>Related data models</h2>
+      <h3>Related data models</h3>
       <ul class="usa-list" style="list-style: none; margin: 0; padding-left: 0;">
         {% for d in site.data_models %}
           {% assign matched = false %}

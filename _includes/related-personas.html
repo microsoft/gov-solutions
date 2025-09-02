@@ -1,6 +1,6 @@
 {% if page.personas and page.personas.size > 0 %}
 <section class="margin-top-4">
-    <h2>Personas</h2>
+    <h3>Personas</h3>
     <div class="personas-buttons" style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
         {% for persona_ref in page.personas %}
         {% assign persona_page = nil %}
@@ -45,7 +45,7 @@
 
   {% if has_personas %}
     <section class="margin-top-2">
-      <h2>Related personas</h2>
+      <h3>Related personas</h3>
       <ul class="usa-list" style="list-style: none; margin: 0; padding-left: 0;">
         {% for p in site.personas %}
           {% if p.use_cases %}
