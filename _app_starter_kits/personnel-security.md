@@ -6,9 +6,9 @@ thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
 requires:
  - core
 requires_data_models:
- - core
+ - personnel-security
 use_cases:
- - case-management
+ - personnel-security
 personas:
  - chief-information-officer
  - hr-administrator

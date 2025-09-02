@@ -9,8 +9,8 @@ This repository is an open-source ecosystem for building government applications
 
 This documentation site serves as the hub that brings the two core repositories together into a single experience:
 
-* The **[Government Data Models](https://github.com/microsoft/gov-datamodels){:target="_blank" rel="noopener noreferrer"}** define standardized Dataverse schemas for common government business processes, ensuring interoperability and consistency across agencies and solutions.
-* The **[Government App Starter Kits](https://github.com/microsoft/gov-apptemplates){:target="_blank" rel="noopener noreferrer"}** provide prebuilt, modular applications built on those data models, offering a jump start for services such as permitting, case management, asset tracking, and grants management.
+* The **[Government Data Models](https://github.com/microsoft/gov-datamodels){:target="_blank" rel="noopener noreferrer"}** define standardized Dataverse schemas for common government business processes, ensuring interoperability and consistency across agencies and solutions. No forms or other UI elements are defined within these solutions.
+* The **[Government App Starter Kits](https://github.com/microsoft/gov-apptemplates){:target="_blank" rel="noopener noreferrer"}** provide prebuilt, modular applications built on those data models, offering a jump start for services such as permitting, case management, asset tracking, and grants management. These built upon the data model solutions to provide the user interface and other functionality.
 
 Here you’ll find quickstarts, domain use cases, personas, release notes, and architecture guidance that connect the two repositories into an end-to-end path. Whether you’re an implementer, industry partner, or hackathon participant, Gov Solutions gives you the tools to move from evaluation to deployment with confidence.
 
@@ -18,21 +18,21 @@ Here you’ll find quickstarts, domain use cases, personas, release notes, and a
 
 The Data Models and App Starter Kits in this repository are designed to work together as a modular, layered foundation for building government solutions on Microsoft Dataverse and the Power Platform.
 
-- Data Models provide the standardized, reusable data models — entities, relationships, and field specifications — that define the structure and semantics of common government business processes.
+- [**Data Models**](/data-models.html) provide the standardized, reusable data models — entities, relationships, and field specifications — that define the structure and semantics of common government business processes.
 
-- App Starter Kits provide the ready-to-deploy applications built on top of those models, delivering preconfigured forms, views, dashboards, automation, and business logic.
+- [**App Starter Kits**](/app-starter-kits.html) provide the ready-to-deploy applications built on top of those models, delivering preconfigured forms, views, dashboards, automation, and business logic.
 
 Keeping these in separate repositories offers several benefits:
 
-- Clear separation of governance and reusability – Data models can evolve under their own governance rules, without being tied to specific app release cycles.
+- **Clear separation of governance and reusability** – Data models can evolve under their own governance rules, without being tied to specific app release cycles.
 
-- Independent versioning – You can update a data model without republishing every app, and vice versa.
+- **Independent versioning** – You can update a data model without republishing every app, and vice versa.
 
-- Wider reusability – Other apps (internal or third-party) can consume the standardized models without needing to adopt the provided app templates.
+- **Wider reusability** – Other apps (internal or third-party) can consume the standardized models without needing to adopt the provided app templates.
 
-- Simpler contribution paths – Developers can contribute to either the shared data foundation or the application layer based on their expertise.
+- **Simpler contribution paths** – Developers can contribute to either the shared data foundation or the application layer based on their expertise.
 
-- Better lifecycle management – Agencies can standardize data schemas across multiple solutions while tailoring applications to their unique mission needs.
+- **Better lifecycle management** – Agencies can standardize data schemas across multiple solutions while tailoring applications to their unique mission needs.
 
 By using both together, agencies get a consistent, governed data layer plus a set of deployable, mission-focused apps that can be adapted quickly and maintained over time.
 

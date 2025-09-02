@@ -1,6 +1,6 @@
 {% capture solution_releases %}
 
-  {% assign releases_sorted = site.app_releases | sort: 'version' %}
+  {% assign releases_sorted = site.app_releases | sort: 'version' | reverse %}
   {% for rel in releases_sorted %}
     {% if rel.parent == page.slug %}
       {% assign rel_summary = rel.summary %}
