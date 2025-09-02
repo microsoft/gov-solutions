@@ -91,11 +91,44 @@ layout: default
           <!-- Small right column (download + personas) -->
           <div class="grid-col-12 tablet:grid-col-3">
 
-            <a class="usa-button"
-              href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ page.latest_release }}" download>
-              Download Latest Release
-            </a>
-            
+            {% if page.latest_release %}
+              {% assign lr = page.latest_release %}
+              {% if lr contains "/" or lr contains "http" or lr contains ".zip" %}
+                <!-- legacy full-path -->
+                <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ lr }}" download>Download Latest Release</a>
+              {% else %}
+                <!-- treat lr as a version string; look up release by parent + version -->
+                {% assign rel = site.data_model_releases | where: "parent", page.slug | where: "version", lr | first %}
+                {% if rel and rel.release_file %}
+                  <a class="usa-button"
+                    href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/modules/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}"
+                    download>Download Latest Release</a>
+                {% elsif rel and rel.download %}
+                  <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ rel.download }}" download>Download Latest Release</a>
+                {% else %}
+                  {% comment %} fallback: find the latest release by sorting (lexicographic) {% endcomment %}
+                  {% assign rels = site.data_model_releases | where: "parent", page.slug %}
+                  {% if rels and rels.size > 0 %}
+                    {% assign sorted = rels | sort: "version" %}
+                    {% assign latest_rel = sorted | last %}
+                    {% if latest_rel.release_file %}
+                      <a class="usa-button"
+                        href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/modules/{{ latest_rel.parent }}/releases/{{ latest_rel.version }}/{{ latest_rel.release_file }}"
+                        download>Download Latest Release</a>
+                    {% elsif latest_rel.download %}
+                      <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ latest_rel.download }}" download>Download Latest Release</a>
+                    {% else %}
+                      <div></div>
+                    {% endif %}
+                  {% else %}
+                    <div></div>
+                  {% endif %}
+                {% endif %}
+              {% endif %}
+            {% else %}
+              <div></div>
+            {% endif %}
+
             {% include related-data-models.html %}
             {% comment %} Related use cases: page.use_cases contains basenames; map to site.use_cases by slug or basename to display titles. {% endcomment %}
             {% include related-usecases.html %}

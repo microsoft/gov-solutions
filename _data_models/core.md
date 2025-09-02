@@ -2,7 +2,7 @@
 title: Core
 description: Government Core data model
 thumbnail: /assets/app-starter-kits/core/core.png
-latest_release: modules/core/releases/v1.0.2.1/MSGov-DataModels-Core-Managed%20-%201.0.2.1.zip
+latest_release: v1.0.2.1
 use_cases:
  - case-management
 personas:

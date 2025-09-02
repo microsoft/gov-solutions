@@ -79,13 +79,28 @@ layout: default
           <!-- Small right column (download + personas) -->
           <div class="grid-col-12 tablet:grid-col-3">
             {% if page.collection == "app_releases" %}
-            <a class="usa-button"
-              href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ page.download }}" download>Download
-              This Release</a>
+              {% if page.release_file %}
+                <a class="usa-button"
+                  href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ page.parent }}/releases/{{ page.version }}/{{ page.release_file }}"
+                  download>Download This Release</a>
+              {% elsif page.download %}
+                <a class="usa-button"
+                  href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ page.download }}" download>Download This Release</a>
+              {% else %}
+                <div></div>
+              {% endif %}
             {% elsif page.collection == "data_model_releases" %}
-            <a class="usa-button"
-              href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ page.download }}"
-              download>Download This Release</a>
+              {% if page.release_file %}
+                <a class="usa-button"
+                  href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/modules/{{ page.parent }}/releases/{{ page.version }}/{{ page.release_file }}"
+                  download>Download This Release</a>
+              {% elsif page.download %}
+                <a class="usa-button"
+                  href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ page.download }}"
+                  download>Download This Release</a>
+              {% else %}
+                <div></div>
+              {% endif %}
             {% else %}
               <div></div>
             {% endif %}

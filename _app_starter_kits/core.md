@@ -1,7 +1,7 @@
 ---
 title: Core
 description: Provides standardized data structures for managing people, places, assets, and compliance information in government-focused solutions.
-latest_release: federal/core/releases/v1.0.2.0/MS-Fed-Core_managed%20-%201.0.2.0.zip
+latest_release: v1.0.2.0
 thumbnail: /assets/app-starter-kits/core/core.png
 data_models:
  - core

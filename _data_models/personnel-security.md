@@ -2,7 +2,7 @@
 title: Personnel Security
 description: Background Investigations, Adjudications, Security Clearances, CVs, and related tables
 thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
-latest_release: modules/personnel-security/releases/v1.0.0.2/MSGov-DataModels-Personnel-Security-Managed%20-%201.0.0.2.zip
+latest_release: v1.0.0.2
 requires_data_models:
  - core
 use_cases:
