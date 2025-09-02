@@ -22,7 +22,7 @@
   align-items: center;
 }
 .usa-identifier .usa-identifier__logo img {
-  height: var(--logo-default-h);
+  height: var(--logo-identifier-h);
   width: auto;
   display: block;
 }
@@ -60,7 +60,7 @@
 
   /* Small-logo sizing for the stacked layout */
   .usa-identifier .site-logo,
-  .usa-navbar .site-logo {
+  .custom-header .site-logo {
     height: var(--logo-small-h) !important;
     width: auto !important;
     margin-right: 0.5rem !important;
@@ -82,7 +82,7 @@
     align-items: center !important;
   }
   .usa-identifier .usa-identifier__logo img {
-    height: var(--logo-default-h) !important;
+    height: var(--logo-identifier-h) !important;
     width: auto !important;
     display: block !important;
   }
@@ -127,19 +127,20 @@
 /* Utility: control site logo sizing via class rather than inline styles */
 .site-logo {
   width: auto !important;
-  height: var(--logo-default-h) !important;
+  height: var(--logo-identifier-h) !important;
 }
 
-/* Header-specific logo size (slightly smaller) */
-.usa-navbar .site-logo {
-  height: 2.5rem !important;
+/* Header-specific logo size (use header variable) */
+.custom-header .site-logo {
+  height: var(--logo-header-h) !important;
   vertical-align: middle;
   margin-right: 1rem;
 }
 
 /* Identifier area uses default logo height */
 .usa-identifier .site-logo {
-  height: var(--logo-default-h) !important;
+  width: auto !important;
+  height: var(--logo-identifier-h) !important;
 }
 
 /* Small screens: make all logos smaller to avoid layout issues */

@@ -8,7 +8,7 @@ $bp-xs: 28rem;
 .custom-header {
   /* Themeable tokens */
   --header-gap: 0.75rem;
-  --logo-height: 40px;
+  --logo-height: var(--logo-header-h, 2.5rem);
   --menu-btn-padding: 0.375rem;
   --subnav-underline-thickness: 0.1875rem;
   /* Header-specific z-index tokens (pulled from header.scss) */
