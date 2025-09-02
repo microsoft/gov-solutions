@@ -6,6 +6,7 @@ latest_release: v1.0.2.0
 requires_data_models:
  - core
 use_cases:
+ - case-management
 personas:
 ---
 

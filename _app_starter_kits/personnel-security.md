@@ -5,6 +5,7 @@ latest_release: ""
 thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
 requires:
  - core
+ - process-and-tasking
 requires_data_models:
  - personnel-security
 use_cases:
