@@ -18,3 +18,7 @@ Key features include:
 * **Ad hoc flexibility** – Create standalone or supplemental action items at any point to adapt to real-world scenarios.
 
 By combining these capabilities, the module helps standardize implementation plans, increase accountability, and provide visibility into process progress across teams. This turns apps into **actionable, process-driven tools** that support mission outcomes with efficiency and repeatability.
+
+## Sample data
+
+Sample data is available for this module here - [Process and Tasking Sample Data](https://github.com/microsoft/gov-apptemplates/tree/main/federal/process-and-tasking/sample-data){:target="_blank" rel="noopener noreferrer"}.

@@ -28,3 +28,6 @@ The Core Utility module is organized into four primary areas:
 
 Typical use cases include providing a **foundational data layer** for new Power Apps solutions, serving as a **shared enterprise utility module** across multiple applications, or acting as a **modern replacement for legacy systems**. Whether deployed standalone or as part of the broader suite of Government App Templates, the Core Utility module helps agencies establish strong, consistent, and governable data practices from day one.
 
+## Sample data
+
+Sample data is available for this module here - [Core Sample Data](https://github.com/microsoft/gov-apptemplates/tree/main/federal/core/sample-data){:target="_blank" rel="noopener noreferrer"}.
