@@ -1,6 +1,6 @@
 ---
 title: Core
-description: Government Core data model
+description: "The foundation for all other modules, including people, organizations, legal references, documents, approvals, geographic data, and more. It is designed to accelerate development and ensure consistency across government apps."
 thumbnail: /assets/app-starter-kits/core/core.png
 latest_release: v1.0.2.1
 use_cases:

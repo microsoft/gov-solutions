@@ -1,5 +1,5 @@
 ---
-title: Personnel Security
+title: Personnel Security App Walkthrough
 permalink: /app-starter-kits/personnel-security/model-driven-app
 parent: personnel-security
 description: This page explains the features and navigation of the Personnel Security model-driven app, including workflows for background investigations, adjudications, and continuous vetting.

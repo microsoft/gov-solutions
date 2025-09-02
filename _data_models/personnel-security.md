@@ -1,6 +1,6 @@
 ---
 title: Personnel Security
-description: Background Investigations, Adjudications, Security Clearances, CVs, and related tables
+description: Data model for managing clearances, investigations, access, and security events. It supports the full lifecycle of personnel security, from background checks to badge issuance and risk monitoring.
 thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
 latest_release: v1.0.0.2
 requires_data_models:
@@ -60,3 +60,12 @@ graph TD
   govcdm_PersonnelBackgroundInvestigation --> govcdm_PersonnelAdjudication
 ```
 
+## Requirements
+
+Install the latest managed version of Government Data Models - Core first.
+
+  - [Government Data Models - Core]({{ '/data-models/core/' | relative_url }})
+
+Next, install the latest managed version of Government Data Models - Process and Tasking.
+
+  - [Government Data Models - Process and Tasking]({{ '/data-models/process-and-tasking/' | relative_url }})
