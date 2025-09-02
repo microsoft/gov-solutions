@@ -33,12 +33,12 @@
   /* Logo sizes */
   --logo-small-h: 1.8rem;
   --logo-med-h: 2.2rem;
-  --logo-default-h: 2.5rem; /* 48px */
+  --logo-default-h: 3.5rem; /* 48px */
 
   /* Per-area logo sizes (tweak independently)
      --logo-header-h controls header logos
      --logo-identifier-h controls identifier / site-area logos */
-  --logo-header-h: 2.5rem;
+  --logo-header-h: var(--logo-default-h);
   --logo-identifier-h: var(--logo-med-h);
 
   /* Note: CSS custom properties are not supported inside @media feature expressions in current browsers; use rem/em when writing queries. */
