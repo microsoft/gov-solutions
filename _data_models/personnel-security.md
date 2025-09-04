@@ -9,6 +9,7 @@ related_use_cases:
  - personnel-security
 related_personas:
  - chief-information-officer
+ - investigator
 ---
 
 ## Personnel Security: Managing Clearances, Investigations, and Access in Government
