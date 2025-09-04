@@ -101,12 +101,8 @@ layout: default
               <div></div>
             {% endif %}
 
-            {% include related-starterkits.html %}
-            {% include related-data-models.html %}
-
-            {% comment %} Related use cases: resolve references to use case pages and show titles {% endcomment %}
-            {% include related-usecases.html %}
-            {% include related-personas.html %}
+            {% include related-items.html to="app_starter_kits" %}
+            {% include related-items.html to="data_models" %}
           </div>
 
         </div>

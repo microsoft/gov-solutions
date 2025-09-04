@@ -39,9 +39,9 @@ layout: default
 
           <!-- Small right column (download + personas) -->
           <div class="grid-col-12 tablet:grid-col-3">
-            {% include related-personas.html %}
-            {% include related-data-models.html %}
-            {% include related-starterkits.html %}
+            {% include related-items.html to="personas" %}
+            {% include related-items.html to="data_models" %}
+            {% include related-items.html to="app_starter_kits" %}
           </div>
 
         </div>

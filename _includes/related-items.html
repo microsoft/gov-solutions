@@ -1,0 +1,171 @@
+{% comment %}
+related-items.html
+Unified resolver using only canonical keys: related_* and required_*
+Usage: {% include related-items.html to="personas" %}
+Do not perform legacy alias fallbacks.
+{% endcomment %}
+
+{%- assign from_coll = include.from | default: page.collection -%}
+{%- assign to_coll = include.to -%}
+
+{%- if from_coll and to_coll -%}
+
+  {%- comment -%} Determine canonical page_field / target_field {%- endcomment -%}
+  {%- assign page_field = '' -%}
+  {%- assign target_field = '' -%}
+
+  {%- if from_coll == 'use_cases' -%}
+    {%- if to_coll == 'personas' -%}
+      {%- assign page_field = 'related_personas' -%}
+      {%- assign target_field = 'related_use_cases' -%}
+    {%- elsif to_coll == 'data_models' -%}
+      {%- assign page_field = 'related_data_models' -%}
+      {%- assign target_field = 'related_use_cases' -%}
+    {%- elsif to_coll == 'app_starter_kits' -%}
+      {%- assign page_field = 'related_app_starter_kits' -%}
+      {%- assign target_field = 'related_use_cases' -%}
+    {%- endif -%}
+
+  {%- elsif from_coll == 'personas' -%}
+    {%- if to_coll == 'use_cases' -%}
+      {%- assign page_field = 'related_use_cases' -%}
+      {%- assign target_field = 'related_personas' -%}
+    {%- elsif to_coll == 'data_models' -%}
+      {%- assign page_field = 'related_data_models' -%}
+      {%- assign target_field = 'related_personas' -%}
+    {%- elsif to_coll == 'app_starter_kits' -%}
+      {%- assign page_field = 'related_app_starter_kits' -%}
+      {%- assign target_field = 'related_personas' -%}
+    {%- endif -%}
+
+  {%- elsif from_coll == 'data_models' -%}
+    {%- if to_coll == 'data_models' -%}
+      {%- assign page_field = 'required_data_models' -%}
+      {%- assign target_field = 'required_data_models' -%}
+    {%- endif -%}
+
+  {%- elsif from_coll == 'app_starter_kits' -%}
+    {%- if to_coll == 'data_models' -%}
+      {%- assign page_field = 'required_data_models' -%}
+      {%- assign target_field = 'related_app_starter_kits' -%}
+     {%- elsif to_coll == 'app_starter_kits' -%}
+      {%- assign page_field = 'required_app_starter_kits' -%}
+      {%- assign target_field = 'required_app_starter_kits' -%}
+     {%- endif -%}
+   {%- endif -%}
+
+  {%- if page_field != '' -%}
+
+    {%- comment -%} Heading & icon by to_coll {%- endcomment -%}
+    {%- case to_coll -%}
+      {%- when 'personas' -%}
+        {%- assign human = 'personas' -%}
+        {%- assign icon = '👤' -%}
+      {%- when 'data_models' -%}
+        {%- assign human = 'data models' -%}
+        {%- assign icon = '🗂️' -%}
+      {%- when 'app_starter_kits' -%}
+        {%- assign human = 'app starter kits' -%}
+        {%- assign icon = '🧰' -%}
+      {%- when 'use_cases' -%}
+        {%- assign human = 'use cases' -%}
+        {%- assign icon = '💡' -%}
+      {%- else -%}
+        {%- assign human = include.heading | default: to_coll -%}
+        {%- assign icon = '🔗' -%}
+    {%- endcase -%}
+
+    {%- if page_field contains 'require' -%}
+      {%- assign heading = 'Requires ' | append: human -%}
+    {%- else -%}
+      {%- assign heading = 'Related ' | append: human -%}
+    {%- endif -%}
+
+    {%- comment -%} Build key lists (canonical only) {%- endcomment -%}
+    {%- assign page_keys = page_field -%}
+    {%- assign target_keys = target_field -%}
+
+    {%- assign added = '' -%}
+    {%- assign list_items = '' -%}
+    {%- assign found = false -%}
+
+    {%- assign page_key_array = page_keys | split: '|' -%}
+    {%- for key in page_key_array -%}
+      {%- if page[key] -%}
+        {%- for ref in page[key] -%}
+          {%- assign ref_lc = ref | downcase -%}
+          {%- for candidate in site[to_coll] -%}
+            {%- assign cand_slug = candidate.slug | default: '' | downcase -%}
+            {%- assign cand_basename = candidate.basename | default: '' | downcase -%}
+            {%- assign cand_title = candidate.title | default: '' | downcase -%}
+            {%- if cand_slug == ref_lc or cand_basename == ref_lc or cand_title == ref_lc -%}
+              {%- if candidate.url != page.url -%}
+                {%- unless added contains candidate.url -%}
+                  {%- assign added = added | append: candidate.url | append: '|' -%}
+                  {%- assign found = true -%}
+                  {%- capture item_html -%}
+<li style="display:flex; align-items:center; gap:0.5rem;">
+  <span aria-hidden="true" style="display:inline-block; width:1.25rem; text-align:center;">{{ icon }}</span>
+  <a href="{{ candidate.url | relative_url }}" class="usa-link">{{ candidate.title }}</a>
+</li>
+                  {%- endcapture -%}
+                  {%- assign list_items = list_items | append: item_html -%}
+                {%- endunless -%}
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endfor -%}
+      {%- endif -%}
+    {%- endfor -%}
+
+    {%- unless page_field contains 'require' -%}
+    {%- assign target_key_array = target_keys | split: '|' -%}
+    {%- for candidate in site[to_coll] -%}
+       {%- if candidate.url != page.url -%}
+         {%- assign matched = false -%}
+         {%- for tkey in target_key_array -%}
+           {%- if candidate[tkey] -%}
+             {%- for cref in candidate[tkey] -%}
+               {%- assign cref_lc = cref | downcase -%}
+               {%- assign page_title_lc = page.title | default: '' | downcase -%}
+               {%- assign page_slug_lc = page.slug | default: '' | downcase -%}
+               {%- assign page_base_lc = page.basename | default: '' | downcase -%}
+               {%- if cref_lc == page_title_lc or cref_lc == page_slug_lc or cref_lc == page_base_lc -%}
+                 {%- assign matched = true -%}
+                 {%- break -%}
+               {%- endif -%}
+             {%- endfor -%}
+           {%- endif -%}
+           {%- if matched -%}
+             {%- break -%}
+           {%- endif -%}
+         {%- endfor -%}
+        {%- if matched -%}
+          {%- unless added contains candidate.url -%}
+            {%- assign added = added | append: candidate.url | append: '|' -%}
+            {%- assign found = true -%}
+            {%- capture item_html -%}
+<li style="display:flex; align-items:center; gap:0.5rem;">
+  <span aria-hidden="true" style="display:inline-block; width:1.25rem; text-align:center;">{{ icon }}</span>
+  <a href="{{ candidate.url | relative_url }}" class="usa-link">{{ candidate.title }}</a>
+</li>
+           {%- endcapture -%}
+           {%- assign list_items = list_items | append: item_html -%}
+          {%- endunless -%}
+        {%- endif -%}
+       {%- endif -%}
+    {%- endfor -%}
+    {%- endunless -%}
+
+    {%- if found -%}
+      <section class="margin-top-4">
+        <h3>{{ heading }}</h3>
+        <ul class="usa-list" style="list-style: none; margin: 0; padding-left: 0;">
+          {{ list_items }}
+        </ul>
+      </section>
+    {%- endif -%}
+
+  {%- endif -%}
+
+{%- endif -%}

@@ -3,11 +3,11 @@ title: Personnel Security
 description: Data model for managing clearances, investigations, access, and security events. It supports the full lifecycle of personnel security, from background checks to badge issuance and risk monitoring.
 thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
 latest_release: v1.0.0.2
-requires_data_models:
+required_data_models:
  - core
-use_cases:
+related_use_cases:
  - personnel-security
-personas:
+related_personas:
  - chief-information-officer
 ---
 

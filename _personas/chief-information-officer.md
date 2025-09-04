@@ -3,7 +3,7 @@ title: Chief Information Officer
 description: Senior executive responsible for the strategy, governance, and delivery of information technology (IT)
 layout: persona
 thumbnail: /assets/personas/cio2.png
-use_cases:
+related_use_cases:
  - case-management
  - personnel-security
 ---

@@ -3,13 +3,11 @@ title: Process and Tasking Module
 description: Provides a reusable framework for managing repeatable business processes, tasks, and automations across your applications.
 latest_release: ""
 thumbnail: /assets/app-starter-kits/process-and-tasking/process-and-tasking.png
-requires:
- - core
-requires_data_models:
+required_app_starter_kits:
+required_data_models:
  - process-and-tasking
-use_cases:
+related_use_cases:
  - case-management
-personas:
 ---
 
 The **Process and Tasking** module provides a reusable framework for managing repeatable business processes, tasks, and automations across your applications. Built on the [Government Data Models](https://github.com/microsoft/gov-datamodels){:target="_blank" rel="noopener noreferrer"}, this module centralizes process configurations so they can be applied consistently to any record type in your system.

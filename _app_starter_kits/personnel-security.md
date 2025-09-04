@@ -3,14 +3,14 @@ title: Personnel Security
 description: Foundation entities, relationships, and data structures used across government solutions.
 latest_release: ""
 thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
-requires:
+required_app_starter_kits:
  - core
  - process-and-tasking
-requires_data_models:
+required_data_models:
  - personnel-security
-use_cases:
+related_use_cases:
  - personnel-security
-personas:
+related_personas:
  - chief-information-officer
  - hr-administrator
 ---

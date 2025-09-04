@@ -3,9 +3,9 @@ title: Core
 description: Provides standardized data structures for managing people, places, assets, and compliance information in government-focused solutions.
 latest_release: v1.0.2.0
 thumbnail: /assets/app-starter-kits/core/core.png
-data_models:
+required_data_models:
  - core
-use_cases:
+related_use_cases:
  - case-management
 ---
 

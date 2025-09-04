@@ -129,11 +129,7 @@ layout: default
               <div></div>
             {% endif %}
 
-            {% include related-data-models.html %}
-            {% comment %} Related use cases: page.use_cases contains basenames; map to site.use_cases by slug or basename to display titles. {% endcomment %}
-            {% include related-usecases.html %}
-            {% include related-personas.html %}
-            {% include related-starterkits.html %}
+            {% include related-items.html to="data_models" %}
           </div>
 
         </div>
