@@ -42,6 +42,12 @@ Do not perform legacy alias fallbacks.
     {%- if to_coll == 'data_models' -%}
       {%- assign page_field = 'required_data_models' -%}
       {%- assign target_field = 'required_data_models' -%}
+    {%- elsif to_coll == 'use_cases' -%}
+      {%- assign page_field = 'related_use_cases' -%}
+      {%- assign target_field = 'related_data_models' -%}
+    {%- elsif to_coll == 'personas' -%}
+      {%- assign page_field = 'related_personas' -%}
+      {%- assign target_field = 'related_data_models' -%}
     {%- endif -%}
 
   {%- elsif from_coll == 'app_starter_kits' -%}
@@ -51,6 +57,12 @@ Do not perform legacy alias fallbacks.
      {%- elsif to_coll == 'app_starter_kits' -%}
       {%- assign page_field = 'required_app_starter_kits' -%}
       {%- assign target_field = 'required_app_starter_kits' -%}
+     {%- elsif to_coll == 'use_cases' -%}
+      {%- assign page_field = 'related_use_cases' -%}
+      {%- assign target_field = 'related_app_starter_kits' -%}
+     {%- elsif to_coll == 'personas' -%}
+      {%- assign page_field = 'related_personas' -%}
+      {%- assign target_field = 'related_app_starter_kits' -%}
      {%- endif -%}
    {%- endif -%}
 
