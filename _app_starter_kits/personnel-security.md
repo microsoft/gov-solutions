@@ -1,6 +1,6 @@
 ---
 title: Personnel Security
-description: Foundation entities, relationships, and data structures used across government solutions.
+description: "Modernize background investigations, adjudication, and clearance management with automated workflows and AI-assisted tools."
 latest_release: ""
 thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
 required_app_starter_kits:
