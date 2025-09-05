@@ -4,6 +4,7 @@ description: "Defines the data model for tracking, categorizing, and managing ph
 thumbnail: /assets/app-starter-kits/asset-management/thumbnail.png
 latest_release: v1.0.0.2
 related_use_cases:
+  - asset-management
 related_personas:
 ---
 

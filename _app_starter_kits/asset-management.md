@@ -6,7 +6,7 @@ thumbnail: /assets/app-starter-kits/asset-management/thumbnail.png
 required_data_models:
   - asset-management
 related_use_cases:
-  - 
+  - asset-management
 published: false
 ---
 
