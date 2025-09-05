@@ -91,7 +91,45 @@ layout: default
 
           <!-- Small right column (download + personas) -->
           <div class="grid-col-12 tablet:grid-col-3">
-              <button class="usa-button">Download Latest Release</button>
+              {% comment %} derive parent slug from front matter or URL to be robust {% endcomment %}
+              {% assign parts = page.url | split: '/' %}
+              {% assign collection_segment = parts[1] %}
+              {% assign parent_slug = page.parent %}
+              {% if parent_slug == nil or parent_slug == '' %}
+                {% assign parent_slug = parts[2] %}
+              {% endif %}
+
+              {% assign lookup_collection = "app_starter_kits" %}
+              {% if collection_segment == "data-models" %}
+                {% assign lookup_collection = "data_models" %}
+              {% endif %}
+
+              {% assign parent_item_local = site[lookup_collection] | where: "slug", parent_slug | first %}
+
+              {% if parent_item_local and parent_item_local.latest_release %}
+                {% assign lr = parent_item_local.latest_release %}
+                {% if lookup_collection == "data_models" %}
+                  {% assign rel = site.data_model_releases | where: "parent", parent_slug | where: "version", lr | first %}
+                  {% if rel and rel.release_file %}
+                    <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/modules/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% elsif rel and rel.download %}
+                    <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% else %}
+                    <div></div>
+                  {% endif %}
+                {% else %}
+                  {% assign rel = site.app_releases | where: "parent", parent_slug | where: "version", lr | first %}
+                  {% if rel and rel.release_file %}
+                    <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% elsif rel and rel.download %}
+                    <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% else %}
+                    <div></div>
+                  {% endif %}
+                {% endif %}
+              {% else %}
+                <div></div>
+              {% endif %}
 
             <!-- <aside class="usa-in-page-nav" data-title-text="On this page" data-title-heading-level="h2" data-target="#doc-main-column"
               data-scroll-offset="0" data-root-margin="0px 0px 0px 0px" data-threshold="1"></aside> -->
