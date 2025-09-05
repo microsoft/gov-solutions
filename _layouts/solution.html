@@ -12,6 +12,11 @@ layout: default
       <aside class="grid-col-12 tablet:grid-col-3">
         <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} app_starter_kit image" class="page-thumbnail">
         <br />
+        {% if page.description %}
+          <div class="usa-prose margin-bottom-2">
+            {{ page.description }}
+          </div>
+        {% endif %}
         <nav class="sidenav-sticky" aria-label="Section navigation">
           {% include sidenav.html %}
         </nav>

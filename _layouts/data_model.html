@@ -12,6 +12,12 @@ layout: default
       <aside class="grid-col-12 tablet:grid-col-3">
         <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} data_model image" class="page-thumbnail">
 
+        {% if page.description %}
+          <div class="usa-prose margin-bottom-2">
+            {{ page.description }}
+          </div>
+        {% endif %}
+        
         {% assign erd_asset_path = 'assets/data_models/' | append: page.slug | append: '/erd.md' %}
         {% assign erd_pages = site.pages | where: "path", erd_asset_path %}
         {% if erd_pages and erd_pages.size > 0 %}

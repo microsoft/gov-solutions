@@ -11,6 +11,11 @@ layout: default
 
       <aside class="grid-col-12 tablet:grid-col-3">
         <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} persona image" class="page-thumbnail">
+        {% if page.description %}
+          <div class="usa-prose margin-bottom-2">
+            {{ page.description }}
+          </div>
+        {% endif %}
       </aside>
 
       <!-- Main content (right side) -->
