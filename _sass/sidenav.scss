@@ -1,0 +1,6 @@
+/* Hide sidenav on small screens */
+@media (max-width: 600px) {
+  .usa-sidenav {
+    display: none !important;
+  }
+}

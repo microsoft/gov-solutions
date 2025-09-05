@@ -1,6 +1,6 @@
 ---
 title: "Asset Management"
-description: "Placeholder for Asset Management module."
+description: "Track, categorize, and manage government assets with a modern, reusable solution for accountability and lifecycle management."
 latest_release: v1.0.0.1
 thumbnail: /assets/app-starter-kits/asset-management/thumbnail.png
 required_app_starter_kits:
