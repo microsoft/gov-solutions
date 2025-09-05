@@ -1,7 +1,7 @@
 ---
 title: "Asset Management"
 description: "Placeholder for Asset Management module."
-latest_release: v1.0.0.0
+latest_release: v1.0.0.1
 thumbnail: /assets/app-starter-kits/asset-management/thumbnail.png
 required_app_starter_kits:
  - core
