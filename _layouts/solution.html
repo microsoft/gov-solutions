@@ -62,40 +62,17 @@ layout: default
 
           <!-- Small right column (download + personas) -->
           <div class="grid-col-12 tablet:grid-col-3">
-            {% comment %} latest_release can be a legacy full path OR a version string like "v1.0.0.0". Prefer version lookup, fallback to legacy path, then auto-detect latest release. {% endcomment %}
             {% if page.latest_release %}
               {% assign lr = page.latest_release %}
-              {% if lr contains "/" or lr contains "http" or lr contains ".zip" %}
-                <!-- legacy full-path kept for compatibility -->
-                <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ lr }}" download>Download Latest Release</a>
+              {% assign rel = site.app_releases | where: "parent", page.slug | where: "version", lr | first %}
+              {% if rel and rel.release_file %}
+                <a class="usa-button"
+                  href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}"
+                  download>Download Latest Release ({{ rel.version }})</a>
+              {% elsif rel and rel.download %}
+                <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
               {% else %}
-                <!-- treat lr as a version string; look up release by parent + version -->
-                {% assign rel = site.app_releases | where: "parent", page.slug | where: "version", lr | first %}
-                {% if rel and rel.release_file %}
-                  <a class="usa-button"
-                    href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}"
-                    download>Download Latest Release</a>
-                {% elsif rel and rel.download %}
-                  <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ rel.download }}" download>Download Latest Release</a>
-                {% else %}
-                  {% comment %} fallback: find the latest release by sorting (lexicographic) {% endcomment %}
-                  {% assign rels = site.app_releases | where: "parent", page.slug %}
-                  {% if rels and rels.size > 0 %}
-                    {% assign sorted = rels | sort: "version" %}
-                    {% assign latest_rel = sorted | last %}
-                    {% if latest_rel.release_file %}
-                      <a class="usa-button"
-                        href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ latest_rel.parent }}/releases/{{ latest_rel.version }}/{{ latest_rel.release_file }}"
-                        download>Download Latest Release</a>
-                    {% elsif latest_rel.download %}
-                      <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ latest_rel.download }}" download>Download Latest Release</a>
-                    {% else %}
-                      <div></div>
-                    {% endif %}
-                  {% else %}
-                    <div></div>
-                  {% endif %}
-                {% endif %}
+                <div></div>
               {% endif %}
             {% else %}
               <div></div>
