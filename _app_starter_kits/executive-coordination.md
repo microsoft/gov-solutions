@@ -6,7 +6,7 @@ thumbnail: /assets/app-starter-kits/executive-coordination/thumbnail.png
 required_data_models:
   - executive-coordination
 related_use_cases:
-  - 
+published: false
 ---
 
 # Executive Coordination

@@ -6,6 +6,7 @@ latest_release: v1.0.2.0
 required_data_models:
   - core
 related_use_cases:
+ - executive-coordination
 related_personas:
 ---
 
