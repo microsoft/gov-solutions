@@ -2,7 +2,7 @@
 title: Personnel Security
 description: "Modernize background investigations, adjudication, and clearance management with automated workflows and AI-assisted tools."
 latest_release: v1.0.0.0
-thumbnail: /assets/app-starter-kits/personnel-security/personnel-security.png
+thumbnail: /assets/use_cases/personnel-security.png
 required_app_starter_kits:
  - core
  - process-and-tasking

@@ -1,7 +1,7 @@
 ---
 title: Process and Tasking
 description: "Data model for process templates, steps, action items, collaboration, and approvals, enabling agencies to automate and monitor complex processes across programs."
-thumbnail: /assets/app-starter-kits/process-and-tasking/process-and-tasking.png
+thumbnail: /assets/use_cases/process-and-tasking.png
 latest_release: v1.0.2.0
 required_data_models:
  - core

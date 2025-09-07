@@ -1,7 +1,7 @@
 ---
 title: "Executive Coordination"
 description: "Enables agencies to manage, track, and evaluate high-level directives, taskers, and executive actions across programs, linking responsibilities, legal context, risks, and outcomes for improved coordination and accountability."
-thumbnail: /assets/app-starter-kits/executive-coordination/thumbnail.png
+thumbnail: /assets/use_cases/executive-coordination.png
 latest_release: v1.0.2.0
 required_data_models:
   - core

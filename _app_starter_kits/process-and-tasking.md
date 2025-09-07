@@ -2,7 +2,7 @@
 title: Process and Tasking Module
 description: "Provides a reusable framework for managing repeatable business processes, tasks, and automations across your applications."
 latest_release: v1.0.2.0
-thumbnail: /assets/app-starter-kits/process-and-tasking/process-and-tasking.png
+thumbnail: /assets/use_cases/process-and-tasking.png
 required_app_starter_kits:
 required_data_models:
  - process-and-tasking

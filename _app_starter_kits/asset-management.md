@@ -2,7 +2,7 @@
 title: "Asset Management"
 description: "Track, categorize, and manage government assets with a modern, reusable solution for accountability and lifecycle management."
 latest_release: v1.0.0.1
-thumbnail: /assets/app-starter-kits/asset-management/thumbnail.png
+thumbnail: /assets/use_cases/asset-management.png
 required_app_starter_kits:
  - core
 required_data_models:

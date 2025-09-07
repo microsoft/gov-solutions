@@ -1,7 +1,7 @@
 ---
 title: "Asset Management"
 description: "Defines the data model for tracking, categorizing, and managing physical and accountable assets across agencies, including asset ownership, location, and service history."
-thumbnail: /assets/app-starter-kits/asset-management/thumbnail.png
+thumbnail: /assets/use_cases/asset-management.png
 latest_release: v1.0.0.2
 required_data_models:
  - core

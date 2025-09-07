@@ -2,7 +2,7 @@
 title: "Executive Coordination"
 description: "Placeholder for Executive Coordination module."
 latest_release: v1.0.0.0
-thumbnail: /assets/app-starter-kits/executive-coordination/thumbnail.png
+thumbnail: /assets/use_cases/executive-coordination.png
 required_data_models:
   - executive-coordination
 related_use_cases:

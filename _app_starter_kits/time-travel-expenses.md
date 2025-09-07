@@ -2,7 +2,7 @@
 title: Time, Travel, and Expenses
 description: "Model-driven app starter kit with Availability form and baseline app for time, travel, and expense tracking."
 latest_release: v1.0.0.0
-thumbnail: /assets/app-starter-kits/time-travel-expenses/thumbnail.png
+thumbnail: /assets/use_cases/time-travel-expenses.png
 required_app_starter_kits:
  - core
 required_data_models:
