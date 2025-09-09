@@ -15,10 +15,7 @@ layout: default
         {% if page.parent %}
         
           {% comment %} choose collection that contains the parent solution {% endcomment %}
-          {% assign parent_collection = "app_starter_kits" %}
-          {% if page.collection == "data_model_releases" or page.collection == "data_models" %}
-            {% assign parent_collection = "data_models" %}
-          {% endif %}
+          {% assign parent_collection = "data_models" %}
 
           {% assign parent_item = site[parent_collection] | where: "slug", page.parent | first %}
           {% if parent_item == nil %}
