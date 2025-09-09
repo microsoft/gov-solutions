@@ -1,6 +1,6 @@
 ---
 title: "Investigations"
-description: "Placeholder for Investigations data model."
+description: "Data model for managing investigative casework, linking people, evidence, and violations to support flexible investigative case management."
 thumbnail: /assets/use_cases/investigations.png
 latest_release: v1.0.0.0
 required_data_models:

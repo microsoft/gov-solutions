@@ -18,16 +18,12 @@ layout: default
           </div>
         {% endif %}
         
-        {% assign erd_asset_path = 'assets/data_models/' | append: page.slug | append: '/erd.md' %}
-        {% assign erd_pages = site.pages | where: "path", erd_asset_path %}
-        {% if erd_pages and erd_pages.size > 0 %}
-          {% assign erd_page = erd_pages | first %}
+        {% if page.content contains '<h2 id="entity-relationship-diagram"' or page.content contains '<div class="mermaid"' %}
           <p class="margin-top-2">
             <button
               type="button"
               class="usa-button usa-button--primary open-erd-modal"
               style="width: 100%"
-              data-erd-url="{{ erd_page.url | relative_url }}"
               data-erd-slug="{{ page.slug }}">
               View ERD
             </button>
@@ -78,8 +74,6 @@ layout: default
                 {{ erd_page.content | markdownify }}
               {% elsif page.erd_image %}
                 <img src="{{ page.erd_image | relative_url }}" alt="ERD for {{ page.title }}" class="usa-image">
-              {% else %}
-                <p>No ERD available.</p>
               {% endif %}
             </section>
 
