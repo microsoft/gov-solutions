@@ -50,6 +50,10 @@ collections:
     permalink: /data-models/:title/
     displayname: "Data Models"
     # top-level collection: no parent_collection
+  tables:
+    output: true
+    permalink: /tables/:title/
+    displayname: "Tables"
 
 defaults:
   - scope:
@@ -90,3 +94,8 @@ defaults:
     values:
       layout: doc
       parent_collection: app_starter_kits
+  - scope:
+      type: tables
+    values:
+      layout: table
+      parent_collection: data_models

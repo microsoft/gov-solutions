@@ -68,6 +68,9 @@ layout: default
             <!-- ERD panel -->
             <section id="panel-{{ page.slug }}-erd" class="mgat-subnav__panel usa-prose" role="tabpanel"
               data-panel="{{ page.slug }}">
+              
+              {% include tables.html %}
+
               {% assign erd_asset_path = 'assets/data_models/' | append: page.slug | append: '/erd.md' %}
               {% assign erd_pages = site.pages | where: "path", erd_asset_path %}
               {% if erd_pages and erd_pages.size > 0 %}

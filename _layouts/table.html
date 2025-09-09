@@ -1,0 +1,143 @@
+---
+layout: default
+---
+
+<section class="usa-section">
+  <div class="grid-container-full">
+
+    <div class="grid-row grid-gap">
+
+      <!-- Sidebar navigation -->
+      <aside class="grid-col-12 tablet:grid-col-3">
+
+        {% comment %} Find the parent (docs have `parent: <slug>`) {% endcomment %}
+        {% assign parent_item = nil %}
+        {% if page.parent %}
+        
+          {% comment %} choose collection that contains the parent solution {% endcomment %}
+          {% assign parent_collection = "app_starter_kits" %}
+          {% if page.collection == "data_model_releases" or page.collection == "data_models" %}
+            {% assign parent_collection = "data_models" %}
+          {% endif %}
+
+          {% assign parent_item = site[parent_collection] | where: "slug", page.parent | first %}
+          {% if parent_item == nil %}
+            {% if parent_collection == "app_starter_kits" %}
+              {% capture base_path %}app-starter-kits{% endcapture %}
+            {% else %}
+              {% capture base_path %}data-models{% endcapture %}
+            {% endif %}
+
+            {% capture sol_url %}/{{ base_path }}/{{ page.parent }}/{% endcapture %}
+            {% assign parent_item = site[parent_collection] | where: "url", sol_url | first %}
+          {% endif %}
+        {% endif %}
+
+        {% if parent_item %}
+          {% include card.html
+            type="solution"
+            title=parent_item.title
+            url=parent_item.url
+            description=parent_item.description
+            shrink=true
+            thumbnail=parent_item.thumbnail 
+          %}
+        {% endif %}
+
+        {% comment %} Other docs for this solution (unstyled list) {% endcomment %}
+        {% capture sibling_items %}
+          {% assign items_sorted = site.tables | sort: 'title' %}
+          {% for doc in items_sorted %}
+            <!-- {% if doc.parent == page.parent and doc.url != page.url %} -->
+            <li style="margin:0.35rem 0;">
+            <a class="usa-link" href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
+            </li>
+            <!-- {% endif %} -->
+          {% endfor %}
+        {% endcapture %}
+
+        {% if sibling_items contains '<li' %} 
+          <nav aria-label="Other tables for {{ parent_item.title | default: page.parent }}">
+          <h3 class="margin-top-2">Other tables</h3>
+          <ul style="list-style:none;padding:0;margin:0;">
+          {{ sibling_items }}
+          </ul>
+          </nav>
+        {% endif %}
+      </aside>
+
+      <!-- Main content (right side) -->
+      <main class="grid-col-12 tablet:grid-col-9 usa-prose main-content">
+
+        <!-- Header row: breadcrumbs + page title -->
+        <div class="grid-row grid-gap">
+          <div class="grid-col-12 usa-prose">
+            {% include breadcrumbs.html %}
+          </div>
+        </div>
+
+        <!-- Content row: main column + small right column -->
+        <div class="grid-row grid-gap">
+
+          <!-- Main column -->
+          <div class="grid-col-12 tablet:grid-col-9 usa-prose">
+
+            <h1 class="mgat-solution-heading">{{ page.title }}</h1>
+            <hr />
+
+            {{ content }}
+            
+          </div>
+
+          <!-- Small right column (download + personas) -->
+          <div class="grid-col-12 tablet:grid-col-3">
+              {% comment %} derive parent slug from front matter or URL to be robust {% endcomment %}
+              {% assign parts = page.url | split: '/' %}
+              {% assign collection_segment = parts[1] %}
+              {% assign parent_slug = page.parent %}
+              {% if parent_slug == nil or parent_slug == '' %}
+                {% assign parent_slug = parts[2] %}
+              {% endif %}
+
+              {% assign lookup_collection = "app_starter_kits" %}
+              {% if collection_segment == "data-models" %}
+                {% assign lookup_collection = "data_models" %}
+              {% endif %}
+
+              {% assign parent_item_local = site[lookup_collection] | where: "slug", parent_slug | first %}
+
+              {% if parent_item_local and parent_item_local.latest_release %}
+                {% assign lr = parent_item_local.latest_release %}
+                {% if lookup_collection == "data_models" %}
+                  {% assign rel = site.data_model_releases | where: "parent", parent_slug | where: "version", lr | first %}
+                  {% if rel and rel.release_file %}
+                    <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/modules/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% elsif rel and rel.download %}
+                    <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% else %}
+                    <div></div>
+                  {% endif %}
+                {% else %}
+                  {% assign rel = site.app_releases | where: "parent", parent_slug | where: "version", lr | first %}
+                  {% if rel and rel.release_file %}
+                    <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% elsif rel and rel.download %}
+                    <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% else %}
+                    <div></div>
+                  {% endif %}
+                {% endif %}
+              {% else %}
+                <div></div>
+              {% endif %}
+
+            <!-- <aside class="usa-in-page-nav" data-title-text="On this page" data-title-heading-level="h2" data-target="#doc-main-column"
+              data-scroll-offset="0" data-root-margin="0px 0px 0px 0px" data-threshold="1"></aside> -->
+
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+</section>

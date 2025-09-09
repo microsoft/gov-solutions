@@ -1,0 +1,24 @@
+{% capture result %}
+{% assign items_sorted = site.tables | sort: 'title' %}
+{% for item in items_sorted %}
+  {% if item.parent == page.slug %}
+    <div class="grid-row grid-gap margin-bottom-2">
+      <div class="grid-col-12">
+        {% include card.html
+          title=item.title
+          url=item.url
+          description=item.description
+          align="left"
+          type="table"
+        %}
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
+{% endcapture %}
+
+{% if result contains 'usa-card' %}
+  {{ result }}
+{% else %}
+  <p>No tables defined yet.</p>
+{% endif %}
