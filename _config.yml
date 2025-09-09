@@ -52,7 +52,7 @@ collections:
     # top-level collection: no parent_collection
   tables:
     output: true
-    permalink: /tables/:title/
+    permalink: /tables/:path/
     displayname: "Tables"
 
 defaults:
