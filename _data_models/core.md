@@ -25,7 +25,7 @@ By providing this reusable set of well-designed tables and relationships, the Go
 
 ## Entity Relationship Diagram
 
-```mermaid
+<div class="mermaid">
 graph TD
   Account(Account)
   Contact(Person)
@@ -112,5 +112,5 @@ graph TD
   govcdm_Location --> govcdm_stateorprovince
   govcdm_Agreement --> TransactionCurrency
   govcdm_Product --> TransactionCurrency
-```
+</div>
 

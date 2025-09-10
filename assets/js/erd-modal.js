@@ -49,84 +49,76 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function renderInsertedMermaid(container) {
     if (!container) return;
-    if (window.renderMermaidIn) {
-      try { window.renderMermaidIn(container); } catch (e) {}
-    } else if (window.mermaid && window.mermaid.init) {
-      try { window.mermaid.init(undefined, container.querySelectorAll('.mermaid')); } catch (e) {}
+    // Render Mermaid diagrams
+    try {
+      if (window.renderMermaidIn) {
+        try { window.renderMermaidIn(container); } catch (e) { console.error('renderMermaidIn error', e); }
+      } else if (window.mermaid && window.mermaid.init) {
+        try { window.mermaid.init(undefined, container.querySelectorAll('.mermaid')); } catch (e) { console.error('mermaid.init error', e); }
+      }
+    } catch (err) {
+      console.error('Error in renderInsertedMermaid:', err);
     }
-    // small delay then apply stretch adjustments
-    setTimeout(function () { applyStretchToInserted(container); }, 90);
+    // After rendering, apply pan/zoom to all SVGs
+    setTimeout(function () {
+      container.querySelectorAll('.mermaid svg').forEach(function(svg) {
+        // Remove width/height for responsive scaling
+        svg.removeAttribute('width');
+        svg.removeAttribute('height');
+        svg.setAttribute('preserveAspectRatio', 'xMidYMid meet');
+        svg.style.width = '100%';
+        svg.style.height = 'auto';
+        svg.style.display = 'block';
+        // Pan/zoom controls
+        if (!svg._panZoomAttached) {
+          svg._panZoomAttached = true;
+          if (typeof window.svgPanZoom === 'function') {
+            window.svgPanZoom(svg, { zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true });
+          } else {
+            var script = document.createElement('script');
+            script.src = 'https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js';
+            script.onload = function () {
+              if (typeof window.svgPanZoom === 'function') {
+                window.svgPanZoom(svg, { zoomEnabled: true, controlIconsEnabled: true, fit: true, center: true });
+              }
+            };
+            document.head.appendChild(script);
+          }
+        }
+      });
+    }, 120);
   }
 
   function injectFromLocal(modal, slug) {
-    var inner = modal.querySelector('.erd-modal__inner');
-    if (!inner) return false;
+  var inner = modal.querySelector('.erd-modal__inner');
+  if (!inner) return false;
+  try {
 
-    var selectors = [
-      '#panel-' + slug + '-erd .mermaid',
-      '#panel-' + slug + '-overview .mermaid',
-      '.mgat-subnav__panel .mermaid',
-      'main .mermaid',
-      '.usa-prose .mermaid',
-      'pre > code.language-mermaid',
-      'code.language-mermaid'
-    ];
-
-    for (var i = 0; i < selectors.length; i++) {
-      var nodes = document.querySelectorAll(selectors[i]);
-      if (nodes && nodes.length) {
-        var frag = document.createElement('div');
-        nodes.forEach(function (node) {
-          try {
-            var tag = (node.tagName || '').toLowerCase();
-            // code block -> create mermaid div with raw text
-            if (tag === 'code') {
-              var d = document.createElement('div');
-              d.className = 'mermaid';
-              d.textContent = node.textContent;
-              frag.appendChild(d);
-              return;
-            }
-
-            // already a mermaid container
-            if (node.classList && node.classList.contains('mermaid')) {
-              // if contains an svg (already rendered), clone it as-is
-              if (node.querySelector && node.querySelector('svg')) {
-                frag.appendChild(node.cloneNode(true));
-              } else {
-                // plain mermaid text container
-                var d2 = document.createElement('div');
-                d2.className = 'mermaid';
-                d2.textContent = node.textContent;
-                frag.appendChild(d2);
-              }
-              return;
-            }
-
-            // otherwise clone the node
-            frag.appendChild(node.cloneNode(true));
-          } catch (e) { /* ignore per-node errors */ }
-        });
-
-        // insert and render
-        inner.innerHTML = '';
-        inner.appendChild(frag);
-        // ensure relative URLs resolve against current page location
-        resolveRelativeUrls(frag, window.location.href);
-
-        // if fragment has mermaid text blocks, render; otherwise stretch existing svgs
-        if (frag.querySelector('.mermaid') && !frag.querySelector('.mermaid svg')) {
-          renderInsertedMermaid(inner);
-        } else {
-          // already-rendered SVGs
-          applyStretchToInserted(inner);
-        }
-
-        return true;
-      }
+    // Use the hidden textarea with the original Mermaid code for modal rendering
+    // Always use the first .mermaid div's data-raw attribute for the modal, fallback to innerText
+    var mainMermaid = document.querySelector('.mermaid');
+    if (mainMermaid) {
+      var code = mainMermaid.getAttribute('data-raw') || mainMermaid.innerText || mainMermaid.textContent || '';
+      // Replace \n and \r with real newlines for Mermaid compatibility
+      code = code.replace(/\\n|\\r|\n|\r/g, '\n');
+      code = code.replace(/\n/g, '\n'); // ensure all are real newlines
+      code = code.replace(/\\/g, ''); // remove any remaining double escapes
+      console.log('Mermaid code for modal:', code);
+      var frag = document.createElement('div');
+      var d = document.createElement('div');
+      d.className = 'mermaid';
+      d.textContent = code;
+      frag.appendChild(d);
+      inner.innerHTML = '';
+      inner.appendChild(frag);
+      renderInsertedMermaid(inner);
+      return true;
     }
-
     return false;
+    } catch (err) {
+      console.error('Error in injectFromLocal:', err);
+      return false;
+    }
   }
 
   function openModal(modal, url, trigger) {

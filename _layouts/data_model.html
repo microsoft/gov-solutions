@@ -67,14 +67,13 @@ layout: default
               
               {% include tables.html %}
 
-              {% assign erd_asset_path = 'assets/data_models/' | append: page.slug | append: '/erd.md' %}
-              {% assign erd_pages = site.pages | where: "path", erd_asset_path %}
-              {% if erd_pages and erd_pages.size > 0 %}
-                {% assign erd_page = erd_pages | first %}
-                {{ erd_page.content | markdownify }}
+              <!-- {% comment %} Output hidden Mermaid code block for modal use, and visible diagram for page {%- endcomment -%}
+              {% if page.mermaid_code %}
+                <textarea id="erd-mermaid-{{ page.slug }}" style="display:none;">{{ page.mermaid_code | strip }}</textarea>
+                <div class="mermaid">{{ page.mermaid_code }}</div>
               {% elsif page.erd_image %}
                 <img src="{{ page.erd_image | relative_url }}" alt="ERD for {{ page.title }}" class="usa-image">
-              {% endif %}
+              {% endif %} -->
             </section>
 
             <!-- RELEASES panel -->
