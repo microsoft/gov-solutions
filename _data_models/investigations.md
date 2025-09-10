@@ -24,9 +24,6 @@ In practice, the module supports a wide variety of investigative workflows. A co
 
 By structuring cases, people, evidence, and violations into a consistent model, the Investigations module ensures that sensitive casework is managed transparently, securely, and in a way that supports both operational needs and oversight. It reduces duplication, enforces accountability, and gives agencies a scalable foundation for investigative case management.
 
-## Entity Relationship Diagram
----
-
 ```mermaid
 graph TD
   Contact(Person)

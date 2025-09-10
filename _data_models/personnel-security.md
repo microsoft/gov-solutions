@@ -30,8 +30,6 @@ In practice, this module brings together all of these elements into a unified vi
 
 By consolidating personnel security data into a single, extensible model, agencies can improve situational awareness, ensure compliance with federal security directives, and streamline the administrative burden of managing clearances and access. The Personnel Security module is not just a repository of records—it is an operational tool for protecting people, facilities, and the mission.
 
-## Entity Relationship Diagram
-
 ```mermaid
 graph TD
   Contact(Person)

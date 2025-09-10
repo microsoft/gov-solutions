@@ -24,8 +24,6 @@ In practice, this module is designed to work alongside other domain-specific sol
 
 By separating the blueprint of a process from its execution, and by giving agencies a flexible, reusable data structure for tracking work, the Process and Tasking module makes process automation not just possible but practical. It is a natural complement to other government data models, delivering the glue that connects domain-specific data to the actions and people that move work forward.
 
-## Entity Relationship Diagram
-
 ```mermaid
 graph TD
   Contact(Person)

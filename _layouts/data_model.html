@@ -18,7 +18,12 @@ layout: default
           </div>
         {% endif %}
         
-        {% if page.content contains '<h2 id="entity-relationship-diagram"' or page.content contains '<div class="mermaid"' %}
+        {%- comment -%}
+          Show the View ERD button if a mermaid code block is present in the content (from a fenced code block),
+          not just if a specific section header or div is present.
+        {%- endcomment -%}
+        {% assign mermaid_block = page.content | split:'<pre><code class="language-mermaid">' | last | split:'</code></pre>' | first %}
+        {% if mermaid_block != page.content %}
           <p class="margin-top-2">
             <button
               type="button"
@@ -67,13 +72,15 @@ layout: default
               
               {% include tables.html %}
 
-              <!-- {% comment %} Output hidden Mermaid code block for modal use, and visible diagram for page {%- endcomment -%}
-              {% if page.mermaid_code %}
-                <textarea id="erd-mermaid-{{ page.slug }}" style="display:none;">{{ page.mermaid_code | strip }}</textarea>
-                <div class="mermaid">{{ page.mermaid_code }}</div>
-              {% elsif page.erd_image %}
-                <img src="{{ page.erd_image | relative_url }}" alt="ERD for {{ page.title }}" class="usa-image">
-              {% endif %} -->
+              {%- comment -%}
+                Extract the first Mermaid code block from the page content (from a fenced code block),
+                and use it for both the modal and the diagram. This allows authors to use regular
+                ```mermaid fenced code blocks in markdown, with no front matter or data-raw needed.
+              {%- endcomment -%}
+              {% assign mermaid_block = content | split:'<pre><code class="language-mermaid">' | last | split:'</code></pre>' | first %}
+              {% if mermaid_block != content %}
+                <textarea id="erd-mermaid-{{ page.slug }}" style="display:none;">{{ mermaid_block | strip }}</textarea>
+              {% endif %}
             </section>
 
             <!-- RELEASES panel -->

@@ -23,9 +23,7 @@ The benefit of this approach becomes clear when you consider real-world applicat
 
 By providing this reusable set of well-designed tables and relationships, the Government Data Models – Core module does more than accelerate development. It creates a foundation that agencies can trust, knowing that the data is structured for compliance, interoperability, and future reuse. In short, it’s the common language for the many solutions that together make up a modern government’s digital ecosystem.
 
-## Entity Relationship Diagram
-
-<div class="mermaid">
+```mermaid
 graph TD
   Account(Account)
   Contact(Person)
@@ -112,5 +110,5 @@ graph TD
   govcdm_Location --> govcdm_stateorprovince
   govcdm_Agreement --> TransactionCurrency
   govcdm_Product --> TransactionCurrency
-</div>
+```
 

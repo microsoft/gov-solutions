@@ -27,9 +27,6 @@ The strength of this module is its ability to support multiple overlapping use c
 By unifying time, travel, and expenses into a single, extensible structure, this module gives agencies a flexible toolset to improve accountability, resource planning, and financial stewardship. It reduces duplication, enforces consistency, and creates a foundation that other mission-specific modules can build upon. In short, it helps connect the everyday activities of people to the broader programs and objectives they serve.
 
 
-# Entity Relationship Diagram
----
-
 ```mermaid
 graph TD
   Contact(Person)

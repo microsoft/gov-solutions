@@ -22,9 +22,6 @@ The value of this model becomes clear in practice. A leadership tasker directing
 
 By weaving together directives, responsibilities, legal context, risks, and outcomes, the Executive Coordination module provides agencies with a consistent way to plan, track, and evaluate the most important actions they take. It supports accountability by showing who is responsible for what, improves transparency by linking actions to their legal and analytical foundation, and strengthens coordination across units and partners. In short, it turns executive direction into structured data that can be acted on, monitored, and learned from.
 
-## Entity Relationship Diagram
----
-
 ```mermaid
 graph TD
   Account(Account)

@@ -24,9 +24,6 @@ In practice, this model can support a wide range of use cases. A facilities prog
 
 By combining accountability, categorization, location tracking, and service history, the Asset Management module gives agencies a complete picture of their resources. It reduces duplication of effort across programs, supports better stewardship of government property, and ensures that mission-critical assets are properly maintained and assigned. As with other reusable data models, it is designed to plug into larger solutions, helping agencies manage resources in context with the people, programs, and processes they support.
 
-## Entity Relationship Diagram
----
-
 ```mermaid
 graph TD
   Account(Account)

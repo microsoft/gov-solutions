@@ -22,30 +22,30 @@ document.addEventListener('DOMContentLoaded', function () {
     } catch (e) {}
   }
 
-  function applyStretchToInserted(container) {
-    try {
-      container.querySelectorAll('svg').forEach(function (svg) {
-        try {
-          svg.removeAttribute('width');
-          svg.removeAttribute('height');
-          svg.setAttribute('preserveAspectRatio', 'none');
-          svg.style.width = '100%';
-          svg.style.height = '100%';
-          svg.style.display = 'block';
-          svg.querySelectorAll('image').forEach(function (img) {
-            try {
-              img.setAttribute('width', '100%');
-              img.setAttribute('height', '100%');
-              img.setAttribute('preserveAspectRatio', 'none');
-              img.style.width = '100%';
-              img.style.height = '100%';
-              img.style.display = 'block';
-            } catch (e) {}
-          });
-        } catch (e) {}
-      });
-    } catch (e) {}
-  }
+  // function applyStretchToInserted(container) {
+  //   try {
+  //     container.querySelectorAll('svg').forEach(function (svg) {
+  //       try {
+  //         svg.removeAttribute('width');
+  //         svg.removeAttribute('height');
+  //         svg.setAttribute('preserveAspectRatio', 'none');
+  //         svg.style.width = '100%';
+  //         svg.style.height = '100%';
+  //         svg.style.display = 'block';
+  //         svg.querySelectorAll('image').forEach(function (img) {
+  //           try {
+  //             img.setAttribute('width', '100%');
+  //             img.setAttribute('height', '100%');
+  //             img.setAttribute('preserveAspectRatio', 'none');
+  //             img.style.width = '100%';
+  //             img.style.height = '100%';
+  //             img.style.display = 'block';
+  //           } catch (e) {}
+  //         });
+  //       } catch (e) {}
+  //     });
+  //   } catch (e) {}
+  // }
 
   function renderInsertedMermaid(container) {
     if (!container) return;
@@ -90,31 +90,24 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function injectFromLocal(modal, slug) {
-  var inner = modal.querySelector('.erd-modal__inner');
-  if (!inner) return false;
-  try {
-
-    // Use the hidden textarea with the original Mermaid code for modal rendering
-    // Always use the first .mermaid div's data-raw attribute for the modal, fallback to innerText
-    var mainMermaid = document.querySelector('.mermaid');
-    if (mainMermaid) {
-      var code = mainMermaid.getAttribute('data-raw') || mainMermaid.innerText || mainMermaid.textContent || '';
-      // Replace \n and \r with real newlines for Mermaid compatibility
-      code = code.replace(/\\n|\\r|\n|\r/g, '\n');
-      code = code.replace(/\n/g, '\n'); // ensure all are real newlines
-      code = code.replace(/\\/g, ''); // remove any remaining double escapes
-      console.log('Mermaid code for modal:', code);
-      var frag = document.createElement('div');
-      var d = document.createElement('div');
-      d.className = 'mermaid';
-      d.textContent = code;
-      frag.appendChild(d);
-      inner.innerHTML = '';
-      inner.appendChild(frag);
-      renderInsertedMermaid(inner);
-      return true;
-    }
-    return false;
+    var inner = modal.querySelector('.erd-modal__inner');
+    if (!inner) return false;
+    try {
+      // Always use the hidden textarea with the original Mermaid code for modal rendering
+      var textarea = document.getElementById('erd-mermaid-' + slug);
+      if (textarea) {
+        var code = textarea.value.trim();
+        var frag = document.createElement('div');
+        var d = document.createElement('div');
+        d.className = 'mermaid';
+        d.textContent = code;
+        frag.appendChild(d);
+        inner.innerHTML = '';
+        inner.appendChild(frag);
+        renderInsertedMermaid(inner);
+        return true;
+      }
+      return false;
     } catch (err) {
       console.error('Error in injectFromLocal:', err);
       return false;

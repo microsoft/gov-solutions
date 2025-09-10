@@ -25,11 +25,7 @@ In practice, this module enables agencies to centralize the wide variety of HR w
 
 By capturing personnel actions, requests, and events in a unified structure, the HR Administration module gives agencies the tools to manage the workforce more effectively and transparently. It provides the flexibility needed to handle routine requests, the rigor required for formal actions, and the sensitivity essential for accommodations and disciplinary matters—all within a single, reusable data model.
 
-## Entity Relationship Diagram
----
-
-
-<div class="mermaid" data-raw="graph TD\n  Contact(Person)\n  govcdm_graderank(Grade-Rank)\n  govcdm_HRActionType(HR Action Type)\n  govcdm_HRChangeRequest(HR Change Request)\n  govcdm_HRChangeRequestType(HR Change Request Type)\n  govcdm_HRCompOvertimeRequest(HR Comp Overtime Request)\n  govcdm_HRDisciplinaryAction(HR Disciplinary Action)\n  govcdm_HREvent(HR Event)\n  govcdm_HRGPCRequest(HR GPC Request)\n  govcdm_HRPersonnelAction(HR Personnel Action)\n  govcdm_HRPersonnelImpact(HR Personnel Impact)\n  govcdm_HRPosition(HR Position)\n  govcdm_HRPositionAssignment(HR Position Assignment)\n  govcdm_HRPositionDescription(HR Position Description)\n  govcdm_HRReasonableAccommodation(HR Reasonable Accommodation)\n  govcdm_HRTeleworkRequest(HR Telework Request)\n  govcdm_HRTimeOffDetails(HR Time Off Details)\n  govcdm_HRTimeOffRequest(HR Time Off Request)\n  govcdm_HRVLTPDonation(HR VLTP Donation)\n  govcdm_jobseries(Job Series)\n  govcdm_Location(Location)\n  govcdm_organizationunit(Organization Unit)\n  SystemUser(User)\n  govcdm_HRChangeRequest --> Contact\n  govcdm_HRTeleworkRequest --> Contact\n  govcdm_HRTimeOffRequest --> Contact\n  govcdm_HRChangeRequest --> Contact\n  govcdm_HRChangeRequest --> Contact\n  govcdm_HRChangeRequest --> Contact\n  govcdm_HRChangeRequest --> Contact\n  govcdm_HRChangeRequest --> Contact\n  govcdm_HRDisciplinaryAction --> Contact\n  govcdm_HRDisciplinaryAction --> Contact\n  govcdm_HRPersonnelAction --> Contact\n  govcdm_HRPersonnelAction --> Contact\n  govcdm_HRPositionAssignment --> Contact\n  govcdm_HRVLTPDonation --> Contact\n  govcdm_HRVLTPDonation --> Contact\n  govcdm_HRVLTPDonation --> Contact\n  govcdm_HRChangeRequest --> govcdm_graderank\n  govcdm_HRChangeRequest --> govcdm_graderank\n  govcdm_HRChangeRequest --> govcdm_HRActionType\n  govcdm_HRPersonnelAction --> govcdm_HRActionType\n  govcdm_HRPersonnelAction --> govcdm_HRChangeRequest\n  govcdm_HRChangeRequest --> govcdm_HRChangeRequestType\n  govcdm_HRPositionAssignment --> govcdm_HRPosition\n  govcdm_HRPosition --> govcdm_HRPositionDescription\n  govcdm_HRTimeOffDetails --> govcdm_HRTimeOffRequest\n  govcdm_HRChangeRequest --> govcdm_jobseries\n  govcdm_HRChangeRequest --> govcdm_jobseries\n  govcdm_HRChangeRequest --> govcdm_Location\n  govcdm_HRChangeRequest --> govcdm_Location\n  govcdm_HRChangeRequest --> govcdm_organizationunit\n  govcdm_HRChangeRequest --> govcdm_organizationunit\n  govcdm_HRPosition --> govcdm_organizationunit">
+```mermaid
 graph TD
   Contact(Person)
   govcdm_graderank(Grade-Rank)
@@ -86,5 +82,5 @@ graph TD
   govcdm_HRChangeRequest --> govcdm_organizationunit
   govcdm_HRChangeRequest --> govcdm_organizationunit
   govcdm_HRPosition --> govcdm_organizationunit
-</div>
+```
 
