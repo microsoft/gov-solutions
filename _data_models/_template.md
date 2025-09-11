@@ -14,4 +14,6 @@ published: false
 
 # <Module Name> Data Model
 
-This is a placeholder for the <Module Name> data model.
+<Bulleted List of Tables>
+
+<Entity Relationship Mermaid Diagram Goes Here>

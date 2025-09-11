@@ -42,7 +42,7 @@ def main():
     assets_data_models_dir = os.path.join(base_dir, f"../assets/data_models/{module}")
 
     # Create App Starter Kit
-    thumbnail_path = f"/assets/app-starter-kits/{module}/thumbnail.png"
+    thumbnail_path = f"/assets/use_cases/{module}.png"
     copy_and_replace(app_starter_kit_template, app_starter_kit_md, {
         '<Module Name>': module_title,
         '<Short description of the module>': f'Placeholder for {module_title} module.',
