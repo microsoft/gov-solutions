@@ -2,7 +2,7 @@
 title: "Investigations"
 description: "Data model for managing investigative casework, linking people, evidence, and violations to support flexible investigative case management."
 thumbnail: /assets/use_cases/investigations.png
-latest_release: v1.0.0.0
+latest_release: v1.0.0.1
 required_data_models:
   - core
 related_use_cases:
