@@ -2,7 +2,7 @@
 title: "HR Administration"
 description: "Centralizes personnel actions, requests, and events for effective, transparent workforce management and compliance across the federal HR lifecycle."
 thumbnail: /assets/use_cases/hr-administration.png
-latest_release: v1.0.0.7
+latest_release: v1.0.1.2
 required_data_models:
   - core
 related_use_cases:
@@ -51,6 +51,7 @@ graph TD
   govcdm_organizationunit(Organization Unit)
   SystemUser(User)
   govcdm_HRChangeRequest --> Contact
+  govcdm_HRChangeRequest --> govcdm_HRPosition
   govcdm_HRTeleworkRequest --> Contact
   govcdm_HRTimeOffRequest --> Contact
   govcdm_HRChangeRequest --> Contact

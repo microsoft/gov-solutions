@@ -16,6 +16,7 @@ parent: hr-administration
 | Effective From Date       | Datetime | govcdm_EffectiveFromDate    |
 | Effective To Date         | Datetime | govcdm_EffectiveToDate      |
 | First Name                | Nvarchar | govcdm_FirstName            |
+| From HR Position          | Lookup   | govcdm_FromHRPosition       |
 | Grade / Rank              | Lookup   | govcdm_GradeRank            |
 | HR Action Type            | Lookup   | govcdm_HRActionType         |
 | HR Change Request Type    | Lookup   | govcdm_HRChangeRequestType  |
@@ -43,4 +44,5 @@ parent: hr-administration
 | Requested Date            | Datetime | govcdm_RequestedDate        |
 | Requested Effective Date  | Datetime | govcdm_RequestedEffectiveDate|
 | Secondary Supervisor      | Lookup   | govcdm_SecondarySupervisor  |
+| To HR Position            | Lookup   | govcdm_ToHRPosition         |
 | Work Phone                | Nvarchar | govcdm_WorkPhone            |
