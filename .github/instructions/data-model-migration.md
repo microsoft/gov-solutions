@@ -20,3 +20,5 @@ These are the steps to migrate a data model from the source repo into this targe
 3. Copy the mermaid diagram from the source <module>.md page into the data model page where the <Entity Relationship Mermaid Diagram Goes Here> placeholder is. Do not create a section heade for this diagram.
 
 4. Create a folder in the tables collection (_tables folder). For each table listed in the data model, create a markdown page in that folder which includes the front matter and list of fields. See _tables/core/country.md for an example.
+
+5. Use the information in the source <module>/Release-Notes.md file to create data model releases, with the corresponding version number. See the other data model releases for examples of the structure and format.
