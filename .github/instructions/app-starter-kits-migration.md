@@ -19,7 +19,9 @@ Each app may have additional <module>/<documentation>.md files explaining variou
 
 1. Extract the list of documents related to that app page at .source-app-wiki\<module>\<document>.md. Create a corresponding document in the docs collection at _docs/<module> for that same document. Just copy over the content as is, we'll resolve any images in a future pass.
 
-2. For each document, convert all images in each document by finding the image in the .attachments folder, copying that image into the /assets/app-starter-kits/<module> folder, and updating the image reference in the document to point to the new location.
+2. For each document, convert all images in each document by finding the image in the .attachments folder, copying that image into the /assets/app-starter-kits/<module> folder, and updating the image reference in the document to point to the new location. Be sure to use relative urls for all links. If needed, create or use a PowerShell script for this in the scripts folder.
+
+3. Make sure every doc has a front matter set with a title, parent, and description. Parent is the module slug.
 
 # Migrating App Starter Kit Releases
 

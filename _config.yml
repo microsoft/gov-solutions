@@ -24,8 +24,7 @@ collections:
     # top-level collection: no parent_collection
   docs:
     output: true
-    # :doc is not a Jekyll token; use :basename
-    permalink: /app-starter-kits/:solution/:basename/
+    permalink: /app-starter-kits/:path/
     displayname: "Documentation"
   app_releases:
     output: true

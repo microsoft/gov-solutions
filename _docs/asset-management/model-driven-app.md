@@ -1,6 +1,5 @@
 ---
 title: Asset Management Model-Driven App
-permalink: /app-starter-kits/asset-management/model-driven-app
 parent: asset-management
 description: "Walkthrough of the Asset Management model-driven app."
 ---
@@ -15,18 +14,18 @@ A central view lists all assets, with filters and search to quickly locate items
 ### *Registering a New Asset* 
 Users can quickly add assets using the quick create form, entering essential details and linking to categories, owners, and locations.
 
-![Asset General Form](../../assets/app-starter-kits/asset-management/asset-general.png)
+![Asset General Form]({{ "/assets/app-starter-kits/asset-management/asset-general.png" | relative_url }})
 
 
 ## Asset Categories
 A dedicated view displays all asset categories, supporting easy management and standardization. Category forms let users define new types or update existing ones, ensuring assets are consistently classified.
 
-![Asset Category Form](../../assets/app-starter-kits/asset-management/asset-category.png)
+![Asset Category Form]({{ "/assets/app-starter-kits/asset-management/asset-category.png" | relative_url }})
 
 ## Asset Owners
 Views and forms help agencies assign and update asset ownership, whether to individuals, teams, or external partners. Ownership changes are tracked for accountability.
 
-![Asset Owner History](../../assets/app-starter-kits/asset-management/asset-owner-history.png)
+![Asset Owner History]({{ "/assets/app-starter-kits/asset-management/asset-owner-history.png" | relative_url }})
 
 ## Service Records
 The asset form displays all maintenance, inspections, and repairs for each asset. Users can add new service records directly from the asset form, ensuring a complete maintenance history.
@@ -34,7 +33,7 @@ The asset form displays all maintenance, inspections, and repairs for each asset
 ### *Logging Maintenance*
 Service events are added via a subgrid or related tab, capturing dates, service types, and outcomes for compliance and planning.
 
-![Asset Service History 1](../../assets/app-starter-kits/asset-management/asset-service-history-1.png)
+![Asset Service History 1]({{ "/assets/app-starter-kits/asset-management/asset-service-history-1.png" | relative_url }})
 
-![Asset Service History 2](../../assets/app-starter-kits/asset-management/asset-service-history-2.png)
+![Asset Service History 2]({{ "/assets/app-starter-kits/asset-management/asset-service-history-2.png" | relative_url }})
 

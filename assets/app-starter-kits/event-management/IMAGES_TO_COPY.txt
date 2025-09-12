@@ -1,0 +1,15 @@
+List of images referenced by the Event Management docs that should be copied from `.attachments` into this folder during a follow-up pass:
+
+- image-7b921f92-d648-4909-96c9-1ebd3d2b3736.png
+- image-05ba94ad-204a-4e63-ac27-e5d95c9cbacc.png
+- image-5321861e-78e6-49cc-ad86-84e9837855c7.png
+- image-de357994-1d5d-42f4-9b6d-cf760a7d529f.png
+- image-e94d6004-fdfa-49cd-aab4-1c301fa8179a.png
+- image-c6c614e0-4cd9-4609-a3f6-ea72d4babc0d.png
+- image-056d7624-ab79-485f-93b5-0168621dd2d7.png
+- image-07f1b23c-a290-40ab-ab7c-2b471d7a5c81.png
+- image-b02b4778-f0a1-408d-9ede-5671d892f1ac.png
+- image-8e29b32b-7eb4-4172-9a55-ca82010f840d.png
+- image-84ce8835-9f17-4993-ac37-c89694fd5cbd.png
+
+Note: the original images currently live in `/.attachments/`. Copying is intentionally left to a follow-up pass because binary file operations are not performed by this migration step.

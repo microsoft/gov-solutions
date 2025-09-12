@@ -1,6 +1,5 @@
 ---
 title: Time, Travel, and Expenses App Walkthrough
-permalink: /app-starter-kits/time-travel-expenses/model-driven-app
 parent: time-travel-expenses
 description: This article explains the features and navigation of the Time, Travel, and Expenses model-driven app.
 ---

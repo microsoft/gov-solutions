@@ -1,6 +1,5 @@
 ---
 title: Court Case Management App Walkthrough
-permalink: /app-starter-kits/court-case-management/model-driven-app
 parent: court-case-management
 description: 
 ---
