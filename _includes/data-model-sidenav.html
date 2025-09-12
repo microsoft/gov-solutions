@@ -1,0 +1,29 @@
+{%- comment -%}
+  Data Models Side Navigation (dynamic)
+  - Styled similarly to the app starter kit sidenav
+  - Shows other data models in the `data_models` collection
+  - Usage: {% include data-model-sidenav.html %}
+{%- endcomment -%}
+
+{%- assign models_sorted = site.data_models | sort: "title" -%}
+{%- assign visible_models = "" | split: "|" -%}
+{%- for m in models_sorted -%}
+  {%- if m.url != page.url -%}
+    {%- assign visible_models = visible_models | push: m -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if visible_models.size > 0 -%}
+<nav class="sidenav-sticky" aria-label="Other data models">
+  <h3 class="margin-top-2">Other data models</h3>
+  <ul class="usa-sidenav">
+    {%- for m in visible_models -%}
+      <li class="usa-sidenav__item">
+        <a href="{{ m.url | relative_url }}" class="{%- if m.url == page.url -%}usa-current{%- endif -%}">
+          {{ m.title }}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+{%- endif -%}

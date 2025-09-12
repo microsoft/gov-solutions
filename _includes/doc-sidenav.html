@@ -1,0 +1,37 @@
+{%- comment -%}
+  Docs Side Navigation (dynamic)
+  - Styled similarly to the app starter kit sidenav
+  - Lists other docs that share the same `parent` front matter
+  - Usage: {% include doc-sidenav.html %}  (optionally pass parent="slug")
+{%- endcomment -%}
+
+{%- assign parent_slug = include.parent | default: page.parent -%}
+{%- if parent_slug == nil or parent_slug == '' -%}
+  {%- assign parts = page.url | split: '/' -%}
+  {%- assign parent_slug = parts[2] -%}
+{%- endif -%}
+
+{%- assign docs_sorted = site.docs | where: "parent", parent_slug | sort: "title" -%}
+
+{%- comment -%} Remove current page from the list when rendering {% endcomment -%}
+{%- assign visible_docs = "" | split: "|" -%}
+{%- for doc in docs_sorted -%}
+  {%- if doc.url != page.url -%}
+    {%- assign visible_docs = visible_docs | push: doc -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{%- if visible_docs.size > 0 -%}
+<nav class="sidenav-sticky" aria-label="Other documents for {{ parent_slug }}">
+  <h3 class="margin-top-2">Other documents</h3>
+  <ul class="usa-sidenav">
+    {%- for doc in visible_docs -%}
+      <li class="usa-sidenav__item">
+        <a href="{{ doc.url | relative_url }}" class="{%- if doc.url == page.url -%}usa-current{%- endif -%}">
+          {{ doc.title }}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+{%- endif -%}

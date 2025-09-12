@@ -44,26 +44,8 @@ layout: default
           %}
         {% endif %}
 
-        {% comment %} Other docs for this solution (unstyled list) {% endcomment %}
-        {% capture sibling_docs_list %}
-          {% assign docs_sorted = site.docs | sort: 'title' %}
-          {% for doc in docs_sorted %}
-            <!-- {% if doc.parent == page.parent and doc.url != page.url %} -->
-            <li style="margin:0.35rem 0;">
-            <a class="usa-link" href="{{ doc.url | relative_url }}">{{ doc.title }}</a>
-            </li>
-            <!-- {% endif %} -->
-          {% endfor %}
-        {% endcapture %}
-
-        {% if sibling_docs_list contains '<li' %} 
-          <nav aria-label="Other documents for {{ parent_item.title | default: page.parent }}">
-          <h3 class="margin-top-2">Other documents</h3>
-          <ul style="list-style:none;padding:0;margin:0;">
-          {{ sibling_docs_list }}
-          </ul>
-          </nav>
-        {% endif %}
+        {% comment %} Side navigation for other docs (styled) {% endcomment %}
+        {% include doc-sidenav.html %}
       </aside>
 
       <!-- Main content (right side) -->

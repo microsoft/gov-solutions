@@ -151,6 +151,11 @@ img {
   .mgat-subnav__link:focus-visible {
     outline-width: 0.1875rem; /* 3px */
   }
+
+  /* Hide side navigation on small screens (sidenav-sticky) */
+  .sidenav-sticky {
+    display: none;
+  }
 }
 
 /* External link indicator: inline SVG icon + spacing */
