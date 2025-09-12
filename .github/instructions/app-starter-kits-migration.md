@@ -23,8 +23,8 @@ Each app may have additional <module>/<documentation>.md files explaining variou
 
 # Migrating App Starter Kit Releases
 
-Each app also has a <module>/Release-Notes.md markdown page, which has entries for each of the releases for that data model.
+Each app also has a .source-apps-wiki/<module>/Release-Notes.md markdown page, which has entries for each of the releases for that app starter kit.
 
-1. Use the information in the source <module>/Release-Notes.md file to create app starter kits releases, with the corresponding version number. See the other app starter kit releases for examples of the structure and format.
+1. Use the information in the source .source-apps-wiki/<module>/Release-Notes.md file to create app starter kits releases, with the corresponding version number. See the other app starter kit releases for examples of the structure and format.
 
 2. Set the app starter kit's latest_release front matter to the latest release.
