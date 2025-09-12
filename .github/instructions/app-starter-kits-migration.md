@@ -17,7 +17,7 @@ Each app has a <module>.md markdown page at that location. This page has an Over
 
 Each app may have additional <module>/<documentation>.md files explaining various components in the app or other topics.
 
-1. Extract the list of documents related to that app page at .source-app-wiki\<module>\<document>.md. Create a corresponding document in the docs collection at _docs/<module> for that same document. Just copy over the content as is, we'll resolve any images in a future pass.
+1. Extract the list of documents related to that app page at .source-app-wiki\<module>\<document>.md. Create a corresponding document in the docs collection at _docs/<module> for that same document. Just copy over the content as is, we'll resolve any images in a future pass. Make the document name all lowercase and hyphenated.
 
 2. For each document, convert all images in each document by finding the image in the .attachments folder, copying that image into the /assets/app-starter-kits/<module> folder, and updating the image reference in the document to point to the new location. Be sure to use relative urls for all links. If needed, create or use a PowerShell script for this in the scripts folder.
 

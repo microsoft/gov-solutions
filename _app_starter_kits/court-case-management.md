@@ -11,8 +11,6 @@ related_use_cases:
   - investigations
 ---
 
-# Court Case Management
-
 The **Court Case Management** app is an early-stage concept designed to help government agencies manage the lifecycle of court cases using Microsoft Power Platform and Dynamics 365. This module is still in development, and the following description highlights potential features and capabilities envisioned for future releases. The goal is to provide agencies with a configurable, low-code solution that organizes case information, supports judicial workflows, and improves transparency across stakeholders.
 
 The current baseline app provides a foundational sitemap with shell entities for **Court Cases, Court Case Parties, Court Documents, Court Hearings, Court Motions, Court Orders, and Court Sessions**. These entities establish the core structure for capturing and organizing information about legal proceedings. Each area will eventually be expanded to support more detailed processes—for example, linking parties to cases, associating documents with filings, scheduling hearings and sessions, and recording the outcomes of motions and orders.

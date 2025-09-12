@@ -10,6 +10,6 @@ related_use_cases:
 published: false
 ---
 
-# Hr Administration
+# HR Administration
 
 This is a placeholder for the Hr Administration App Starter Kit.

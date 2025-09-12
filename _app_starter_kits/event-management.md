@@ -9,8 +9,6 @@ related_use_cases:
   - calendar
 ---
 
-# Event Management
-
 The **Event Management** app is an early-stage concept designed to help government agencies plan, coordinate, and track events using Microsoft Power Platform and Dynamics 365. This module is still in development, and the following description highlights potential features and capabilities envisioned for future releases. The goal is to provide agencies with a configurable, low-code solution that streamlines event operations, improves visibility, and reduces administrative burden.
 
 The current baseline solution includes a model-driven app with shell entities for **Person, Bookable Resource, Bookable Resource Payment, Bookable Resource Reservation, Event, and Event Attendee**. These tables establish the foundation for managing participants, scheduling resources, recording payments, and tracking attendance. In addition, the module already contains a **Power BI Master Calendar prototype**, a **Canvas App Master Calendar prototype**, and integration capability with a **SharePoint event list**—providing multiple ways to visualize and coordinate event information.
