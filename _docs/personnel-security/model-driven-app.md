@@ -6,7 +6,15 @@ description: This page explains the features and navigation of the Personnel Sec
 
 ## Model-Driven App
 
-This page describes the model-driven app functionality in the Persnnel Security module.
+This page describes the model-driven app functionality in the Personnel Security module.
+
+# Overview
+
+This template includes a model-driven app to manage Personnel Adjudications, Personnel Background Investigations, Personnel Badge Requests, Personnel Foreign Contacts, Personnel Foreign Travel, Personnel Passports, Personnel Reportable Life Events, and Personnel Visitor Requests.
+
+# App navigation
+
+![App navigation screenshot]({{ "/assets/app-starter-kits/personnel-security/image-0320d972-6d92-4c32-8a62-6d915f64aecd.png" | relative_url }})
 
 ## Managing Background Investigations
 
