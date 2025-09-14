@@ -70,12 +70,14 @@ layout: default
             {% if page.latest_release %}
               {% assign lr = page.latest_release %}
               {% assign rel = site.app_releases | where: "parent", page.slug | where: "version", lr | first %}
-              {% if rel and rel.release_file %}
-                <a class="usa-button"
-                  href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}"
-                  download>Download Latest Release ({{ rel.version }})</a>
-              {% elsif rel and rel.download %}
-                <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
+              {% assign raw_base = 'https://github.com/microsoft/gov-apptemplates/raw/main/' %}
+
+              {% if rel and rel.custom_release_file %}
+                <a class="usa-button" href="{{ rel.custom_release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+
+              {% elsif rel and rel.release_file %}
+                <a class="usa-button" href="{{ raw_base }}federal/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+
               {% else %}
                 <div></div>
               {% endif %}
