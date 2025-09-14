@@ -3,8 +3,9 @@ title: "Training and Certification"
 description: "App starter kit for managing courses, classes, enrollments, and training certifications (Federal Academy variant available)."
 latest_release: v1.0.1.0
 thumbnail: /assets/use_cases/training-and-certification.png
-required_data_models:
+required_app_starter_kits:
   - core
+required_data_models:
   - training-and-certification
 related_use_cases:
 ---

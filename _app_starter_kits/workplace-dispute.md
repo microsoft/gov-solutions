@@ -3,8 +3,9 @@ title: "Workplace Dispute"
 description: "App starter kit for workplace dispute management: ADR, EEO, and harassment case tracking."
 latest_release: v1.0.0.0
 thumbnail: /assets/use_cases/workplace-dispute.png
-required_data_models:
+required_app_starter_kits:
   - core
+required_data_models:
   - workplace-dispute
 related_use_cases:
 ---

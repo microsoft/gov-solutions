@@ -3,8 +3,9 @@ title: "Investigations"
 description: "A model-driven starter kit for investigative case management — centralize leads, referrals, evidence, and violations to streamline case workflows and auditing."
 latest_release: v1.0.0.0
 thumbnail: /assets/use_cases/investigations.png
-required_data_models:
+required_app_starter_kits:
   - core
+required_data_models:
   - investigations
 related_use_cases:
 related_personas:

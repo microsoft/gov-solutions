@@ -3,8 +3,9 @@ title: "IT Service Management"
 description: "Model-driven app starter kit for IT service operations: service requests, asset and entitlement management, provisioning, and CMDB." 
 latest_release: v1.0.1.0
 thumbnail: /assets/use_cases/it-service-management.png
-required_data_models:
+required_app_starter_kits:
   - core
+required_data_models:
   - it-service-management
 related_use_cases:
 ---

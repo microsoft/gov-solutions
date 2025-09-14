@@ -3,8 +3,9 @@ title: "HR Recruiting"
 description: "Model-driven app to manage HR Applications, HR Candidates, and HR Job Postings."
 latest_release: v1.0.0.0
 thumbnail: /assets/use_cases/hr-recruiting.png
-required_data_models:
+required_app_starter_kits:
   - core
+required_data_models:
   - hr-recruiting
 related_use_cases:
 ---

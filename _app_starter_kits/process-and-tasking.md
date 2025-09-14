@@ -4,6 +4,7 @@ description: "Provides a reusable framework for managing repeatable business pro
 latest_release: v1.0.2.0
 thumbnail: /assets/use_cases/process-and-tasking.png
 required_app_starter_kits:
+  - core
 required_data_models:
  - process-and-tasking
 related_use_cases:
