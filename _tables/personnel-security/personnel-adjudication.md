@@ -9,3 +9,4 @@ parent: personnel-security
 | Name                         | Nvarchar | govcdm_Name                  |
 | Personnel Adjudication Type  | Picklist | govcdm_PersonnelAdjudicationType|
 | Subject                      | Lookup   | govcdm_Subject               |
+| Personnel Clearance          | Lookup   | govcdm_PersonnelClearance    |

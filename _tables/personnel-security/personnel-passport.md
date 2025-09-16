@@ -8,3 +8,5 @@ parent: personnel-security
 |---------------|----------|--------------|
 | Name          | Nvarchar | govcdm_Name  |
 | Passport Type | Picklist | govcdm_PassportType|
+| Person        | Lookup   | govcdm_Person|
+| Background Investigation | Lookup | govcdm_BackgroundInvestigation |

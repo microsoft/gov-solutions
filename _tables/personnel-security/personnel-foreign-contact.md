@@ -8,3 +8,4 @@ parent: personnel-security
 |------------|---------|--------------|
 | Name       | Nvarchar| govcdm_Name  |
 | Person     | Lookup  | govcdm_Person|
+| Background Investigation | Lookup | govcdm_BackgroundInvestigation |

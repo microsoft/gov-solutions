@@ -1,6 +1,6 @@
 ---
 title: Personnel Foreign Travel
-description: "Tracks declared foreign travel for security and counterintelligence purposes."
+description: "Captures declared foreign travel for counterintelligence and risk monitoring."
 parent: personnel-security
 ---
 
@@ -8,3 +8,4 @@ parent: personnel-security
 |------------|---------|--------------|
 | Name       | Nvarchar| govcdm_Name  |
 | Person     | Lookup  | govcdm_Person|
+| Background Investigation | Lookup | govcdm_BackgroundInvestigation |
