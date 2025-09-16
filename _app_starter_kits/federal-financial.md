@@ -1,7 +1,7 @@
 ---
 title: "Federal Financial"
 description: "Financial management starter kit for federal agencies: budgeting, procurement, and reporting."
-latest_release: v1.0.0.0
+latest_release: v1.0.1.0
 thumbnail: /assets/use_cases/federal-financial.png
 required_app_starter_kits:
   - core
