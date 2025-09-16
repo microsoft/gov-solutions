@@ -2,7 +2,7 @@
 title: Time, Travel, and Expenses
 description: "Tables for personnel time, travel requests, and expense reporting to support workforce planning and financial tracking."
 thumbnail: /assets/use_cases/time-travel-expenses.png
-latest_release: v1.0.0.0
+latest_release: v1.0.0.1
 required_data_models:
   - core
 related_use_cases:
