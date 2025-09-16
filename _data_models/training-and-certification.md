@@ -2,7 +2,7 @@
 title: "Training and Certification"
 description: "Tracks courses, classes, enrollments, instructors, certificates, and related training artifacts to support agency learning and certification programs."
 thumbnail: /assets/use_cases/training-and-certification.png
-latest_release: v1.0.0.0
+latest_release: v1.0.0.1
 required_data_models:
   - core
 related_use_cases:
