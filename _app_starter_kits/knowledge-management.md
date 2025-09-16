@@ -1,7 +1,7 @@
 ---
 title: "Knowledge Management"
 description: "App starter kit for Knowledge Management: KM Catalog, KB Articles, FAQ, and Bots."
-latest_release: v1.0.1.0
+latest_release: v1.0.2.0
 thumbnail: /assets/use_cases/knowledge-management.png
 required_app_starter_kits:
   - core
