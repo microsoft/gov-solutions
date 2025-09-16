@@ -19,14 +19,10 @@ layout: default
 
           {% assign parent_item = site[parent_collection] | where: "slug", page.parent | first %}
           {% if parent_item == nil %}
-            {% if parent_collection == "app_starter_kits" %}
-              {% capture base_path %}app-starter-kits{% endcapture %}
-            {% else %}
-              {% capture base_path %}data-models{% endcapture %}
-            {% endif %}
-
-            {% capture sol_url %}/{{ base_path }}/{{ page.parent }}/{% endcapture %}
-            {% assign parent_item = site[parent_collection] | where: "url", sol_url | first %}
+            {% comment %} Tables are only ever parented by data models; construct the expected
+                URL directly and look up the parent in site.data_models. {% endcomment %}
+            {% capture sol_url %}/data-models/{{ page.parent }}/{% endcapture %}
+            {% assign parent_item = site.data_models | where: "url", sol_url | first %}
           {% endif %}
         {% endif %}
 
@@ -97,33 +93,25 @@ layout: default
                 {% assign parent_slug = parts[2] %}
               {% endif %}
 
-              {% assign lookup_collection = "app_starter_kits" %}
-              {% if collection_segment == "data-models" %}
-                {% assign lookup_collection = "data_models" %}
-              {% endif %}
+              {% comment %} Tables are only parented by data models. Always use data_models for lookup. {% endcomment %}
+              {% assign lookup_collection = "data_models" %}
 
               {% assign parent_item_local = site[lookup_collection] | where: "slug", parent_slug | first %}
 
               {% if parent_item_local and parent_item_local.latest_release %}
                 {% assign lr = parent_item_local.latest_release %}
+                {% comment %} Only resolve data model releases for table pages; do not attempt
+                    to resolve app releases as tables are never parented by app starter kits. {% endcomment %}
                 {% if lookup_collection == "data_models" %}
                   {% assign rel = site.data_model_releases | where: "parent", parent_slug | where: "version", lr | first %}
                   {% if rel and rel.release_file %}
                     <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/modules/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
-                  {% elsif rel and rel.download %}
-                    <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
                   {% else %}
                     <div></div>
                   {% endif %}
                 {% else %}
-                  {% assign rel = site.app_releases | where: "parent", parent_slug | where: "version", lr | first %}
-                  {% if rel and rel.release_file %}
-                    <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
-                  {% elsif rel and rel.download %}
-                    <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
-                  {% else %}
-                    <div></div>
-                  {% endif %}
+                  {% comment %} For any other collection we do not provide a download for tables. {% endcomment %}
+                  <div></div>
                 {% endif %}
               {% else %}
                 <div></div>
