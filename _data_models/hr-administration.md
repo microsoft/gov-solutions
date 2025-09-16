@@ -15,7 +15,7 @@ The **HR Administration** module provides a comprehensive structure for managing
 
 The model begins with core workforce entities: **Person**, **User**, **Organization Unit**, **Location**, **Job Series**, and **Grade-Rank**. Together these tables establish who an employee is, where they work, what position series they belong to, and what grade or rank they hold. Building on that, the **HR Position** and **HR Position Assignment** tables define official positions within the organization and the employees who occupy them, while the **HR Position Description** provides the authoritative record of duties, qualifications, and classification standards.
 
-From this foundation, the module focuses on personnel actions and change management. **HR Change Request** captures requests for adjustments—such as reassignments, promotions, or duty location changes—typed through the **HR Change Request Type** table. **HR Action Type** and **HR Personnel Action** then document formal personnel actions, ensuring they are properly categorized, approved, and recorded for compliance. **HR Personnel Impact** extends this by linking actions to broader outcomes, such as organizational realignments or workforce reductions.
+From this foundation, the module focuses on personnel actions and change management. **HR Change Request** captures requests for adjustments—such as reassignments, promotions, or duty location changes—typed through the **HR Action Type** table. **HR Personnel Action** then documents formal personnel actions, ensuring they are properly categorized, approved, and recorded for compliance. **HR Personnel Impact** extends this by linking actions to broader outcomes, such as organizational realignments or workforce reductions.
 
 The module also addresses the full spectrum of HR-related requests and accommodations. Employees can submit **HR Time Off Requests**, which are detailed through **HR Time Off Details** to cover specific dates and leave categories. The model supports specialized leave programs with **HR VLTP Donation** for voluntary leave transfer. Flexible work arrangements are tracked through **HR Telework Requests**, while **HR Comp Overtime Requests** capture compensatory time and overtime approval processes.
 
@@ -31,7 +31,6 @@ graph TD
   govcdm_graderank(Grade-Rank)
   govcdm_HRActionType(HR Action Type)
   govcdm_HRChangeRequest(HR Change Request)
-  govcdm_HRChangeRequestType(HR Change Request Type)
   govcdm_HRCompOvertimeRequest(HR Comp Overtime Request)
   govcdm_HRDisciplinaryAction(HR Disciplinary Action)
   govcdm_HREvent(HR Event)
@@ -72,7 +71,7 @@ graph TD
   govcdm_HRChangeRequest --> govcdm_HRActionType
   govcdm_HRPersonnelAction --> govcdm_HRActionType
   govcdm_HRPersonnelAction --> govcdm_HRChangeRequest
-  govcdm_HRChangeRequest --> govcdm_HRChangeRequestType
+  govcdm_HRChangeRequest --> govcdm_HRActionType
   govcdm_HRPositionAssignment --> govcdm_HRPosition
   govcdm_HRPosition --> govcdm_HRPositionDescription
   govcdm_HRTimeOffDetails --> govcdm_HRTimeOffRequest
