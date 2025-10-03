@@ -1,7 +1,7 @@
 ---
 title: Personnel Security
 description: "Modernize background investigations, adjudication, and clearance management with automated workflows and AI-assisted tools."
-latest_release: v1.0.1.0
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/personnel-security.png
 required_app_starter_kits:
  - core
@@ -16,7 +16,7 @@ related_personas:
  - investigator
 ---
 
-The **Personnel Security** module provides a starting framework for managing the full lifecycle of federal background investigations, adjudications, and security clearances. Aligned with federal security guidelines, the module is designed to help agencies modernize personnel security operations using the Microsoft Power Platform.
+The **Personnel Security** module provides a starting framework for managing the full lifecycle of government background investigations, adjudications, and security clearances. Aligned with government security guidelines, the module is designed to help agencies modernize personnel security operations using the Microsoft Power Platform.
 
 Beginning with the initiation of a **Background Investigation (BI)**, security administrators can link investigations directly to an individual’s profile, capture investigation details, and guide the team through a **process checklist** with role-based assignments and real-time progress tracking. Supporting documents, including SF-86 forms, can be managed through the **Document Assistant side pane**, which surfaces related files stored in SharePoint.
 

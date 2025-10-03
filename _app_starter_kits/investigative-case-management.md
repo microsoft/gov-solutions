@@ -1,7 +1,7 @@
 ---
-title: "Investigations"
+title: "Investigative Case Management"
 description: "A model-driven starter kit for investigative case management — centralize leads, referrals, evidence, and violations to streamline case workflows and auditing."
-latest_release: v1.0.1.0
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/investigations.png
 required_app_starter_kits:
   - core
@@ -12,7 +12,7 @@ related_personas:
   - investigator
 ---
 
-The **Investigations** app is an early-stage concept designed to help agencies manage investigative casework in a structured, auditable way. Built on Microsoft Power Platform, the app provides a standardized framework for tracking leads, referrals, evidence, and violations within a unified case record. The goal is to give agencies a flexible but disciplined foundation for investigative case management that can scale across compliance oversight, law enforcement, or internal review missions.
+The **Investigative Case Management** app is an early-stage concept designed to help agencies manage investigative casework in a structured, auditable way. Built on Microsoft Power Platform, the app provides a standardized framework for tracking leads, referrals, evidence, and violations within a unified case record. The goal is to give agencies a flexible but disciplined foundation for investigative case management that can scale across compliance oversight, law enforcement, or internal review missions.
 
 The current baseline consists of a **model-driven app** with a sitemap and starter forms for entities such as **ICM Case, ICM Lead, ICM Referral, ICM Case Contact, ICM Case Contact Violation, ICM Evidence, ICM Case Evidence, ICM Violation, and ICM Case Violation**. Together, these tables provide the backbone for recording how a case was initiated, documenting the people involved, maintaining a clear chain-of-custody for evidence, and linking specific violations to individuals and statutory authorities.
 

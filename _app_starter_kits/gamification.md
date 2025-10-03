@@ -1,7 +1,7 @@
 ---
 title: "Gamification"
 description: "Starter kit for gamification features: games, achievements, activities, and user tracking."
-latest_release: v1.0.0.0
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/gamification.png
 required_app_starter_kits:
   - core

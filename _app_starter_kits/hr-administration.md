@@ -1,7 +1,7 @@
 ---
 title: "HR Administration"
 description: "Model-driven app for HR Change Requests and Telework Requests; includes admin tables and Process Template integration."
-latest_release: v1.0.0.1
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/hr-administration.png
 required_app_starter_kits:
   - core

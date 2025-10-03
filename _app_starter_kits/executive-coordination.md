@@ -1,7 +1,7 @@
 ---
 title: "Executive Coordination"
 description: "Track executive management processes including Action and Correspondence Management, Executive Secretary tasks, Agency Tasking, and directive oversight."
-latest_release: v1.0.2.0
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/executive-coordination.png
 required_data_models:
   - executive-coordination

@@ -1,7 +1,7 @@
 ---
 title: Time, Travel, and Expenses
 description: "Model-driven app starter kit with Availability form and baseline app for time, travel, and expense tracking."
-latest_release: v1.0.1.0
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/time-travel-expenses.png
 required_app_starter_kits:
  - core
@@ -14,7 +14,7 @@ related_personas:
  - hr-administrator
 ---
 
-The **Time, Travel, and Expenses** module provides a reusable framework for three closely related business functions: timekeeping, travel management, and expense reporting. Federal agencies often need to manage all three together to support workforce planning, mission activities, and financial accountability. This module brings them into a single, extensible structure that can be used directly or extended in mission-specific applications.
+The **Time, Travel, and Expenses** module provides a reusable framework for three closely related business functions: timekeeping, travel management, and expense reporting. Government agencies often need to manage all three together to support workforce planning, mission activities, and financial accountability. This module brings them into a single, extensible structure that can be used directly or extended in mission-specific applications.
 
 *Currently, this module provides the baseline data model and an **Availability form and view**, with additional forms and views for other tables planned for future updates. Agencies and developers can begin building on this structure today, extending it to meet their mission-specific needs.*
 

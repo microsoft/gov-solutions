@@ -1,7 +1,7 @@
 ---
 title: "Event Management"
 description: "Provides a template for planning, scheduling, and coordinating events, attendees, and bookable resources across an organization."
-latest_release: v1.0.0.2
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/event-management.png
 required_app_starter_kits:
   - core

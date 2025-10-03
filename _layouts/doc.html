@@ -102,7 +102,23 @@ layout: default
                 {% else %}
                   {% assign rel = site.app_releases | where: "parent", parent_slug | where: "version", lr | first %}
                   {% if rel and rel.release_file %}
-                    <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                    {% assign rf = rel.release_file | default: "" | strip %}
+                    {% if rf != "" %}
+                      {% assign rf_prefix = rf | slice: 0,6 %}
+                      {% if rf_prefix == "MS-Gov" %}
+                        {% assign parent_slug2 = rel.parent | default: "" %}
+                        {% if rel.cross_module or parent_slug2 == "core" or parent_slug2 == "process-and-tasking" %}
+                          {% assign repo_path = "cross-module" %}
+                        {% else %}
+                          {% assign repo_path = "modules" %}
+                        {% endif %}
+                        <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ repo_path }}/{{ rel.parent }}/releases/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                      {% else %}
+                        <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                      {% endif %}
+                    {% else %}
+                      <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ parent_slug }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                    {% endif %}
                   {% elsif rel and rel.download %}
                     <a class="usa-button" href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
                   {% else %}

@@ -1,7 +1,7 @@
 ---
 title: "Dynamics 365 Application"
 description: "Overview of the Investigative Case Management Dynamics 365 application and key features included in release v1.0.1.0."
-parent: investigations
+parent: investigative-case-management
 published: false
 ---
 

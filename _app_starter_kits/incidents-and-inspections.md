@@ -1,7 +1,7 @@
 ---
 title: "Incidents and Inspections"
 description: "App starter kit for creating Inspections, Inspectable Items, Checklists, and After Action Reports."
-latest_release: v1.0.0.2
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/incidents-and-inspections.png
 required_app_starter_kits:
   - core

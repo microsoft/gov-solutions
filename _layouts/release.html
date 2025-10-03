@@ -83,9 +83,35 @@ layout: default
               {% if page.custom_release_file %}
                 <a class="usa-button" href="{{ page.custom_release_file }}" download>Download This Release</a>
               {% elsif page.release_file %}
-                <a class="usa-button"
-                  href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ page.parent }}/releases/{{ page.version }}/{{ page.release_file }}"
-                  download>Download This Release</a>
+                {% comment %} Support MS-Gov releases stored under cross-module/ or modules/ in gov-apptemplates. Detect by release_file prefix and optional cross_module flag. {% endcomment %}
+                {% comment %} If the release_file starts with MS-Gov, use gov-apptemplates modules path, else use legacy federal path. {% endcomment %}
+                {% assign rf = page.release_file | default: "" | strip %}
+                {% if rf != "" %}
+                  {% assign rf_prefix = rf | slice: 0,6 %}
+                  <!-- DEBUG: rf='{{ rf }}' rf_prefix='{{ rf_prefix }}' parent='{{ page.parent }}' cross_module='{{ page.cross_module }}' -->
+                  {% if rf_prefix == "MS-Gov" %}
+                    {% assign parent_slug = page.parent | default: "" %}
+                    {% if page.cross_module or parent_slug == "core" or parent_slug == "process-and-tasking" %}
+                      {% assign repo_path = "cross-module" %}
+                    {% else %}
+                      {% assign repo_path = "modules" %}
+                    {% endif %}
+                    <!-- DEBUG: repo_path='{{ repo_path }}' -->
+                    <a class="usa-button"
+                      href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ repo_path }}/{{ page.parent }}/releases/{{ page.release_file }}"
+                      download>Download This Release</a>
+                  {% else %}
+                    <!-- DEBUG: not MS-Gov branch (rf='{{ rf }}' rf_prefix='{{ rf_prefix }}') -->
+                    <a class="usa-button"
+                      href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ page.parent }}/releases/{{ page.version }}/{{ page.release_file }}"
+                      download>Download This Release</a>
+                  {% endif %}
+                {% else %}
+                  <!-- DEBUG: no release_file present -->
+                  <a class="usa-button"
+                    href="https://github.com/microsoft/gov-apptemplates/raw/main/federal/{{ page.parent }}/releases/{{ page.version }}/{{ page.release_file }}"
+                    download>Download This Release</a>
+                {% endif %}
               {% elsif page.download %}
                 <a class="usa-button"
                   href="https://github.com/microsoft/gov-apptemplates/raw/main/{{ page.download }}" download>Download This Release</a>

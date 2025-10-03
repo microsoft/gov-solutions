@@ -76,7 +76,23 @@ layout: default
                 <a class="usa-button" href="{{ rel.custom_release_file }}" download>Download Latest Release ({{ rel.version }})</a>
 
               {% elsif rel and rel.release_file %}
-                <a class="usa-button" href="{{ raw_base }}federal/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                {% assign rf = rel.release_file | default: "" | strip %}
+                {% if rf != "" %}
+                  {% assign rf_prefix = rf | slice: 0,6 %}
+                  {% if rf_prefix == "MS-Gov" %}
+                    {% assign parent_slug = rel.parent | default: "" %}
+                    {% if rel.cross_module or parent_slug == "core" or parent_slug == "process-and-tasking" %}
+                      {% assign repo_path = "cross-module" %}
+                    {% else %}
+                      {% assign repo_path = "modules" %}
+                    {% endif %}
+                    <a class="usa-button" href="{{ raw_base }}{{ repo_path }}/{{ rel.parent }}/releases/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% else %}
+                    <a class="usa-button" href="{{ raw_base }}federal/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% endif %}
+                {% else %}
+                  <a class="usa-button" href="{{ raw_base }}federal/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                {% endif %}
 
               {% else %}
                 <div></div>

@@ -1,7 +1,7 @@
 ---
 title: "Training and Certification"
-description: "App starter kit for managing courses, classes, enrollments, and training certifications (Federal Academy variant available)."
-latest_release: v1.0.1.0
+description: "App starter kit for managing courses, classes, enrollments, and training certifications (Government Academy variant available)."
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/training-and-certification.png
 required_app_starter_kits:
   - core
@@ -16,7 +16,7 @@ The model-driven app includes areas for both **Enrollment and Attendance** and *
 
 The app supports a variety of training management functions. Agencies can define course objectives and track metrics against them, assign instructors, and record course details including purpose, syllabus, prerequisites, logistics, and accreditation. Courses can be tied to certificates and scheduled into classes, each with its own roster of enrollees and attendees. Certifications earned can be linked back to courses and tracked against participants to demonstrate compliance with training mandates.
 
-Beyond the core app, an alternative model-driven app, **Federal Academy**, is also available, tailored more specifically to institutions offering courses to external students or prospective applicants. This provides agencies with flexibility to choose the structure best suited to their audience.
+Beyond the core app, an alternative model-driven app, **Government Academy**, is also available, tailored more specifically to institutions offering courses to external students or prospective applicants. This provides agencies with flexibility to choose the structure best suited to their audience.
 
 Looking ahead, the Training and Certification app is well-positioned to grow with additional features such as dashboards for tracking course completion rates, integration with learning management systems, and workflows to automate reminders and renewals for certifications. Agencies could also extend it to support specialized scenarios like mandatory compliance training, professional development programs, or technical certification paths.
 

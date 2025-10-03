@@ -1,7 +1,7 @@
 ---
 title: "Court Case Management"
 description: "App starter kit (model-driven) for Court Case Management — a shell model-driven app to manage cases, parties, documents, hearings, motions, orders, and sessions."
-latest_release: v1.0.0.0
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/court-case-management.png
 required_app_starter_kits:
   - core

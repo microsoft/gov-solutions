@@ -1,6 +1,6 @@
 ---
 title: "Purchase Request Module"
-parent: federal-financial
+parent: government-financial
 description: "Describes the Purchase Request module (GSA Form 49) UI, workflows, and integrations."
 ---
 

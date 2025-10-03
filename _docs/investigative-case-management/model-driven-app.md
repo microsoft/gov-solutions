@@ -1,7 +1,7 @@
 ---
 title: "Model-driven app"
 description: "Model-driven app to manage ICM Leads, ICM Cases, and ICM Referrals."
-parent: investigations
+parent: investigative-case-management
 ---
 
 # Overview

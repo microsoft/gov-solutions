@@ -1,7 +1,7 @@
 ---
 title: "Programs and Services"
-description: "App starter kit to manage federal programs, enrollments, claims, and service activities."
-latest_release: v1.0.0.0
+description: "App starter kit to manage government programs, enrollments, claims, and service activities."
+latest_release: v1.1.0.0
 thumbnail: /assets/use_cases/programs-and-services.png
 required_app_starter_kits:
   - core
