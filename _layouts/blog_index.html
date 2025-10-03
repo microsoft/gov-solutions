@@ -1,0 +1,40 @@
+---
+layout: default
+---
+<main id="main-content" class="usa-section usa-prose">
+  <div class="container">
+    <header class="margin-bottom-2">
+      <h1 class="usa-prose__heading">{{ page.title }}</h1>
+      {% if page.description %}<p>{{ page.description }}</p>{% endif %}
+    </header>
+
+    {% if site.posts and site.posts.size > 0 %}
+    <div class="grid-row">
+  {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
+  {% for post in sorted_posts %}
+      <div class="grid-col-4 margin-bottom-2">
+        {% assign thumb = post.thumbnail | default: "/assets/blog-default.png" %}
+        {% comment %} Build a safe, short description: prefer excerpt, then description, then content, but always strip HTML and truncate. {% endcomment %}
+        {% capture raw_desc %}
+          {% if post.excerpt %}{{ post.excerpt }}{% elsif post.description %}{{ post.description }}{% else %}{{ post.content }}{% endif %}
+        {% endcapture %}
+        {% assign desc = raw_desc | strip_html | truncate: 200 %}
+      {% capture post_date %}{{ post.date | date: "%B %-d, %Y" }}{% endcapture %}
+      {% include card.html
+        type='post'
+        title=post.title
+        description=desc
+        thumbnail=thumb
+        url=post.url
+        meta=post_date
+        meta_align='center'
+        align='center'
+      %}
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No blog posts yet. Check back soon.</p>
+    {% endif %}
+  </div>
+</main>

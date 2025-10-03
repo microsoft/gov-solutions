@@ -12,8 +12,15 @@ repository: "microsoft/gov-solutions" # (nice to have for jekyll-github-metadata
 markdown: kramdown
 permalink: pretty
 
+# Control how excerpts are generated for posts (use <!--more--> in content to force an excerpt break)
+excerpt_separator: "<!--more-->"
+
 sass:
   sass_dir: _sass
+
+# Plugins (jekyll-feed is supported by GitHub Pages and provides an RSS/Atom feed)
+plugins:
+  - jekyll-feed
 
 # Collections
 collections:
@@ -98,3 +105,7 @@ defaults:
     values:
       layout: table
       parent_collection: data_models
+  - scope:
+      path: "_posts"
+    values:
+      layout: post

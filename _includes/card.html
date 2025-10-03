@@ -23,6 +23,13 @@ Props:
       </h2>
     </header>
 
+    {% if include.meta %}
+      {%- assign _meta_align = include.meta_align | default: _align -%}
+      <div class="usa-card__meta" {% if _meta_align == 'center' %} style="text-align:center; margin-bottom:0.5rem;" {% else %} style="text-align:left; margin-bottom:0.5rem;" {% endif %}>
+        <p class="text-base-italic"><em>{{ include.meta }}</em></p>
+      </div>
+    {% endif %}
+
     <div class="usa-card__body">
       {% if include.description %}
         <p class="card-summary" {% if _align == 'center' %} style="text-align:center;" {% else %} style="text-align:left;" {% endif %}>{{ include.description }}</p>
@@ -30,7 +37,15 @@ Props:
     </div>
 
     <div class="usa-card__footer" {% if _align == 'center' %} style="display:flex; flex-direction:column; justify-content:center; align-items:center;" {% else %} style="display:flex; flex-direction:row; justify-content:flex-end; align-items:center; gap:0.5rem;" {% endif %}>
-      <a class="usa-button usa-button--outline" href="{{ include.url | relative_url }}">View details</a>
+      <a class="usa-button usa-button--outline" href="{{ include.url | relative_url }}">
+        {% if include.button_label %}
+          {{ include.button_label }}
+        {% elsif include.type == 'post' %}
+          Read more
+        {% else %}
+          View details
+        {% endif %}
+      </a>
       {% if include.repo %}
         <a class="usa-link margin-left-1" href="{{ include.repo }}">Repo</a>
       {% endif %}
