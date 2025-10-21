@@ -126,4 +126,4 @@ After completing this setup:
 
 ## Getting Help
 
-If you encounter issues during setup, please refer to our [Support page](../SUPPORT.md) for detailed information on how to get help and file issues specific to different components of the GLOWS platform.
+If you encounter issues during setup, please refer to our [Support page]({{ '/SUPPORT' | relative_url }}) for detailed information on how to get help and file issues specific to different components of the GLOWS platform.
