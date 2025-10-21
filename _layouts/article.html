@@ -1,0 +1,71 @@
+---
+layout: default
+---
+
+<section class="usa-section">
+  <div class="grid-container-full">
+
+    <div class="grid-row grid-gap">
+
+      <!-- Sidebar navigation -->
+      <aside class="grid-col-12 tablet:grid-col-3">
+        
+        {% comment %} Side navigation for other articles (styled) {% endcomment %}
+        {% include article-sidenav.html %}
+        
+      </aside>
+
+      <!-- Main content (right side) -->
+      <main class="grid-col-12 tablet:grid-col-9 usa-prose main-content">
+
+        <!-- Header row: breadcrumbs + page title -->
+        <div class="grid-row grid-gap">
+          <div class="grid-col-12 usa-prose">
+            {% include breadcrumbs.html %}
+          </div>
+        </div>
+
+        <!-- Content row: main column + small right column -->
+        <div class="grid-row grid-gap">
+
+          <!-- Main column -->
+          <div class="grid-col-12 tablet:grid-col-9 usa-prose">
+
+            <h1 class="mgat-solution-heading">{{ page.title }}</h1>
+            <hr />
+
+            {{ content }}
+            
+          </div>
+
+          <!-- Small right column (future use - could add related articles, date, etc.) -->
+          <div class="grid-col-12 tablet:grid-col-3">
+            {% if page.date %}
+              <div class="margin-bottom-2">
+                <p class="text-base"><strong>Published:</strong><br>{{ page.date | date: "%B %d, %Y" }}</p>
+              </div>
+            {% endif %}
+
+            {% if page.author %}
+              <div class="margin-bottom-2">
+                <p class="text-base"><strong>Author:</strong><br>{{ page.author }}</p>
+              </div>
+            {% endif %}
+
+            {% if page.tags and page.tags.size > 0 %}
+              <div class="margin-bottom-2">
+                <p class="text-base"><strong>Tags:</strong></p>
+                <div class="margin-top-1">
+                  {% for tag in page.tags %}
+                    <span class="usa-tag margin-right-1 margin-bottom-1" style="border-radius: 1rem; display: inline-block;">{{ tag }}</span>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endif %}
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+</section>

@@ -1,0 +1,23 @@
+{%- comment -%}
+  Articles Side Navigation
+  - Lists all articles in the collection
+  - Styled similarly to other sidenav components
+  - Usage: {% include article-sidenav.html %}
+{%- endcomment -%}
+
+{%- assign articles_sorted = site.articles | sort: "title" -%}
+
+{%- if articles_sorted.size > 0 -%}
+<nav class="sidenav-sticky" aria-label="Articles">
+  <h3 class="margin-top-0">Articles</h3>
+  <ul class="usa-sidenav">
+    {%- for article in articles_sorted -%}
+      <li class="usa-sidenav__item">
+        <a href="{{ article.url | relative_url }}" class="{%- if article.url == page.url -%}usa-current{%- endif -%}">
+          {{ article.title }}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+{%- endif -%}

@@ -37,6 +37,10 @@ collections:
     output: true
     permalink: /app-starter-kits/releases/:path/
     displayname: "App Releases"
+  articles:
+    output: true
+    permalink: /articles/:title/
+    displayname: "Articles"
   data_model_releases:
     output: true
     permalink: /data-models/releases/:path/
@@ -95,6 +99,10 @@ defaults:
       layout: release
       parent_collection: app_starter_kits
       thumbnail: "/assets/app-starter-kits/default.png"
+  - scope:
+      type: articles
+    values:
+      layout: article
   - scope:
       type: docs
     values:

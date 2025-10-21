@@ -1,0 +1,43 @@
+---
+layout: default
+title: Articles
+permalink: /articles/
+---
+
+<main id="main-content" class="usa-section usa-prose">
+  <div class="container">
+    <header class="margin-bottom-2">
+      <h1 class="usa-prose__heading">{{ page.title }}</h1>
+      <p>Explore our collection of articles covering various topics related to government solutions, best practices, and implementation guidance.</p>
+    </header>
+
+    {% assign articles_sorted = site.articles | sort: "date" | reverse %}
+    
+    {% if articles_sorted.size > 0 %}
+    <div class="grid-row">
+      {% for article in articles_sorted %}
+        <div class="grid-col-4 margin-bottom-2">
+          {% comment %} Build a safe, short description: prefer description, then excerpt, then content, but always strip HTML and truncate. {% endcomment %}
+          {% capture raw_desc %}
+            {% if article.description %}{{ article.description }}{% elsif article.excerpt %}{{ article.excerpt }}{% else %}{{ article.content }}{% endif %}
+          {% endcapture %}
+          {% assign desc = raw_desc | strip_html | truncate: 200 %}
+          {% capture article_date %}{{ article.date | date: "%B %-d, %Y" }}{% endcapture %}
+          {% include card.html
+            type='article'
+            title=article.title
+            description=desc
+            url=article.url
+            meta=article_date
+            meta_align='center'
+            align='center'
+            button_label='Read article'
+          %}
+        </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p>No articles yet. Check back soon.</p>
+    {% endif %}
+  </div>
+</main>
