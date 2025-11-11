@@ -125,7 +125,6 @@ layout: default
                 {% endfor %}
               </ul>
             </nav>
-          {% endif %}
         {% endif %}
       </aside>
     </div>
@@ -169,6 +168,14 @@ layout: default
 }
 
 .usa-sidenav__item a.blog-tag-link.active .blog-tag-count {
+  color: white;
+}
+
+.usa-sidenav__item a.blog-tag-link.active:hover {
+  color: white;
+}
+
+.usa-sidenav__item a.blog-tag-link.active:hover .blog-tag-count {
   color: white;
 }
 
