@@ -1,55 +1,58 @@
 ---
 layout: default
 ---
-{% comment %} Simple post layout that uses the default site header and container. {% endcomment %}
-<main id="main-content" class="usa-section usa-prose">
-  <div class="container">
-    <div class="grid-row">
-      <div class="grid-col-8">
-        <article class="post">
-          <header class="post-header margin-bottom-2">
-            <h1 class="usa-prose__heading">{{ page.title }}</h1>
-            <p class="text-base-italic">{% if page.date %}{{ page.date | date: "%B %-d, %Y" }}{% endif %}</p>
-            {% if page.author %}
-            <p class="text-small">By {{ page.author }}</p>
-            {% endif %}
-          </header>
+{% comment %} Blog post layout with clean sidebar navigation similar to data model pages {% endcomment %}
+<section class="usa-section">
+  <div class="grid-container-full">
+    <div class="grid-row grid-gap">
+      
+      <!-- Sidebar navigation -->
+      <aside class="grid-col-12 tablet:grid-col-3">
+        {% if page.thumbnail %}
+          <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} blog post image" class="page-thumbnail">
+        {% endif %}
 
-          <div class="post-content">
-            {{ content }}
+        {% comment %} Blog posts side navigation {% endcomment %}
+        {% include blog-sidenav.html count=8 %}
+      </aside>
+
+      <!-- Main content -->
+      <main class="grid-col-12 tablet:grid-col-9 usa-prose">
+        <div class="grid-row grid-gap">
+          <div class="grid-col-12 usa-prose">
+            {% include breadcrumbs.html %}
+          </div>
+        </div>
+
+        <div class="grid-row grid-gap">
+          <div class="grid-col-12 tablet:grid-col-9 usa-prose">
+            <article class="post">
+              <header class="post-header margin-bottom-2">
+                <h1 class="usa-prose__heading">{{ page.title }}</h1>
+                <p class="text-base-italic">{% if page.date %}{{ page.date | date: "%B %-d, %Y" }}{% endif %}</p>
+                {% if page.author %}
+                <p class="text-small">By {{ page.author }}</p>
+                {% endif %}
+              </header>
+
+              <div class="post-content">
+                {{ content }}
+              </div>
+
+              {% if page.tags %}
+              <footer class="post-footer margin-top-4">
+                <p><strong>Tags:</strong> {% for tag in page.tags %}<a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="usa-tag">{{ tag }}</a>{% unless forloop.last %} {% endunless %}{% endfor %}</p>
+              </footer>
+              {% endif %}
+            </article>
           </div>
 
-          {% if page.tags %}
-          <footer class="post-footer margin-top-4">
-            <p>Tags: {% for tag in page.tags %}<a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %}, {% endunless %}{% endfor %}</p>
-          </footer>
-          {% endif %}
-        </article>
-      </div>
-
-      <aside class="grid-col-4 usa-prose">
-        <div class="sticky-sidebar">
-          <h2 class="usa-prose__subheading">Recent posts</h2>
-          {% assign count = page.recent_posts | default: 5 %}
-          {% assign sorted_posts = site.posts | sort: 'date' | reverse %}
-          <ul class="usa-list usa-list--unstyled">
-            {% assign shown = 0 %}
-            {% for p in sorted_posts %}
-              <li style="margin-bottom:1rem;">
-                <div style="display:flex; align-items:center; gap:0.25rem;">
-                  <a href="{{ p.url | relative_url }}">{{ p.title }}</a>
-                  <span aria-hidden="true">📅</span>
-                  <span class="text-base-italic"><em>{{ p.date | date: "%b %e, %Y" }}</em></span>
-                </div>
-              </li>
-              {% assign shown = shown | plus: 1 %}
-              {% if shown >= count %}
-                {% break %}
-              {% endif %}
-            {% endfor %}
-          </ul>
+          <!-- Small right column for additional content if needed -->
+          <div class="grid-col-12 tablet:grid-col-3">
+            {% comment %} Future: Could add related content, social sharing, etc. {% endcomment %}
+          </div>
         </div>
-      </aside>
+      </main>
     </div>
   </div>
-</main>
+</section>

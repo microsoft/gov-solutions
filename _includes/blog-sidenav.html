@@ -1,0 +1,28 @@
+{%- comment -%}
+  Blog Posts Side Navigation
+  - Shows recent blog posts in a clean sidebar format
+  - Similar styling to data-model-sidenav
+  - Usage: {% include blog-sidenav.html count=5 %}
+{%- endcomment -%}
+
+{%- assign count = include.count | default: 5 -%}
+{%- assign sorted_posts = site.posts | sort: 'date' | reverse -%}
+{%- assign all_posts = sorted_posts | slice: 0, count -%}
+
+{%- if all_posts.size > 0 -%}
+<nav class="sidenav-sticky" aria-label="Recent blog posts">
+  <h3 class="margin-top-2">Recent posts</h3>
+  <ul class="usa-sidenav">
+    {%- for p in all_posts -%}
+      <li class="usa-sidenav__item">
+        <a href="{{ p.url | relative_url }}" class="{%- if p.url == page.url -%}usa-current{%- endif -%}">
+          <div class="blog-post-link">
+            <div class="blog-post-title">{{ p.title }}</div>
+            <div class="blog-post-date text-base-italic">{{ p.date | date: "%B %-d, %Y" }}</div>
+          </div>
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+{%- endif -%}
