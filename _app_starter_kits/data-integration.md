@@ -12,7 +12,6 @@ related_use_cases:
 related_personas:
   - data-architect
   - system-administrator
-published: false
 ---
 
 The **Data Integration** app is an early-stage module designed to provide agencies with a standardized framework for synchronizing and managing data flows between multiple systems. Built on Microsoft Power Platform, this app serves as the operational interface for the Data Integration data model, offering administrators and data stewards the tools needed to configure, monitor, and govern cross-system data synchronization activities.
