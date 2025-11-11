@@ -122,8 +122,9 @@ layout: default
               {% if page.custom_release_file %}
                 <a class="usa-button" href="{{ page.custom_release_file }}" download>Download This Release</a>
               {% elsif page.release_file %}
+                {% assign module_path = page.module_type | default: "modules" %}
                 <a class="usa-button"
-                  href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/modules/{{ page.parent }}/releases/{{ page.version }}/{{ page.release_file }}"
+                  href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ module_path }}/{{ page.parent }}/releases/{{ page.version }}/{{ page.release_file }}"
                   download>Download This Release</a>
               {% elsif page.download %}
                 <a class="usa-button"

@@ -106,9 +106,14 @@ layout: default
             {% if page.latest_release %}
               {% assign lr = page.latest_release %}
               {% assign rel = site.data_model_releases | where: "parent", page.slug | where: "version", lr | first %}
-              {% if rel and rel.release_file %}
+              {% if rel and rel.custom_release_file %}
                 <a class="usa-button"
-                  href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/modules/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}"
+                  href="{{ rel.custom_release_file }}"
+                  download>Download Latest Release ({{ rel.version }})</a>
+              {% elsif rel and rel.release_file %}
+                {% assign module_path = rel.module_type | default: "modules" %}
+                <a class="usa-button"
+                  href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ module_path }}/{{ rel.parent }}/releases/{{ rel.version }}/{{ rel.release_file }}"
                   download>Download Latest Release ({{ rel.version }})</a>
               {% elsif rel and rel.download %}
                 <a class="usa-button" href="https://github.com/microsoft/gov-datamodels/raw/refs/heads/main/{{ rel.download }}" download>Download Latest Release ({{ rel.version }})</a>
