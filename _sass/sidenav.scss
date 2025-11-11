@@ -25,3 +25,23 @@
     color: inherit;
   }
 }
+
+/* Blog post tags styling */
+.post-tags {
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .usa-tag {
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+  
+  .usa-tag:hover {
+    transform: translateY(-1px);
+    text-decoration: none;
+  }
+}

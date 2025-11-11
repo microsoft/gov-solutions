@@ -41,7 +41,14 @@ layout: default
 
               {% if page.tags %}
               <footer class="post-footer margin-top-4">
-                <p><strong>Tags:</strong> {% for tag in page.tags %}<a href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}" class="usa-tag">{{ tag }}</a>{% unless forloop.last %} {% endunless %}{% endfor %}</p>
+                <div class="post-tags">
+                  <strong>Tags:</strong>
+                  <div class="tag-list margin-top-1">
+                    {% for tag in page.tags %}
+                      <a href="{{ '/blog/' | relative_url }}#{{ tag | slugify }}" class="usa-tag margin-right-1 margin-bottom-1">{{ tag }}</a>
+                    {% endfor %}
+                  </div>
+                </div>
               </footer>
               {% endif %}
             </article>
