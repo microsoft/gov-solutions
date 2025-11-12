@@ -16,4 +16,3 @@ published: false
    - Configured sitemap with Areas for Event Management and Settings
    - In Event Management area, configured groups for Events and Activities (Events, Event Sponsors, Event Tracks, Event Sessions), Scheduling (Bookable Resources, Bookable Resource Reservations, Bookable Resource Payments), and Event Execution (Event Participants, Event Requests, Event Entries)
    - In Settings area, configured page for Event Types
-

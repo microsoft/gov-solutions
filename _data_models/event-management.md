@@ -1,8 +1,8 @@
 ---
 title: "Event Management"
-description: "Data model for creating and managing events, attendees, and bookable resources (reservations and payments) used by government programs for scheduling, registration, and resource allocation."
+description: "Data model for creating and managing events, attendees, sessions, sponsors, and bookable resources (reservations and payments) used by government programs for scheduling, registration, and resource allocation."
 thumbnail: /assets/use_cases/event-management.png
-latest_release: v1.0.0.1
+latest_release: v1.1.0.0
 required_data_models:
   - core
 related_use_cases:
@@ -12,25 +12,59 @@ related_personas:
 
 ## Event Management: A Data Model for Planning and Coordinating Activities
 
-The **Event Management** module provides a flexible structure for agencies to plan, schedule, and manage events of all kinds—from training sessions and public meetings to resource reservations and internal workshops. Events are a routine part of government operations, yet they often require coordinating people, places, and resources in a way that can quickly become complex. This module brings those pieces together in Dataverse, creating a consistent framework for tracking who is attending, what resources are needed, and how costs are managed.
+The **Event Management** module provides a flexible structure for agencies to plan, schedule, and manage events of all kinds - from multi-day conferences with sponsors and tracks to training sessions, public meetings, and internal workshops. Events are a routine part of government operations, yet they often require coordinating people, places, resources, funding, and complex schedules in a way that can quickly become overwhelming. This module brings those pieces together in Dataverse, creating a consistent framework for tracking who is attending, what resources are needed, how costs are managed, and how events are structured.
 
-At the center of the model is the **Event** table, which represents a single scheduled activity. Events can be tied to a **Person** as organizer or speaker, and they serve as the anchor for attendee management, resource reservations, and payments. The **Event Attendee** table records each person’s participation, whether as a guest, registrant, or staff member. By capturing attendee details in structured form, agencies can monitor participation levels, manage registration, and support reporting requirements.
+At the center of the model is the **Event** table, which represents a single scheduled activity with expanded metadata including funding tracking, registration management, document management, and categorization. Events can be organized by **Event Type** and **Event Category**, with support for registration windows, commitment tracking, and document management including agendas, terms and conditions, FAQs, and volunteer information.
 
-Resource management is a key feature of this model. **Bookable Resources** represent the rooms, equipment, or other assets needed to support events. Through **Bookable Resource Reservations**, these resources can be scheduled against a specific event, ensuring availability is managed and conflicts are avoided. For events that involve costs—such as paid training or use of external venues—the **Bookable Resource Payment** table records charges and payments tied to reservations, linking financial data directly to the event record.
+The model supports sophisticated attendee and participant management through multiple specialized tables. **Event Attendees** track general registrations and attendance, while **Event Participants** capture more specific roles like speakers, judges, and presenters. For complex events, **Event Sessions** allow breaking events into smaller components like workshops or presentations, with **Event Session Participants** tracking who is involved in each session. **Event Tracks** provide thematic organization for large conferences with multiple concurrent sessions.
 
-In practice, this module can support many scenarios. A training office could use it to schedule classes, record attendees, reserve rooms and projectors, and track cost recovery through payments. A public engagement office might organize community meetings, log RSVPs as attendees, and manage resource reservations for facilities. Even internal teams could benefit from the same structure to manage conference rooms, shared equipment, or recurring staff events, all within a standardized framework.
+Resource management remains a key feature with **Bookable Resources** representing rooms, equipment, or other assets needed to support events. Through **Bookable Resource Reservations**, these resources can be scheduled against specific events, and **Bookable Resource Payments** handle associated costs and fees.
 
-By combining events, attendees, and resources into a unified structure, the Event Management module helps agencies coordinate activities more effectively. It reduces scheduling conflicts, ensures accountability for resource use, and provides a clear record of who attended and what was required to make the event successful. Just as importantly, it delivers a reusable foundation that can be extended for specialized scenarios, from large conferences to small internal workshops, while maintaining consistency across the enterprise.
+Financial management is enhanced with **Event Sponsors** tracking organizational funding, including currency support for international events. The Event table itself includes funding fields to track available budgets, remaining funds, and actual usage, providing financial oversight for event planning and execution.
+
+In practice, this module can support scenarios like multi-day government conferences with sponsors, tracks, sessions, and multiple participants, while still handling simple internal meetings. A training office could organize certification programs with multiple sessions, track speaker participation, manage sponsor funding, and handle resource reservations all within one cohesive system. Public engagement offices can manage large community events with various participant types, document requirements, and funding sources.
+
+By combining events, attendees, participants, sessions, sponsors, and resources into a unified structure, the Event Management module helps agencies coordinate activities more effectively while maintaining visibility into costs, participation, and resource utilization. It delivers a scalable foundation that grows from simple meetings to complex multi-day events while maintaining consistency across the enterprise.
 
 ```mermaid
 graph TD
+  Account(Account)
   Contact(Person)
   govcdm_BookableResource(Bookable Resource)
   govcdm_BookableResourcePayment(Bookable Resource Payment)
   govcdm_BookableResourceReservation(Bookable Resource Reservation)
+  govcdm_Document(Document)
   govcdm_Event(Event)
   govcdm_EventAttendee(Event Attendee)
+  govcdm_EventEntry(Event Entry)
+  govcdm_EventParticipant(Event Participant)
+  govcdm_EventRequest(Event Request)
+  govcdm_EventSession(Event Session)
+  govcdm_EventSessionParticipant(Event Session Participant)
+  govcdm_EventSponsor(Event Sponsor)
+  govcdm_EventTrack(Event Track)
+  govcdm_EventType(Event Type)
+  govcdm_Location(Location)
+  govcdm_EventSponsor --> Account
+  govcdm_EventParticipant --> Contact
+  govcdm_EventSessionParticipant --> Contact
+  govcdm_EventSponsor --> Contact
   govcdm_EventAttendee --> Contact
   govcdm_BookableResourceReservation --> govcdm_BookableResource
   govcdm_BookableResourcePayment --> govcdm_BookableResourceReservation
+  govcdm_Event --> govcdm_Document
+  govcdm_EventEntry --> govcdm_Event
+  govcdm_EventParticipant --> govcdm_Event
+  govcdm_EventRequest --> govcdm_Event
+  govcdm_EventSession --> govcdm_Event
+  govcdm_EventSponsor --> govcdm_Event
+  govcdm_EventTrack --> govcdm_Event
+  govcdm_BookableResourceReservation --> govcdm_Event
+  govcdm_EventAttendee --> govcdm_Event
+  govcdm_EventSession --> govcdm_EventSession
+  govcdm_EventSessionParticipant --> govcdm_EventSession
+  govcdm_Event --> govcdm_EventType
+  govcdm_Event --> govcdm_Location
+  govcdm_Event --> TransactionCurrency
+  govcdm_EventSponsor --> TransactionCurrency
 ```
