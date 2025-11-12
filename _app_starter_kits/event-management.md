@@ -1,7 +1,7 @@
 ---
 title: "Event Management"
-description: "Provides a template for planning, scheduling, and coordinating events, attendees, and bookable resources across an organization."
-latest_release: v1.1.0.0
+description: "Provides a template for planning, scheduling, and coordinating events, sessions, sponsors, participants, and bookable resources across an organization."
+latest_release: v1.2.0.0
 thumbnail: /assets/use_cases/event-management.png
 required_app_starter_kits:
   - core
@@ -11,10 +11,14 @@ related_use_cases:
   - calendar
 ---
 
-The **Event Management** app is an early-stage concept designed to help government agencies plan, coordinate, and track events using Microsoft Power Platform and Dynamics 365. This module is still in development, and the following description highlights potential features and capabilities envisioned for future releases. The goal is to provide agencies with a configurable, low-code solution that streamlines event operations, improves visibility, and reduces administrative burden.
+The **Event Management** app is designed to help government agencies plan, coordinate, and track events using Microsoft Power Platform and Dynamics 365. While still evolving, this module provides a functional foundation for event operations with room for customization and extension based on specific agency needs.
 
-The current baseline solution includes a model-driven app with shell entities for **Person, Bookable Resource, Bookable Resource Payment, Bookable Resource Reservation, Event, and Event Attendee**. These tables establish the foundation for managing participants, scheduling resources, recording payments, and tracking attendance. In addition, the module already contains a **Power BI Master Calendar prototype**, a **Canvas App Master Calendar prototype**, and integration capability with a **SharePoint event list**—providing multiple ways to visualize and coordinate event information.
+The current solution includes a model-driven app with functional entities for **Events, Event Participants, Event Sessions, Event Sponsors, Event Tracks, and Bookable Resources**. These tables work together to support basic event planning workflows, from simple meetings to multi-session events with sponsors and specialized participants. The app includes organized navigation areas for Event Management and Settings, with logical groupings for Event Setup, Event Execution, and Organizations.
 
-Future development could expand this baseline with entities for **Event Sessions, Event Locations, Event Speakers, Event Sponsors, and Event Materials**, enabling support for more complex events such as multi-day conferences, training programs, or community outreach campaigns. Potential features include attendee registration and check-in, automated communications and reminders, venue and resource scheduling, speaker management, and session-level agendas. Over time, dashboards and reports could deliver insights into participation metrics, event costs, and feedback to measure success.
+Key capabilities include **event planning** with registration windows, document management, and funding tracking; **participant management** distinguishing between general attendees and specialized roles like speakers or judges; **session management** for breaking complex events into workshops or presentations; **sponsor tracking** with funding oversight and currency support; and **resource management** for booking rooms, equipment, and handling associated costs.
 
-Because this app is in an early stage of development, these features represent a vision for what may be included as the module evolves, and not all capabilities are currently available.
+The module also contains prototypes for a **Power BI Master Calendar**, a **Canvas App Master Calendar**, and integration capability with a **SharePoint event list**—providing multiple ways to visualize and coordinate event information. These components offer starting points for agencies looking to extend the basic model-driven app with additional reporting and calendar functionality.
+
+Current forms support multi-tab event planning with sections for General information, Logistics, Sponsors, Sessions, Participants, and Requests. While the app provides a solid foundation for event management, agencies should expect to customize forms, views, and workflows to match their specific operational requirements and approval processes.
+
+This module represents a practical starting point for government event management rather than a comprehensive solution, with built-in extensibility for agencies to adapt and expand based on their unique needs.
