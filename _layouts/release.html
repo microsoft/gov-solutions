@@ -128,6 +128,19 @@ layout: default
                <div></div>
              {% endif %}
 
+            {% if page.credits %}
+              <div class="usa-prose margin-top-3">
+                <h3>Credit</h3>
+                {% for credit in page.credits %}
+                  {% if credit.url %}
+                    <p><a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}{% if credit.company %} ({{ credit.company }}){% endif %}</a></p>
+                  {% else %}
+                    <p>{{ credit.name }}{% if credit.company %} ({{ credit.company }}){% endif %}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+
             <!-- <aside class="usa-in-page-nav" data-title-text="On this page" data-title-heading-level="h2" data-target="#doc-main-column"
               data-scroll-offset="0" data-root-margin="0px 0px 0px 0px" data-threshold="1"></aside> -->
 

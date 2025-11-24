@@ -56,6 +56,18 @@ layout: default
 
           <!-- Small right column for additional content if needed -->
           <div class="grid-col-12 tablet:grid-col-3">
+            {% if page.credits %}
+              <div class="usa-prose margin-top-3">
+                <h3>Credit</h3>
+                {% for credit in page.credits %}
+                  {% if credit.url %}
+                    <p><a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}{% if credit.company %} ({{ credit.company }}){% endif %}</a></p>
+                  {% else %}
+                    <p>{{ credit.name }}{% if credit.company %} ({{ credit.company }}){% endif %}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
             {% comment %} Future: Could add related content, social sharing, etc. {% endcomment %}
           </div>
         </div>

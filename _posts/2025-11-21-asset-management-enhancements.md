@@ -3,6 +3,10 @@ layout: post
 title: "Asset Management Module: Enhanced Data Model and Redesigned User Interface"
 date: 2025-11-21 10:00:00 -0400
 tags: [announcements, asset-management, data-model-release, app-release, user-experience]
+credits:
+  - name: "Ruth Delaney"
+    url: "https://www.linkedin.com/in/ruth-brandt-delaney/"
+    company: Microsoft
 ---
 
 We're excited to announce significant updates to the **Asset Management** module with the release of **Data Model v1.1.0.0** and **App Starter Kit v1.2.0.0**. These coordinated releases expand asset tracking capabilities and deliver a redesigned user interface for more efficient government property management.

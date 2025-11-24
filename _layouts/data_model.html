@@ -124,6 +124,19 @@ layout: default
               <div></div>
             {% endif %}
 
+            {% if page.credits %}
+              <div class="usa-prose margin-top-3">
+                <h3>Credit</h3>
+                {% for credit in page.credits %}
+                  {% if credit.url %}
+                    <p><a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}{% if credit.company %} ({{ credit.company }}){% endif %}</a></p>
+                  {% else %}
+                    <p>{{ credit.name }}{% if credit.company %} ({{ credit.company }}){% endif %}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+
             {% include related-items.html to="data_models" %}
             {% include related-items.html to="use_cases" %}
             {% include related-items.html to="personas" %}
