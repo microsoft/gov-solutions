@@ -43,7 +43,7 @@ Install the foundational managed solutions in this specific order:
    - Depends on the Core solution
 
 ### Step 3: Install Supporting Components
-3. **[PCF IFrame Control managed solution](https://github.com/microsoft/gov-apptemplates/tree/main/code-components/iframe-control/releases/v1.0.0.1)**
+3. **[PCF IFrame Control managed solution](https://github.com/microsoft/gov-apptemplates/raw/main/cross-module/pcf-controls/releases/MS-Gov-PCF-Controls_managed%20-%201.0.0.0.zip)**
    - Enables advanced user interface components
    - Required for enhanced user experiences in starter kits
    - Provides secure iframe embedding capabilities
