@@ -1,0 +1,45 @@
+---
+layout: default
+---
+<section class="usa-section padding-top-2">
+  <div class="container">
+    <header class="margin-bottom-2">
+      <h1 class="usa-display">AI Agents</h1>
+      <p>This section will showcase AI-powered agents designed for government workflows and processes. These intelligent agents will help automate tasks, provide assistance, and enhance productivity across various government functions. Each agent will be purpose-built to understand government contexts, compliance requirements, and citizen service needs.</p>
+      
+      <div class="usa-alert usa-alert--info margin-top-2" role="status">
+        <div class="usa-alert__body">
+          <h4 class="usa-alert__heading">🚧 Work in Progress</h4>
+          <p class="usa-alert__text">
+            The Agents collection is currently under development. We're working on creating a comprehensive library of AI agents tailored for government use cases. Check back soon for updates and new agent releases.
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <div class="grid-row grid-gap">
+      {% assign items = site.agents | sort: 'title' %}
+      {% for item in items %}
+        <!-- 1-up mobile, 2-up tablet, 3-up desktop -->
+        <div class="grid-col-12 tablet:grid-col-6 desktop:grid-col-4 margin-bottom-2">
+          {% include card.html
+            type="solution"
+            title=item.title
+            url=item.url
+            description=item.description
+            thumbnail=item.thumbnail
+          %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Empty state (render if no items) -->
+    {% if items.size == 0 %}
+      <div class="usa-alert usa-alert--warning margin-top-2" role="status">
+        <div class="usa-alert__body">
+          <p class="usa-alert__text">No AI agents are currently available. This section is being actively developed - please check back for updates.</p>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</section>

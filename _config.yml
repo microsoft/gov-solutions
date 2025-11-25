@@ -60,6 +60,16 @@ collections:
     permalink: /data-models/:title/
     displayname: "Data Models"
     # top-level collection: no parent_collection
+  agents:
+    output: true
+    permalink: /agents/:title/
+    displayname: "Agents"
+    # top-level collection: no parent_collection
+  portals:
+    output: true
+    permalink: /portals/:title/
+    displayname: "Portals"
+    # top-level collection: no parent_collection
   tables:
     output: true
     permalink: /tables/:path/
@@ -83,6 +93,26 @@ defaults:
       layout: data_model
       parent: "Data Models"
       thumbnail: "/assets/data-models/default.png"
+      latest_release: ""
+      requires: []
+      use_cases: []
+      personas: []
+  - scope:
+      type: agents
+    values:
+      layout: solution
+      parent: "Agents"
+      thumbnail: "/assets/agents/default.png"
+      latest_release: ""
+      requires: []
+      use_cases: []
+      personas: []
+  - scope:
+      type: portals
+    values:
+      layout: solution
+      parent: "Portals"
+      thumbnail: "/assets/portals/default.png"
       latest_release: ""
       requires: []
       use_cases: []
