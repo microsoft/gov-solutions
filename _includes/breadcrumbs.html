@@ -43,7 +43,8 @@
                 {% assign doc_slug = doc.title | slugify %}
               {% endif %}
 
-              {% if doc_slug == search_slug or doc.title | slugify == search_slug %}
+              {% assign doc_title_slug = doc.title | slugify %}
+              {% if doc_slug == search_slug or doc_title_slug == search_slug %}
                 {% assign parent_item = doc %}
                 {% break %}
               {% endif %}

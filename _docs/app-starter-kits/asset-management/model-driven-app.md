@@ -1,5 +1,6 @@
 ---
 title: Asset Management Model-Driven App
+parent_collection: app_starter_kits
 parent: asset-management
 description: "Walkthrough of the Asset Management model-driven app."
 ---

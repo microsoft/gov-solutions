@@ -1,0 +1,128 @@
+---
+layout: default
+---
+
+<section class="usa-section">
+  <div class="grid-container-full">
+
+    <div class="grid-row grid-gap">
+
+      <!-- Sidebar navigation -->
+
+      <aside class="grid-col-12 tablet:grid-col-3">
+        <img src="{{ page.thumbnail | relative_url }}" alt="{{ page.title }} portal image" class="page-thumbnail">
+        <br />
+        {% if page.description %}
+          <div class="usa-prose margin-bottom-2">
+            {{ page.description }}
+          </div>
+        {% endif %}
+        <nav class="sidenav-sticky" aria-label="Section navigation">
+          {% include portal-sidenav.html %}
+        </nav>
+      </aside>
+
+      <!-- Main content (right side) -->
+      <main class="grid-col-12 tablet:grid-col-9 usa-prose">
+
+        <!-- Header row: breadcrumbs + page title -->
+        <div class="grid-row grid-gap">
+          <div class="grid-col-12 usa-prose">
+            {% include breadcrumbs.html %}
+          </div>
+        </div>
+
+        <!-- Content row: main column + small right column -->
+        <div class="grid-row grid-gap">
+
+          <!-- Main column -->
+          <div class="grid-col-12 tablet:grid-col-9 usa-prose">
+
+            <h1 class="mgat-solution-heading">{{ page.title }}</h1>
+            <hr />
+
+            {% include tabs.html
+            ns=page.slug
+            tabs="Overview:overview|How-to / Guides:guides|Releases:releases"
+            %}
+
+            <!-- OVERVIEW panel -->
+            <section id="panel-{{ page.slug }}-overview" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {{ content }}
+            </section>
+
+            <!-- RELEASES panel -->
+            <section id="panel-{{ page.slug }}-releases" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {% include portal_releases.html %}
+            </section>
+
+            <!-- GUIDES panel -->
+            <section id="panel-{{ page.slug }}-guides" class="mgat-subnav__panel usa-prose" role="tabpanel"
+              data-panel="{{ page.slug }}">
+              {% include doclist.html %}
+            </section>
+          </div>
+
+          <!-- Small right column (download + related items) -->
+          <div class="grid-col-12 tablet:grid-col-3">
+            {% if page.latest_release %}
+              {% assign lr = page.latest_release %}
+              {% assign rel = site.portal_releases | where: "parent", page.slug | where: "version", lr | first %}
+              {% assign raw_base = 'https://github.com/microsoft/gov-apptemplates/raw/main/' %}
+
+              {% if rel and rel.custom_release_file %}
+                <a class="usa-button" href="{{ rel.custom_release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+
+              {% elsif rel and rel.release_file %}
+                {% assign rf = rel.release_file | default: "" | strip %}
+                {% if rf != "" %}
+                  {% assign rf_prefix = rf | slice: 0,6 %}
+                  {% if rf_prefix == "MS-Gov" %}
+                    {% assign module_path = rel.module_type | default: "portals" %}
+                    {% assign repo_folder = rel.repo_path | default: rel.parent %}
+                    <a class="usa-button" href="{{ raw_base }}{{ module_path }}/{{ repo_folder }}/releases/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% else %}
+                    {% assign module_path = rel.module_type | default: "portals" %}
+                    {% assign repo_folder = rel.repo_path | default: rel.parent %}
+                    <a class="usa-button" href="{{ raw_base }}{{ module_path }}/{{ repo_folder }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                  {% endif %}
+                {% else %}
+                  {% assign module_path = rel.module_type | default: "portals" %}
+                  {% assign repo_folder = rel.repo_path | default: rel.parent %}
+                  <a class="usa-button" href="{{ raw_base }}{{ module_path }}/{{ repo_folder }}/releases/{{ rel.version }}/{{ rel.release_file }}" download>Download Latest Release ({{ rel.version }})</a>
+                {% endif %}
+
+              {% else %}
+                <div></div>
+              {% endif %}
+            {% else %}
+              <div></div>
+            {% endif %}
+
+            {% if page.credits %}
+              <div class="usa-prose margin-top-3">
+                <h3>Credit</h3>
+                {% for credit in page.credits %}
+                  {% if credit.url %}
+                    <p><a href="{{ credit.url }}" target="_blank" rel="noopener">{{ credit.name }}{% if credit.company %} ({{ credit.company }}){% endif %}</a></p>
+                  {% else %}
+                    <p>{{ credit.name }}{% if credit.company %} ({{ credit.company }}){% endif %}</p>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            {% endif %}
+
+            {% include related-items.html to="portals" %}
+            {% include related-items.html to="data_models" %}
+            {% include related-items.html to="use_cases" %}
+            {% include related-items.html to="personas" %}
+
+          </div>
+
+        </div>
+
+      </main>
+    </div>
+</section>

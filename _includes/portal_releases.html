@@ -1,0 +1,33 @@
+{% capture portal_releases %}
+
+  {% assign releases_sorted = site.portal_releases | sort: 'version' | reverse %}
+  {% for rel in releases_sorted %}
+    {% if rel.parent == page.slug %}
+      {% assign rel_summary = rel.summary %}
+      {% if rel_summary == nil or rel_summary == '' %}
+        {% assign rel_summary = rel.excerpt %}
+        {% if rel_summary == nil or rel_summary == '' %}
+          {% assign rel_summary = rel.content | strip_html | truncatewords: 30 %}
+        {% endif %}
+      {% endif %}
+
+      <div class="grid-row grid-gap margin-bottom-2">
+        <div class="grid-col-12">
+          {% include card.html
+            title=rel.title
+            url=rel.url
+            description=rel.description
+            align="left"
+            type="release"
+          %}
+        </div>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+
+{% if portal_releases contains 'usa-card' %}
+  {{ portal_releases }}
+{% else %}
+  <p>No releases published yet.</p>
+{% endif %}

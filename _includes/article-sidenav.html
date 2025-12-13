@@ -5,7 +5,8 @@
   - Usage: {% include article-sidenav.html %}
 {%- endcomment -%}
 
-{%- assign articles_sorted = site.articles | sort: "title" -%}
+{%- assign articles_published = site.articles | where_exp: "article", "article.published != false" -%}
+{%- assign articles_sorted = articles_published | sort: "title" -%}
 
 {%- if articles_sorted.size > 0 -%}
 <nav class="sidenav-sticky" aria-label="Articles">

@@ -27,4 +27,4 @@ By combining these capabilities, the module helps standardize implementation pla
 
 ## Sample data
 
-Sample data is available for this module here - [Process and Tasking Sample Data](https://github.com/microsoft/gov-apptemplates/tree/main/federal/process-and-tasking/sample-data){:target="_blank" rel="noopener noreferrer"}.
+Sample data is available for this module here - [Process and Tasking Sample Data](https://github.com/microsoft/gov-apptemplates/tree/main/cross-module/process-and-tasking/sample-data){:target="_blank" rel="noopener noreferrer"}.

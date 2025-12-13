@@ -11,7 +11,8 @@ permalink: /articles/
       <p>Explore our collection of articles covering various topics related to government solutions, best practices, and implementation guidance.</p>
     </header>
 
-    {% assign articles_sorted = site.articles | sort: "date" | reverse %}
+    {% assign articles_published = site.articles | where_exp: "article", "article.published != false" %}
+    {% assign articles_sorted = articles_published | sort: "date" | reverse %}
     
     {% if articles_sorted.size > 0 %}
     <div class="grid-row">

@@ -1,0 +1,18 @@
+{%- comment -%}
+  USWDS Side Navigation for Portals (dynamic)
+  - Uses .usa-sidenav markup
+  - Highlights current page with .usa-current on the <a>
+{%- endcomment -%}
+
+<ul class="usa-sidenav">
+  {%- assign mods = site.portals | sort: "title" -%}
+  {%- for m in mods -%}
+    <li class="usa-sidenav__item">
+      <a
+        href="{{ m.url | relative_url }}"
+        class="{% if m.url == page.url %}usa-current{% endif %}">
+        {{ m.title }}
+      </a>
+    </li>
+  {%- endfor -%}
+</ul>

@@ -11,3 +11,4 @@ This template includes a model-driven app to manage IT Assigned Entitlements, IT
 # App navigation
 
 ![App navigation screenshot]({{ "/assets/app-starter-kits/it-service-management/image-83471d63-6076-4b4d-8ef5-6062fc262ed2.png" | relative_url }})
+

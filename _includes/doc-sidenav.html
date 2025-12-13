@@ -11,7 +11,15 @@
   {%- assign parent_slug = parts[2] -%}
 {%- endif -%}
 
-{%- assign docs_sorted = site.docs | where: "parent", parent_slug | sort: "title" -%}
+{%- comment -%} Filter docs by both parent AND parent_collection to avoid cross-collection mixing {% endcomment -%}
+{%- assign all_docs = site.docs | where: "parent", parent_slug -%}
+{%- assign docs_sorted = "" | split: "|" -%}
+{%- for doc in all_docs -%}
+  {%- if doc.parent_collection == page.parent_collection -%}
+    {%- assign docs_sorted = docs_sorted | push: doc -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- assign docs_sorted = docs_sorted | sort: "title" -%}
 
 {%- comment -%} Remove current page from the list when rendering {% endcomment -%}
 {%- assign visible_docs = "" | split: "|" -%}

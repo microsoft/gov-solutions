@@ -30,4 +30,4 @@ Typical use cases include providing a **foundational data layer** for new Power 
 
 ## Sample data
 
-Sample data is available for this module here - [Core Sample Data](https://github.com/microsoft/gov-apptemplates/tree/main/federal/core/sample-data){:target="_blank" rel="noopener noreferrer"}.
+Sample data is available for this module here - [Core Sample Data](https://github.com/microsoft/gov-apptemplates/tree/main/cross-module/core/sample-data){:target="_blank" rel="noopener noreferrer"}.

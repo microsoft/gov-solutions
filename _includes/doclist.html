@@ -1,7 +1,25 @@
 {% capture solution_guides %}
 {% assign docs_sorted = site.docs | sort: 'title' %}
 {% for doc in docs_sorted %}
-  {% if doc.url contains page.url and doc.url != page.url %}
+  {% comment %} Filter docs by parent_collection and parent fields {% endcomment %}
+  {% assign doc_matches = false %}
+  
+  {% comment %} Check if doc belongs to this collection and specific item {% endcomment %}
+  {% if doc.parent_collection == page.collection and doc.parent == page.slug %}
+    {% assign doc_matches = true %}
+  {% endif %}
+  
+  {% comment %} Also check if doc applies_to includes this collection/item {% endcomment %}
+  {% if doc.applies_to %}
+    {% for applies_item in doc.applies_to %}
+      {% if applies_item == page.collection or applies_item == page.slug %}
+        {% assign doc_matches = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  
+  {% if doc_matches %}
     <div class="grid-row grid-gap margin-bottom-2">
       <div class="grid-col-12">
         {% include card.html

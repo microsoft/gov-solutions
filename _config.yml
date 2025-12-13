@@ -17,6 +17,28 @@ excerpt_separator: "<!--more-->"
 
 sass:
   sass_dir: _sass
+  style: compressed
+
+# Build performance optimizations
+# incremental: true
+profile: true
+strict_front_matter: true
+
+# Liquid optimizations  
+liquid:
+  error_mode: strict
+  strict_filters: true
+  strict_variables: false
+
+# Exclude unnecessary files from processing
+exclude:
+  - .github/
+  - scripts/
+  - "*.log"
+  - node_modules/
+  - vendor/
+  - Gemfile*
+  - "*.md.backup"
 
 # Plugins (jekyll-feed is supported by GitHub Pages and provides an RSS/Atom feed)
 plugins:
@@ -31,7 +53,7 @@ collections:
     # top-level collection: no parent_collection
   docs:
     output: true
-    permalink: /app-starter-kits/:path/
+    permalink: /docs/:path/
     displayname: "Documentation"
   app_releases:
     output: true
@@ -70,6 +92,10 @@ collections:
     permalink: /portals/:title/
     displayname: "Portals"
     # top-level collection: no parent_collection
+  portal_releases:
+    output: true
+    permalink: /portals/releases/:path/
+    displayname: "Portal Releases"
   tables:
     output: true
     permalink: /tables/:path/
@@ -110,7 +136,7 @@ defaults:
   - scope:
       type: portals
     values:
-      layout: solution
+      layout: portal
       parent: "Portals"
       thumbnail: "/assets/portals/default.png"
       latest_release: ""
@@ -130,9 +156,49 @@ defaults:
       parent_collection: app_starter_kits
       thumbnail: "/assets/app-starter-kits/default.png"
   - scope:
+      type: portal_releases
+    values:
+      layout: release
+      parent_collection: portals
+      thumbnail: "/assets/portals/default.png"
+  - scope:
       type: articles
     values:
       layout: article
+  # App starter kit docs
+  - scope:
+      type: docs
+      path: "_docs/app-starter-kits/**"
+    values:
+      layout: doc
+      parent_collection: app_starter_kits
+  
+  # Data model docs
+  - scope:
+      type: docs
+      path: "_docs/data-models/**"
+    values:
+      layout: doc
+      parent_collection: data_models
+  
+  # Portal docs
+  - scope:
+      type: docs
+      path: "_docs/portals/**"
+    values:
+      layout: doc
+      parent_collection: portals
+  
+  # Agent docs
+  - scope:
+      type: docs
+      path: "_docs/agents/**"
+    values:
+      layout: doc
+      parent_collection: agents
+  
+  
+  # Fallback for any other docs
   - scope:
       type: docs
     values:

@@ -14,18 +14,21 @@ layout: default
         {% assign parent_item = nil %}
         {% if page.parent %}
         
-          {% comment %} choose collection that contains the parent solution {% endcomment %}
-          {% assign parent_collection = "app_starter_kits" %}
-          {% if page.collection == "data_model_releases" or page.collection == "data_models" %}
-            {% assign parent_collection = "data_models" %}
-          {% endif %}
+          {% comment %} Use parent_collection from page frontmatter (set by directory-based config) {% endcomment %}
+          {% assign parent_collection = page.parent_collection | default: "app_starter_kits" %}
 
           {% assign parent_item = site[parent_collection] | where: "slug", page.parent | first %}
           {% if parent_item == nil %}
             {% if parent_collection == "app_starter_kits" %}
               {% capture base_path %}app-starter-kits{% endcapture %}
-            {% else %}
+            {% elsif parent_collection == "data_models" %}
               {% capture base_path %}data-models{% endcapture %}
+            {% elsif parent_collection == "portals" %}
+              {% capture base_path %}portals{% endcapture %}
+            {% elsif parent_collection == "agents" %}
+              {% capture base_path %}agents{% endcapture %}
+            {% else %}
+              {% capture base_path %}{{ parent_collection }}{% endcapture %}
             {% endif %}
 
             {% capture sol_url %}/{{ base_path }}/{{ page.parent }}/{% endcapture %}

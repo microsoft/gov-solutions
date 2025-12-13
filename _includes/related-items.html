@@ -24,6 +24,9 @@ Do not perform legacy alias fallbacks.
     {%- elsif to_coll == 'app_starter_kits' -%}
       {%- assign page_field = 'related_app_starter_kits' -%}
       {%- assign target_field = 'related_use_cases' -%}
+    {%- elsif to_coll == 'portals' -%}
+      {%- assign page_field = 'related_portals' -%}
+      {%- assign target_field = 'related_use_cases' -%}
     {%- endif -%}
 
   {%- elsif from_coll == 'personas' -%}
@@ -35,6 +38,9 @@ Do not perform legacy alias fallbacks.
       {%- assign target_field = 'related_personas' -%}
     {%- elsif to_coll == 'app_starter_kits' -%}
       {%- assign page_field = 'related_app_starter_kits' -%}
+      {%- assign target_field = 'related_personas' -%}
+    {%- elsif to_coll == 'portals' -%}
+      {%- assign page_field = 'related_portals' -%}
       {%- assign target_field = 'related_personas' -%}
     {%- endif -%}
 
@@ -64,6 +70,21 @@ Do not perform legacy alias fallbacks.
       {%- assign page_field = 'related_personas' -%}
       {%- assign target_field = 'related_app_starter_kits' -%}
      {%- endif -%}
+
+  {%- elsif from_coll == 'portals' -%}
+    {%- if to_coll == 'data_models' -%}
+      {%- assign page_field = 'required_data_models' -%}
+      {%- assign target_field = 'related_portals' -%}
+     {%- elsif to_coll == 'portals' -%}
+      {%- assign page_field = 'required_portals' -%}
+      {%- assign target_field = 'required_portals' -%}
+     {%- elsif to_coll == 'use_cases' -%}
+      {%- assign page_field = 'related_use_cases' -%}
+      {%- assign target_field = 'related_portals' -%}
+     {%- elsif to_coll == 'personas' -%}
+      {%- assign page_field = 'related_personas' -%}
+      {%- assign target_field = 'related_portals' -%}
+     {%- endif -%}
    {%- endif -%}
 
   {%- if page_field != '' -%}
@@ -79,6 +100,9 @@ Do not perform legacy alias fallbacks.
       {%- when 'app_starter_kits' -%}
         {%- assign human = 'app starter kits' -%}
         {%- assign icon = '🧰' -%}
+      {%- when 'portals' -%}
+        {%- assign human = 'portals' -%}
+        {%- assign icon = '🌐' -%}
       {%- when 'use_cases' -%}
         {%- assign human = 'use cases' -%}
         {%- assign icon = '💡' -%}
