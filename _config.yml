@@ -21,7 +21,7 @@ sass:
 
 # Build performance optimizations
 # incremental: true
-profile: true
+# profile: true
 strict_front_matter: true
 
 # Liquid optimizations  
