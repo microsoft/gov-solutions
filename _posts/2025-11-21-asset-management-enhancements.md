@@ -2,7 +2,7 @@
 layout: post
 title: "Asset Management Module: Enhanced Data Model and Redesigned User Interface"
 date: 2025-11-21 10:00:00 -0400
-tags: [announcements, asset-management, data-model-release, app-release, user-experience]
+tags: [announcements, asset-management, data-model, app-release, user-experience]
 credits:
   - name: "Ruth Delaney"
     url: "https://www.linkedin.com/in/ruth-brandt-delaney/"

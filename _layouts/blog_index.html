@@ -66,15 +66,15 @@ layout: default
               </div>
             </div>
 
-            {% comment %} Individual tag sections {% endcomment %}
+            {% comment %} Individual tag sections - use cached sorted_posts {% endcomment %}
             {% for tag in sorted_tags %}
-              {% assign tag_posts = site.posts | where_exp: "post", "post.tags contains tag" | sort: 'date' | reverse %}
-              {% if tag_posts.size > 0 %}
-                <div id="{{ tag | slugify }}-posts" class="tag-section" style="display: none;">
-                  <h2>{{ tag | capitalize }}</h2>
-                  <p class="text-base-italic margin-bottom-3">{{ tag_posts.size }} post{% if tag_posts.size != 1 %}s{% endif %} tagged with "{{ tag }}" (most recent first)</p>
-                  <div class="blog-post-list">
-                    {% for post in tag_posts %}
+              <div id="{{ tag | slugify }}-posts" class="tag-section" style="display: none;">
+                <h2>{{ tag | capitalize }}</h2>
+                {% assign tag_post_count = 0 %}
+                <div class="blog-post-list">
+                  {% for post in sorted_posts %}
+                    {% if post.tags contains tag %}
+                      {% assign tag_post_count = tag_post_count | plus: 1 %}
                       <article class="blog-post-item">
                         <div class="blog-post-content">
                           <div class="blog-post-meta">
@@ -97,10 +97,11 @@ layout: default
                           {% endif %}
                         </div>
                       </article>
-                    {% endfor %}
-                  </div>
+                    {% endif %}
+                  {% endfor %}
                 </div>
-              {% endif %}
+                <p class="text-base-italic margin-bottom-3">{{ tag_post_count }} post{% if tag_post_count != 1 %}s{% endif %} tagged with "{{ tag }}" (most recent first)</p>
+              </div>
             {% endfor %}
 
           </div>
@@ -129,12 +130,17 @@ layout: default
                   </a>
                 </li>
                 {% for tag in sorted_tags %}
-                  {% assign tag_posts = site.posts | where_exp: "post", "post.tags contains tag" %}
+                  {% assign tag_count = 0 %}
+                  {% for post in sorted_posts %}
+                    {% if post.tags contains tag %}
+                      {% assign tag_count = tag_count | plus: 1 %}
+                    {% endif %}
+                  {% endfor %}
                   <li class="usa-sidenav__item">
                     <a href="{{ page.url | relative_url }}#{{ tag | slugify }}" data-tag="{{ tag | slugify }}" class="blog-tag-link">
                       <div class="blog-tag-item">
                         <span class="blog-tag-name">{{ tag | capitalize }}</span>
-                        <span class="blog-tag-count">({{ tag_posts.size }})</span>
+                        <span class="blog-tag-count">({{ tag_count }})</span>
                       </div>
                     </a>
                   </li>

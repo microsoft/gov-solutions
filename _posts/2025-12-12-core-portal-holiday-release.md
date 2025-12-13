@@ -2,7 +2,7 @@
 layout: post
 title: "🎁 Season's Greetings: Introducing Portals!"
 date: 2025-12-12 10:00:00 -0400
-tags: [announcements, portal, core, uswds, holiday-release]
+tags: [announcements, portals]
 ---
 
 Ho ho ho! 🎅 While everyone else is wrapping presents and planning holiday parties, we've been wrapping up our very first portal release. Consider it an early holiday gift to the government development community...
