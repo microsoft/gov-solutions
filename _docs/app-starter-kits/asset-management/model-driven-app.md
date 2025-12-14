@@ -9,32 +9,68 @@ The **Asset Management** model-driven app delivers a user-friendly interface for
 
 The app’s navigation is organized around key asset management processes, making it easy for users to find and update information. The main areas include:
 
-## Assets
-A central view lists all assets, with filters and search to quickly locate items. Users can open detailed forms to view or edit asset information, including category, owner, location, and service history. Quick create forms allow for rapid entry of new assets. 
+## Dashboards and Navigation
 
-### *Registering a New Asset* 
+![Assets Overview]({{ "/assets/app-starter-kits/asset-management/dashboard-assets-overview.png" | relative_url }})
+
+## Track Assets
+
+A central view lists all assets, with filters and search to quickly locate items.
+
+<!-- ### Assets List -->
+
+![Assets List]({{ "/assets/app-starter-kits/asset-management/assets.png" | relative_url }})
+
+Users can open detailed forms to view or edit asset information, including category, owner, location, and service history. Quick create forms allow for rapid entry of new assets. 
+
+![Asset General Tab]({{ "/assets/app-starter-kits/asset-management/asset-general.png" | relative_url }})
+
+<!-- ### Asset General
+
 Users can quickly add assets using the quick create form, entering essential details and linking to categories, owners, and locations.
 
-![Asset General Form]({{ "/assets/app-starter-kits/asset-management/asset-general.png" | relative_url }})
+![Asset General Tab]({{ "/assets/app-starter-kits/asset-management/asset-general.png" | relative_url }})
 
+### Asset Financials
+
+![Asset Financials Tab]({{ "/assets/app-starter-kits/asset-management/asset-financials.png" | relative_url }})
+
+### Asset Ownership
+
+![Asset Ownership Tab]({{ "/assets/app-starter-kits/asset-management/asset-ownership.png" | relative_url }})
+
+### Asset Service History
+
+![Asset Service History Tab]({{ "/assets/app-starter-kits/asset-management/asset-service-history.png" | relative_url }})
+
+### Asset Notes and Admin
+
+![Asset Notes Tab]({{ "/assets/app-starter-kits/asset-management/asset-notes-admin.png" | relative_url }}) -->
+
+## Track Asset Service Records
+
+<!-- ### List -->
+
+![Asset Service Records]({{ "/assets/app-starter-kits/asset-management/asset-service-records.png" | relative_url }})
+
+Service Records allow you to track the maintenance requests and resolution for each asset.
+
+![Asset Service Record General]({{ "/assets/app-starter-kits/asset-management/asset-service-general.png" | relative_url }})
+
+## Define Asset Categories
+
+![Asset Categories]({{ "/assets/app-starter-kits/asset-management/asset-categories.png" | relative_url }})
+
+<!-- ### General
 
 ## Asset Categories
+
 A dedicated view displays all asset categories, supporting easy management and standardization. Category forms let users define new types or update existing ones, ensuring assets are consistently classified.
 
-![Asset Category Form]({{ "/assets/app-starter-kits/asset-management/asset-category.png" | relative_url }})
+![Asset Categories]({{ "/assets/app-starter-kits/asset-management/asset-categories.png" | relative_url }})
 
-## Asset Owners
-Views and forms help agencies assign and update asset ownership, whether to individuals, teams, or external partners. Ownership changes are tracked for accountability.
+![Asset Category]({{ "/assets/app-starter-kits/asset-management/asset-category.png" | relative_url }}) -->
 
-![Asset Owner History]({{ "/assets/app-starter-kits/asset-management/asset-owner-history.png" | relative_url }})
+## Define Products
 
-## Service Records
-The asset form displays all maintenance, inspections, and repairs for each asset. Users can add new service records directly from the asset form, ensuring a complete maintenance history.
-
-### *Logging Maintenance*
-Service events are added via a subgrid or related tab, capturing dates, service types, and outcomes for compliance and planning.
-
-![Asset Service History 1]({{ "/assets/app-starter-kits/asset-management/asset-service-history-1.png" | relative_url }})
-
-![Asset Service History 2]({{ "/assets/app-starter-kits/asset-management/asset-service-history-2.png" | relative_url }})
-
+![Products]({{ "/assets/app-starter-kits/asset-management/products.png" | relative_url }})

@@ -31,3 +31,7 @@ By bringing together assets, categories, ownership, locations, and service histo
 - Set up a few Persons (Contacts) for asset owners
 - (Optional) Add sample Asset, Asset Owners, and Asset Service Records
 
+## Sample data
+
+Sample data is available for this module here - [Asset Management Sample Data](https://github.com/microsoft/gov-apptemplates/tree/main/modules/asset-management/sample-data){:target="_blank" rel="noopener noreferrer"}.
+
