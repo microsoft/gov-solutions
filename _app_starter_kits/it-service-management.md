@@ -23,3 +23,7 @@ The starter kit enables agencies to begin establishing IT service management pra
 Future enhancements will include automated workflows for access provisioning and compliance management, enhanced dashboards with request volumes and accreditation timelines, and deeper integrations with asset management and external compliance tools. The framework is designed to link IT service activities back to budget structures using **Work Assignment Codes**, providing transparency into resource utilization and funding allocation.
 
 This starter kit provides agencies with foundational IT service management capabilities, offering initial tools for system cataloging, service tracking, and compliance management that can be expanded and customized to meet specific organizational needs as requirements evolve.
+
+## Sample data
+
+Sample data is available for this module here - [IT Service Management Sample Data](https://github.com/microsoft/gov-apptemplates/tree/main/modules/it-service-management/sample-data){:target="_blank" rel="noopener noreferrer"}. Sample data is currently for the IT System Catalog and related entities.
