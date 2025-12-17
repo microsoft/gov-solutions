@@ -176,12 +176,13 @@ Usage: {% include related-items.html to="personas" %}
       {%- endfor -%}
     {%- endif -%}
 
-    {%- comment -%} OPTIMIZED: Reverse lookup - find items that reference this page {%- endcomment -%}
-    {%- assign page_title_lc = page.title | default: '' | downcase -%}
-    {%- assign page_slug_lc = page.slug | default: '' | downcase -%}
-    
-    {%- for candidate in site[to_coll] -%}
-      {%- if candidate.url != page.url and candidate[target_field] -%}
+    {%- comment -%} OPTIMIZED: Reverse lookup - find items that reference this page (only for non-required relationships) {%- endcomment -%}
+    {%- unless page_field contains 'require' -%}
+      {%- assign page_title_lc = page.title | default: '' | downcase -%}
+      {%- assign page_slug_lc = page.slug | default: '' | downcase -%}
+      
+      {%- for candidate in site[to_coll] -%}
+        {%- if candidate.url != page.url and candidate[target_field] -%}
           {%- for cref in candidate[target_field] -%}
             {%- assign cref_lc = cref | downcase -%}
             {%- if cref_lc == page_title_lc or cref_lc == page_slug_lc -%}
@@ -201,6 +202,7 @@ Usage: {% include related-items.html to="personas" %}
           {%- endfor -%}
         {%- endif -%}
       {%- endfor -%}
+    {%- endunless -%}
 
     {%- if found -%}
       <section class="margin-top-4">
