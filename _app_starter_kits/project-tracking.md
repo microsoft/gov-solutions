@@ -1,7 +1,7 @@
 ---
 title: "Project Tracking"
 description: "App starter kit for project intake, project management, backlogs, milestones, and resource tracking."
-latest_release: v1.1.0.0
+latest_release: v1.1.1.0
 thumbnail: /assets/use_cases/project-tracking.png
 required_app_starter_kits:
   - core

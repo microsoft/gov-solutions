@@ -9,5 +9,5 @@ parent: gamification
 | Field Name | Type | Schema |
 |------------|------|--------|
 | Name | Nvarchar | govcdm_Name |
+| Description | Memo | govcdm_Description |
 
-> NOTE: Field definitions migrated from the source Gamification data model.

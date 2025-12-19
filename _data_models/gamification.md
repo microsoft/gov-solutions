@@ -2,7 +2,7 @@
 title: "Gamification"
 description: "Data model for gamification constructs used to reward, track, and incentivize user interactions and participation."
 thumbnail: /assets/use_cases/gamification.png
-latest_release: v1.0.0.0
+latest_release: v1.0.1.0
 required_data_models:
   - core
 related_use_cases:
