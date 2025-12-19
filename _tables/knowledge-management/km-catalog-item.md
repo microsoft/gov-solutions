@@ -14,6 +14,7 @@ parent: knowledge-management
 | Description | Ntext | govcdm_Description |
 | Highlight From Date | Datetime | govcdm_HighlightFromDate |
 | Highlight To Date | Datetime | govcdm_HighlightToDate |
+| Keywords | Ntext | govcdm_Keywords |
 | KM Catalog Item Subtype | Nvarchar | govcdm_KMCatalogItemSubtype |
 | KM Catalog Item Type | Lookup | govcdm_KMCatalogItemType |
 | KM Category | Lookup | govcdm_KMCategory |

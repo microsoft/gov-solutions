@@ -2,7 +2,7 @@
 title: "Knowledge Management"
 description: "Organizes and manages knowledge artifacts including KB articles, catalog items, categories, and related metadata to help agencies publish and discover institutional knowledge."
 thumbnail: /assets/use_cases/knowledge-management.png
-latest_release: v1.0.1.1
+latest_release: v1.0.2.0
 required_data_models:
   - core
 related_use_cases:
