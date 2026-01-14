@@ -1,7 +1,7 @@
 ---
 title: "Investigative Case Management"
 description: "A model-driven starter kit for investigative case management — centralize leads, referrals, evidence, and violations to streamline case workflows and auditing."
-latest_release: v1.1.0.0
+latest_release: v1.1.1.0
 thumbnail: /assets/use_cases/investigations.png
 required_app_starter_kits:
   - core

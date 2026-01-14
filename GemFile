@@ -1,8 +1,24 @@
 # /docs/Gemfile
 source "https://rubygems.org"
 
-# GitHub Pages gem locks Jekyll and plugins to what Pages uses in production
-gem "github-pages", group: :jekyll_plugins
+# Use Jekyll directly since github-pages doesn't support Ruby 4.0 yet
+gem "jekyll", "~> 4.3"
+
+# Required for Ruby 4.0+ (no longer in stdlib)
+gem "logger"
+gem "csv"
+gem "base64"
+
+# Jekyll plugins that GitHub Pages uses
+gem "jekyll-feed", "~> 0.17"
+gem "jekyll-seo-tag", "~> 2.8"
+gem "jekyll-sitemap", "~> 1.4"
 
 # Useful for local development
 gem "webrick", "~> 1.8"
+
+# Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
+gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
+
+# Performance-booster for watching directories on Windows
+gem "wdm", "~> 0.2", platforms: [:mingw, :x64_mingw, :mswin]
