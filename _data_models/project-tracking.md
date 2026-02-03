@@ -2,7 +2,7 @@
 title: "Project Tracking"
 description: "Standardized data model for capturing project requests, milestones, iterations, work items, resources, roles, and change requests to support planning, delivery, and oversight across agencies."
 thumbnail: /assets/use_cases/project-tracking.png
-latest_release: v1.0.0.1
+latest_release: v1.0.0.2
 required_data_models:
   - core
 related_use_cases:
